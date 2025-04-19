@@ -143,10 +143,6 @@
       color: #000;
       box-shadow: 0 0 20px #8f00ff;
     }
-    .soundcloud-frame {
-      margin: 1rem auto;
-      max-width: 250px;
-    }
     .details {
       font-size: 0.9rem;
       text-align: left;
@@ -243,6 +239,15 @@
       font-size: 0.8rem;
       color: #8f00ff;
     }
+    .modal-image {
+      width: 100%;
+      max-height: 100px;
+      object-fit: cover;
+      border-radius: 5px;
+      border: 1px solid #8f00ff;
+      display: block;
+      margin-bottom: 10px;
+    }
     stripe-buy-button {
       margin-bottom: 1rem;
       display: block;
@@ -272,9 +277,6 @@
       .product-img {
         max-width: 150px;
       }
-      .soundcloud-frame {
-        max-width: 200px;
-      }
       .info-button {
         margin-bottom: 0.5rem;
       }
@@ -283,6 +285,9 @@
       }
       .image-placeholder {
         height: 80px;
+      }
+      .modal-image {
+        max-height: 80px;
       }
     }
   </style>
@@ -307,9 +312,6 @@
       <div class="left-column">
         <img src="Mannequin_Image1.png" alt="K2-18b Drop Shirt" class="product-img" onclick="showZoom()">
         <button class="info-button" onclick="showInfo()">More Info</button>
-        <div class="soundcloud-frame">
-          <iframe width="100%" height="80" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=YOUR_TRACK_LINK&color=%238f00ff&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
-        </div>
         <p><em>“We been knew. They just needed the data.”</em></p>
       </div>
       <div class="right-column">
@@ -413,11 +415,11 @@
         </table>
       </div>
       <div class="right-section">
-        <div class="Model_images1.jpg</div>
-        <div class="Model_images2.jpg</div>
-        <div class="Model_images3.jpg</div>
-        <div class="Model_images4.jpg</div>
-        <div class="Model_images5.jpg</div>
+        <img src="Model_images1.jpg" alt="Model Image 1" class="modal-image" onerror="this.classList.add('image-placeholder'); this.src='';">
+        <img src="Model_images2.jpg" alt="Model Image 2" class="modal-image" onerror="this.classList.add('image-placeholder'); this.src='';">
+        <img src="Model_images3.jpg" alt="Model Image 3" class="modal-image" onerror="this.classList.add('image-placeholder'); this.src='';">
+        <img src="Model_images4.jpg" alt="Model Image 4" class="modal-image" onerror="this.classList.add('image-placeholder'); this.src='';">
+        <img src="Model_images5.jpg" alt="Model Image 5" class="modal-image" onerror="this.classList.add('image-placeholder'); this.src='';">
       </div>
     </div>
   </div>
