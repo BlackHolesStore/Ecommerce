@@ -32,7 +32,7 @@
       pointer-events: none;
       background: #000;
     }
-    .banner {
+    .top-banner {
       background: #8f00ff;
       color: #000;
       padding: 10px;
@@ -52,6 +52,23 @@
       0% { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
     }
+    .bottom-banner {
+      background: #8f00ff;
+      color: #000;
+      padding: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      z-index: 2;
+      text-decoration: none;
+      display: block;
+    }
+    .bottom-banner:hover {
+      background: #a033ff;
+    }
     .main-content {
       flex: 1;
       display: flex;
@@ -61,6 +78,7 @@
       position: relative;
       z-index: 1;
       padding: 20px;
+      padding-bottom: 40px; /* Space for bottom banner */
     }
     .content-wrapper {
       max-width: 600px;
@@ -121,22 +139,6 @@
       -webkit-user-drag: none;
       pointer-events: none;
     }
-    .buy-button {
-      display: inline-block;
-      padding: 10px 20px;
-      border: 2px solid #8f00ff;
-      color: #8f00ff;
-      background: transparent;
-      text-decoration: none;
-      font-weight: 700;
-      transition: all 0.3s ease;
-      margin-top: 1rem;
-      text-shadow: none;
-    }
-    .buy-button:hover {
-      background: #8f00ff;
-      color: #000;
-    }
     .soundcloud-frame {
       margin: 1rem auto;
       max-width: 250px;
@@ -174,13 +176,13 @@
     Your browser does not support the video tag.
   </video>
 
-  <audio autoplay loop>
+  <audio id="bg-audio" loop>
     <source src="Beyond the Stars remix v2 (1).mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
-  <div class="banner">
-    <span class="banner-text">K2-18b Drop 01 // Inspired by the biosignature signal 124 light-years away // Own the Signal</span>
+  <div class="top-banner">
+    <span class="banner-text">K2-18b Drop 01 // Inspired by the biosignature signal 124 light-years away // Own the Vibes Don't Lie Shirt</span>
   </div>
 
   <div class="main-content">
@@ -201,16 +203,27 @@
           <p>100% Organic Cotton<br>Oversized Fit<br>Reflective Silver + Violet Mist Print<br>Sizes: S, M, L, XL, XXL<br>$45 USD</p>
           <p>Includes QR code linking to K2-18b JWST data.</p>
         </div>
-        <a href="https://your-checkout-link.com" class="buy-button">Own the Signal</a>
       </div>
     </div>
   </div>
+
+  <a href="https://your-checkout-link.com" class="bottom-banner">Own the Vibes Don't Lie Shirt</a>
 
   <div class="zoom-modal" id="zoomModal" onclick="hideZoom()">
     <img src="Mannequin_Image1.png" alt="K2-18b Drop Shirt Zoomed">
   </div>
 
   <script>
+    // Force audio autoplay on page load
+    window.addEventListener('load', () => {
+      const audio = document.getElementById('bg-audio');
+      audio.play().catch(error => {
+        console.log('Autoplay failed:', error);
+        // Fallback: Try playing after user interaction
+        document.addEventListener('click', () => audio.play(), { once: true });
+      });
+    });
+
     function showZoom() {
       document.getElementById('zoomModal').style.display = 'flex';
     }
