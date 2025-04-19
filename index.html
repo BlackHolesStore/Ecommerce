@@ -78,7 +78,7 @@
       position: relative;
       z-index: 1;
       padding: 20px;
-      padding-bottom: 40px; /* Space for bottom banner */
+      padding-bottom: 40px;
     }
     .content-wrapper {
       max-width: 600px;
@@ -118,7 +118,40 @@
       user-select: none;
       -webkit-user-drag: none;
     }
-    .zoom-modal {
+    .info-button {
+      display: inline-block;
+      padding: 10px 20px;
+      border: 2px solid #8f00ff;
+      color: #8f00ff;
+      background: transparent;
+      text-decoration: none;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      margin-bottom: 1rem;
+      text-shadow: none;
+      cursor: pointer;
+      animation: pulse 2s infinite ease-in-out;
+      box-shadow: 0 0 10px #8f00ff;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 10px #8f00ff, 0 0 20px #8f00ff66; }
+      50% { box-shadow: 0 0 20px #8f00ff, 0 0 30px #8f00ff; }
+      100% { box-shadow: 0 0 10px #8f00ff, 0 0 20px #8f00ff66; }
+    }
+    .info-button:hover {
+      background: #8f00ff;
+      color: #000;
+      box-shadow: 0 0 20px #8f00ff;
+    }
+    .soundcloud-frame {
+      margin: 1rem auto;
+      max-width: 250px;
+    }
+    .details {
+      font-size: 0.9rem;
+      text-align: left;
+    }
+    .zoom-modal, .info-modal {
       display: none;
       position: fixed;
       top: 0;
@@ -139,13 +172,61 @@
       -webkit-user-drag: none;
       pointer-events: none;
     }
-    .soundcloud-frame {
-      margin: 1rem auto;
-      max-width: 250px;
-    }
-    .details {
-      font-size: 0.9rem;
+    .info-modal-content {
+      background: #111;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 90%;
+      max-height: 80%;
+      overflow-y: auto;
       text-align: left;
+      position: relative;
+    }
+    .info-modal-content h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px #8f00ff;
+    }
+    .info-modal-content h3 {
+      font-size: 1.2rem;
+      margin: 1rem 0 0.5rem;
+      text-shadow: 0 0 5px #8f00ff;
+    }
+    .info-modal-content ul {
+      list-style-type: disc;
+      padding-left: 20px;
+      margin-bottom: 1rem;
+    }
+    .info-modal-content li {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+    .info-modal-content p {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+    .info-modal-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    .info-modal-content th, .info-modal-content td {
+      border: 1px solid #8f00ff;
+      padding: 8px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    .info-modal-content th {
+      background: #8f00ff;
+      color: #000;
+    }
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: #8f00ff;
+      font-size: 1.5rem;
+      cursor: pointer;
     }
     audio {
       display: none;
@@ -167,6 +248,9 @@
       .soundcloud-frame {
         max-width: 200px;
       }
+      .info-button {
+        margin-bottom: 0.5rem;
+      }
     }
   </style>
 </head>
@@ -182,13 +266,14 @@
   </audio>
 
   <div class="top-banner">
-    <span class="banner-text">K2-18b Drop 01 // Inspired by the biosignature signal 124 light-years away // Own the Vibes Don't Lie Shirt</span>
+    <span class="banner-text">K2-18b Drop 01 // Inspired by the biosignature signal 124 light-years away // Own the Signal</span>
   </div>
 
   <div class="main-content">
     <div class="content-wrapper">
       <div class="left-column">
         <img src="Mannequin_Image1.png" alt="K2-18b Drop Shirt" class="product-img" onclick="showZoom()">
+        <button class="info-button" onclick="showInfo()">More Info</button>
         <div class="soundcloud-frame">
           <iframe width="100%" height="80" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=YOUR_TRACK_LINK&color=%238f00ff&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
         </div>
@@ -207,19 +292,94 @@
     </div>
   </div>
 
-  <a href="https://your-checkout-link.com" class="bottom-banner">Own the Vibes Don't Lie Shirt</a>
+  <a href="https://your-checkout-link.com" class="bottom-banner">Own the Signal</a>
 
   <div class="zoom-modal" id="zoomModal" onclick="hideZoom()">
     <img src="Mannequin_Image1.png" alt="K2-18b Drop Shirt Zoomed">
   </div>
 
+  <div class="info-modal" id="infoModal" onclick="hideInfo(event)">
+    <div class="info-modal-content">
+      <span class="close-button" onclick="hideInfo(event)">✕</span>
+      <h2>Product Details</h2>
+      <h3>Features</h3>
+      <ul>
+        <li>Distressed hem</li>
+        <li>Drop shoulders</li>
+        <li>Crew neck</li>
+        <li>Ribbed collar</li>
+        <li>Oversized fit</li>
+        <li>Washed effect</li>
+      </ul>
+      <h3>Fabric</h3>
+      <ul>
+        <li>100% cotton</li>
+        <li>Pre-shrunk</li>
+        <li>Washed and distressed, easy to fade</li>
+        <li>260gm²</li>
+        <li>16 singles plain weave</li>
+      </ul>
+      <h3>Process</h3>
+      <ul>
+        <li>Side-seamed construction</li>
+        <li>Double-stitched ribbed collar</li>
+        <li>Taped neck and shoulders</li>
+        <li>Double-stitched cuffs and hem</li>
+      </ul>
+      <h3>Care Instructions</h3>
+      <p>Wash on the reverse side with neutral detergents. Do not soak, expose to the sun, and bleach. Iron, steam, or tumble dry at low temperature (max 30°C or 90°F). Slight floating color may occur during initial washing. It is recommended to wash with clothes of similar color.</p>
+      <p><em>More Info</em><br>Washed fabric, fading is normal<br>Hand wash is recommended</p>
+      <h3>Size Guide (Metric)</h3>
+      <table>
+        <tr>
+          <th></th>
+          <th>S</th>
+          <th>M</th>
+          <th>L</th>
+          <th>XL</th>
+          <th>2XL</th>
+        </tr>
+        <tr>
+          <td>Length</td>
+          <td>29.1</td>
+          <td>29.9</td>
+          <td>30.7</td>
+          <td>31.5</td>
+          <td>32.3</td>
+        </tr>
+        <tr>
+          <td>Chest</td>
+          <td>22.8</td>
+          <td>23.6</td>
+          <td>24.4</td>
+          <td>25.2</td>
+          <td>26.0</td>
+        </tr>
+        <tr>
+          <td>Shoulder</td>
+          <td>21.3</td>
+          <td>22.0</td>
+          <td>22.8</td>
+          <td>23.6</td>
+          <td>24.4</td>
+        </tr>
+        <tr>
+          <td>Sleeve Length</td>
+          <td>9.1</td>
+          <td>9.3</td>
+          <td>9.4</td>
+          <td>9.6</td>
+          <td>9.8</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
   <script>
-    // Force audio autoplay on page load
     window.addEventListener('load', () => {
       const audio = document.getElementById('bg-audio');
       audio.play().catch(error => {
         console.log('Autoplay failed:', error);
-        // Fallback: Try playing after user interaction
         document.addEventListener('click', () => audio.play(), { once: true });
       });
     });
@@ -229,6 +389,14 @@
     }
     function hideZoom() {
       document.getElementById('zoomModal').style.display = 'none';
+    }
+    function showInfo() {
+      document.getElementById('infoModal').style.display = 'flex';
+    }
+    function hideInfo(event) {
+      if (event.target.classList.contains('info-modal') || event.target.classList.contains('close-button')) {
+        document.getElementById('infoModal').style.display = 'none';
+      }
     }
     document.querySelectorAll('img').forEach(img => {
       img.addEventListener('contextmenu', e => e.preventDefault());
