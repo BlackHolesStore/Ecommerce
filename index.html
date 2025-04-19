@@ -18,7 +18,7 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      background: #000; /* Fallback for video */
+      background: #000;
     }
     video#bg-video {
       position: fixed;
@@ -28,9 +28,9 @@
       height: 100%;
       object-fit: cover;
       z-index: -1;
-      opacity: 1; /* Full opacity to avoid white layer */
+      opacity: 1;
       pointer-events: none;
-      background: #000; /* Ensure no white flash */
+      background: #000;
     }
     .banner {
       background: #8f00ff;
@@ -170,12 +170,12 @@
 </head>
 <body>
   <video id="bg-video" autoplay loop muted playsinline>
-    <source src="assets/site-background.mp4" type="video/mp4">
+    <source src="site background ‐.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
   <audio autoplay loop>
-    <source src="assets/audio.mp3" type="audio/mpeg">
+    <source src="Beyond the Stars remix v2 (1).mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
@@ -186,7 +186,7 @@
   <div class="main-content">
     <div class="content-wrapper">
       <div class="left-column">
-        <img src="assets/Mannequin_Image1.png" alt="K2-18b Drop Shirt" class="product-img" onclick="showZoom()">
+        <img src="Mannequin_Image1.png" alt="K2-18b Drop Shirt" class="product-img" onclick="showZoom()">
         <div class="soundcloud-frame">
           <iframe width="100%" height="80" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=YOUR_TRACK_LINK&color=%238f00ff&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
         </div>
@@ -207,7 +207,7 @@
   </div>
 
   <div class="zoom-modal" id="zoomModal" onclick="hideZoom()">
-    <img src="assets/Mannequin_Image1.png" alt="K2-18b Drop Shirt Zoomed">
+    <img src="Mannequin_Image1.png" alt="K2-18b Drop Shirt Zoomed">
   </div>
 
   <script>
@@ -217,7 +217,6 @@
     function hideZoom() {
       document.getElementById('zoomModal').style.display = 'none';
     }
-    // Disable right-click on images
     document.querySelectorAll('img').forEach(img => {
       img.addEventListener('contextmenu', e => e.preventDefault());
     });
