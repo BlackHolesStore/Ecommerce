@@ -243,8 +243,8 @@
       color: #000;
     }
     .image-placeholder {
-      width: 300px;
-      height: 300px;
+      width: 100%;
+      height: 100px;
       background: #333;
       border: 1px solid #8f00ff;
       border-radius: 5px;
@@ -279,6 +279,8 @@
       flex-direction: column;
       gap: 10px;
       align-items: center;
+      width: 100%;
+      max-width: 250px;
     }
     .info-section-image img {
       margin-bottom: 0;
@@ -364,11 +366,11 @@
         margin-bottom: 0.5rem;
       }
       .image-placeholder {
-        width: 200px;
-        height: 200px;
+        width: 100%;
+        height: 80px;
       }
       .modal-image {
-        max-width: 200px;
+        max-width: 150px;
         height: auto;
       }
       .info-section {
@@ -377,6 +379,9 @@
       }
       .info-section-image {
         align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
       }
       .buy-now-container {
         text-align: center;
@@ -405,14 +410,6 @@
       }
       .main-content {
         padding-bottom: 80px;
-      }
-      .info-section-image {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      .modal-image {
-        max-width: 150px;
       }
     }
   </style>
@@ -553,11 +550,11 @@
           </table>
         </div>
         <div class="info-section-image">
-          <img src="Model_images1.jpg" alt="Model Image 1" class="modal-image" loading="lazy">
-          <img src="Model_images2.jpg" alt="Model Image 2" class="modal-image" loading="lazy">
-          <img src="Model_images3.jpg" alt="Model Image 3" class="modal-image" loading="lazy">
-          <img src="Model_images4.jpg" alt="Model Image 4" class="modal-image" loading="lazy">
-          <img src="Model_images5.jpg" alt="Model Image 5" class="modal-image" loading="lazy">
+          <img src="Model_images1.jpg" alt="Model Image 1" class="modal-image" loading="lazy" onerror="this.classList.add('image-placeholder'); this.src='';">
+          <img src="Model_images2.jpg" alt="Model Image 2" class="modal-image" loading="lazy" onerror="this.classList.add('image-placeholder'); this.src='';">
+          <img src="Model_images3.jpg" alt="Model Image 3" class="modal-image" loading="lazy" onerror="this.classList.add('image-placeholder'); this.src='';">
+          <img src="Model_images4.jpg" alt="Model Image 4" class="modal-image" loading="lazy" onerror="this.classList.add('image-placeholder'); this.src='';">
+          <img src="Model_images5.jpg" alt="Model Image 5" class="modal-image" loading="lazy" onerror="this.classList.add('image-placeholder'); this.src='';">
         </div>
       </div>
       <div class="buy-now-container">
