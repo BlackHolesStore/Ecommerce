@@ -179,13 +179,24 @@
       max-width: 90%;
       max-height: 80%;
       overflow-y: auto;
-      text-align: left;
       position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .info-modal-content .left-section {
+      text-align: left;
+    }
+    .info-modal-content .right-section {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
     .info-modal-content h2 {
       font-size: 1.5rem;
       margin-bottom: 1rem;
       text-shadow: 0 0 10px #8f00ff;
+      grid-column: 1 / -1;
     }
     .info-modal-content h3 {
       font-size: 1.2rem;
@@ -220,6 +231,38 @@
       background: #8f00ff;
       color: #000;
     }
+    .image-placeholder {
+      width: 100%;
+      height: 100px;
+      background: #333;
+      border: 1px solid #8f00ff;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: #8f00ff;
+    }
+    .info-card {
+      background: #222;
+      padding: 15px;
+      border-radius: 5px;
+      border: 1px solid #8f00ff;
+      margin-top: 10px;
+    }
+    .info-card h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 5px #8f00ff;
+    }
+    .info-card p {
+      font-size: 0.8rem;
+      color: #ccc;
+    }
+    stripe-buy-button {
+      margin-top: 10px;
+      display: block;
+    }
     .close-button {
       position: absolute;
       top: 10px;
@@ -250,6 +293,12 @@
       }
       .info-button {
         margin-bottom: 0.5rem;
+      }
+      .info-modal-content {
+        grid-template-columns: 1fr;
+      }
+      .image-placeholder {
+        height: 80px;
       }
     }
   </style>
@@ -292,7 +341,7 @@
     </div>
   </div>
 
-  <a href="https://buy.stripe.com/9AQcQ2aqD95NgmsbII" class="bottom-banner">Own the Signal</a>
+  <a href="https://your-checkout-link.com" class="bottom-banner">Own the Signal</a>
 
   <div class="zoom-modal" id="zoomModal" onclick="hideZoom()">
     <img src="Mannequin_Image1.png" alt="K2-18b Drop Shirt Zoomed">
@@ -302,76 +351,94 @@
     <div class="info-modal-content">
       <span class="close-button" onclick="hideInfo(event)">✕</span>
       <h2>Product Details</h2>
-      <h3>Features</h3>
-      <ul>
-        <li>Distressed hem</li>
-        <li>Drop shoulders</li>
-        <li>Crew neck</li>
-        <li>Ribbed collar</li>
-        <li>Oversized fit</li>
-        <li>Washed effect</li>
-      </ul>
-      <h3>Fabric</h3>
-      <ul>
-        <li>100% cotton</li>
-        <li>Pre-shrunk</li>
-        <li>Washed and distressed, easy to fade</li>
-        <li>260gm²</li>
-        <li>16 singles plain weave</li>
-      </ul>
-      <h3>Process</h3>
-      <ul>
-        <li>Side-seamed construction</li>
-        <li>Double-stitched ribbed collar</li>
-        <li>Taped neck and shoulders</li>
-        <li>Double-stitched cuffs and hem</li>
-      </ul>
-      <h3>Care Instructions</h3>
-      <p>Wash on the reverse side with neutral detergents. Do not soak, expose to the sun, and bleach. Iron, steam, or tumble dry at low temperature (max 30°C or 90°F). Slight floating color may occur during initial washing. It is recommended to wash with clothes of similar color.</p>
-      <p><em>More Info</em><br>Washed fabric, fading is normal<br>Hand wash is recommended</p>
-      <h3>Size Guide (Metric)</h3>
-      <table>
-        <tr>
-          <th></th>
-          <th>S</th>
-          <th>M</th>
-          <th>L</th>
-          <th>XL</th>
-          <th>2XL</th>
-        </tr>
-        <tr>
-          <td>Length</td>
-          <td>29.1</td>
-          <td>29.9</td>
-          <td>30.7</td>
-          <td>31.5</td>
-          <td>32.3</td>
-        </tr>
-        <tr>
-          <td>Chest</td>
-          <td>22.8</td>
-          <td>23.6</td>
-          <td>24.4</td>
-          <td>25.2</td>
-          <td>26.0</td>
-        </tr>
-        <tr>
-          <td>Shoulder</td>
-          <td>21.3</td>
-          <td>22.0</td>
-          <td>22.8</td>
-          <td>23.6</td>
-          <td>24.4</td>
-        </tr>
-        <tr>
-          <td>Sleeve Length</td>
-          <td>9.1</td>
-          <td>9.3</td>
-          <td>9.4</td>
-          <td>9.6</td>
-          <td>9.8</td>
-        </tr>
-      </table>
+      <div class="left-section">
+        <h3>Features</h3>
+        <ul>
+          <li>Distressed hem</li>
+          <li>Drop shoulders</li>
+          <li>Crew neck</li>
+          <li>Ribbed collar</li>
+          <li>Oversized fit</li>
+          <li>Washed effect</li>
+        </ul>
+        <h3>Fabric</h3>
+        <ul>
+          <li>100% cotton</li>
+          <li>Pre-shrunk</li>
+          <li>Washed and distressed, easy to fade</li>
+          <li>260gm²</li>
+          <li>16 singles plain weave</li>
+        </ul>
+        <h3>Process</h3>
+        <ul>
+          <li>Side-seamed construction</li>
+          <li>Double-stitched ribbed collar</li>
+          <li>Taped neck and shoulders</li>
+          <li>Double-stitched cuffs and hem</li>
+        </ul>
+        <h3>Care Instructions</h3>
+        <p>Wash on the reverse side with neutral detergents. Do not soak, expose to the sun, and bleach. Iron, steam, or tumble dry at low temperature (max 30°C or 90°F). Slight floating color may occur during initial washing. It is recommended to wash with clothes of similar color.</p>
+        <p><em>More Info</em><br>Washed fabric, fading is normal<br>Hand wash is recommended</p>
+        <h3>Size Guide (Metric)</h3>
+        <table>
+          <tr>
+            <th></th>
+            <th>S</th>
+            <th>M</th>
+            <th>L</th>
+            <th>XL</th>
+            <th>2XL</th>
+          </tr>
+          <tr>
+            <td>Length</td>
+            <td>29.1</td>
+            <td>29.9</td>
+            <td>30.7</td>
+            <td>31.5</td>
+            <td>32.3</td>
+          </tr>
+          <tr>
+            <td>Chest</td>
+            <td>22.8</td>
+            <td>23.6</td>
+            <td>24.4</td>
+            <td>25.2</td>
+            <td>26.0</td>
+          </tr>
+          <tr>
+            <td>Shoulder</td>
+            <td>21.3</td>
+            <td>22.0</td>
+            <td>22.8</td>
+            <td>23.6</td>
+            <td>24.4</td>
+          </tr>
+          <tr>
+            <td>Sleeve Length</td>
+            <td>9.1</td>
+            <td>9.3</td>
+            <td>9.4</td>
+            <td>9.6</td>
+            <td>9.8</td>
+          </tr>
+        </table>
+      </div>
+      <div class="right-section">
+        <div class="image-placeholder">Image Placeholder 1</div>
+        <div class="image-placeholder">Image Placeholder 2</div>
+        <div class="image-placeholder">Image Placeholder 3</div>
+        <div class="image-placeholder">Image Placeholder 4</div>
+        <div class="image-placeholder">Image Placeholder 5</div>
+        <div class="info-card">
+          <h4>K2-18b Drop Highlights</h4>
+          <p>Placeholder text for additional product details or highlights. Add more about the K2-18b inspiration here.</p>
+        </div>
+        <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+        <stripe-buy-button
+          buy-button-id="buy_btn_1RFi50AlwjiwrLydljQzw32O"
+          publishable-key="pk_live_51RFhj1AlwjiwrLyd4SFcr0ieaGMeFGOhT3Vy0q2RtRl4N3mxwjvL6Vgu03TuwPVGK0LRNS80peowiCEu8LSnFq8t00qNUR8VNI"
+        ></stripe-buy-button>
+      </div>
     </div>
   </div>
 
