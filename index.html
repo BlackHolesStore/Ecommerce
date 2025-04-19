@@ -18,6 +18,7 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      background: #000; /* Fallback for video */
     }
     video#bg-video {
       position: fixed;
@@ -27,8 +28,9 @@
       height: 100%;
       object-fit: cover;
       z-index: -1;
-      opacity: 0.8;
+      opacity: 1; /* Full opacity to avoid white layer */
       pointer-events: none;
+      background: #000; /* Ensure no white flash */
     }
     .banner {
       background: #8f00ff;
@@ -94,6 +96,30 @@
       border-radius: 10px;
       box-shadow: 0 0 20px #8f00ff66;
       margin-bottom: 1rem;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .zoom-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 10;
+      align-items: center;
+      justify-content: center;
+      pointer-events: auto;
+    }
+    .zoom-modal img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
     }
     .buy-button {
       display: inline-block;
@@ -144,7 +170,7 @@
 </head>
 <body>
   <video id="bg-video" autoplay loop muted playsinline>
-    <source src="site background ‐.mp4" type="video/mp4">
+    <source src="assets/site-background.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
@@ -160,7 +186,7 @@
   <div class="main-content">
     <div class="content-wrapper">
       <div class="left-column">
-        <img src="Mannequin_Image1.png" alt="K2-18b Drop Shirt" class="product-img">
+        <img src="assets/Mannequin_Image1.png" alt="K2-18b Drop Shirt" class="product-img" onclick="showZoom()">
         <div class="soundcloud-frame">
           <iframe width="100%" height="80" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=YOUR_TRACK_LINK&color=%238f00ff&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
         </div>
@@ -179,5 +205,22 @@
       </div>
     </div>
   </div>
+
+  <div class="zoom-modal" id="zoomModal" onclick="hideZoom()">
+    <img src="assets/Mannequin_Image1.png" alt="K2-18b Drop Shirt Zoomed">
+  </div>
+
+  <script>
+    function showZoom() {
+      document.getElementById('zoomModal').style.display = 'flex';
+    }
+    function hideZoom() {
+      document.getElementById('zoomModal').style.display = 'none';
+    }
+    // Disable right-click on images
+    document.querySelectorAll('img').forEach(img => {
+      img.addEventListener('contextmenu', e => e.preventDefault());
+    });
+  </script>
 </body>
 </html>
