@@ -243,24 +243,8 @@
       font-size: 0.8rem;
       color: #8f00ff;
     }
-    .info-card {
-      background: #222;
-      padding: 15px;
-      border-radius: 5px;
-      border: 1px solid #8f00ff;
-      margin-top: 10px;
-    }
-    .info-card h4 {
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-      text-shadow: 0 0 5px #8f00ff;
-    }
-    .info-card p {
-      font-size: 0.8rem;
-      color: #ccc;
-    }
     stripe-buy-button {
-      margin-top: 10px;
+      margin-bottom: 1rem;
       display: block;
     }
     .close-button {
@@ -352,6 +336,11 @@
       <span class="close-button" onclick="hideInfo(event)">✕</span>
       <h2>Product Details</h2>
       <div class="left-section">
+        <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+        <stripe-buy-button
+          buy-button-id="buy_btn_1RFi50AlwjiwrLydljQzw32O"
+          publishable-key="pk_live_51RFhj1AlwjiwrLyd4SFcr0ieaGMeFGOhT3Vy0q2RtRl4N3mxwjvL6Vgu03TuwPVGK0LRNS80peowiCEu8LSnFq8t00qNUR8VNI"
+        ></stripe-buy-button>
         <h3>Features</h3>
         <ul>
           <li>Distressed hem</li>
@@ -429,15 +418,6 @@
         <div class="image-placeholder">Image Placeholder 3</div>
         <div class="image-placeholder">Image Placeholder 4</div>
         <div class="image-placeholder">Image Placeholder 5</div>
-        <div class="info-card">
-          <h4>K2-18b Drop Highlights</h4>
-          <p>Placeholder text for additional product details or highlights. Add more about the K2-18b inspiration here.</p>
-        </div>
-        <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-        <stripe-buy-button
-          buy-button-id="buy_btn_1RFi50AlwjiwrLydljQzw32O"
-          publishable-key="pk_live_51RFhj1AlwjiwrLyd4SFcr0ieaGMeFGOhT3Vy0q2RtRl4N3mxwjvL6Vgu03TuwPVGK0LRNS80peowiCEu8LSnFq8t00qNUR8VNI"
-        ></stripe-buy-button>
       </div>
     </div>
   </div>
