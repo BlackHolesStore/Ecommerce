@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BlackHoles.Store – K2-18b Drop</title>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="preload" href="Mannequin_Image1.png" as="image">
   <style>
     * {
       margin: 0;
@@ -47,11 +46,10 @@
     }
     .banner-text {
       display: inline-block;
-      padding-right: 100%;
-      animation: slide 10s linear infinite;
+      animation: marquee 15s linear infinite;
     }
-    @keyframes slide {
-      0% { transform: translateX(0); }
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
     }
     .bottom-banner {
@@ -86,7 +84,7 @@
       position: relative;
       z-index: 1;
       padding: 20px;
-      padding-bottom: 80px;
+      padding-bottom: 60px;
     }
     .content-wrapper {
       max-width: 600px;
@@ -150,7 +148,6 @@
       text-decoration: none;
       font-weight: 700;
       transition: all 0.3s ease;
-      margin-top: 1rem;
       text-shadow: none;
       cursor: pointer;
       animation: pulse 2s infinite ease-in-out;
@@ -246,28 +243,26 @@
       color: #000;
     }
     .image-placeholder {
-      width: 100%;
-      max-width: 300px;
+      width: 300px;
       height: 300px;
-      background: #ff0000;
+      background: #333;
       border: 1px solid #8f00ff;
       border-radius: 5px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 0.8rem;
-      color: #fff;
+      color: #8f00ff;
       text-align: center;
     }
     .modal-image {
-      width: 100%;
-      max-width: 300px;
+      width: 300px;
       height: auto;
       object-fit: cover;
       border-radius: 5px;
       border: 1px solid #8f00ff;
       display: block;
-      margin-bottom: 0;
+      margin-bottom: 10px;
     }
     .info-section {
       display: grid;
@@ -281,9 +276,9 @@
     .info-section-image {
       display: flex;
       flex-direction: column;
-      gap: 0;
+      gap: 10px;
     }
-    .info-section-image picture {
+    .info-section-image img {
       margin-bottom: 0;
     }
     .buy-now-container {
@@ -367,11 +362,11 @@
         margin-bottom: 0.5rem;
       }
       .image-placeholder {
-        max-width: 200px;
+        width: 200px;
         height: 200px;
       }
       .modal-image {
-        max-width: 200px;
+        width: 200px;
         height: auto;
       }
       .info-section {
@@ -430,7 +425,7 @@
   <div class="main-content">
     <div class="content-wrapper">
       <div class="left-column">
-        <img src="Mannequin_Image1.png" alt="K2-18b Drop Shirt" class="product-img" onclick="showZoom()" loading="eager" fetchpriority="high">
+        <img src="images/Mannequin_Image1.png" alt="K2-18b Drop Shirt" class="product-img" onclick="showZoom()" loading="lazy" fetchpriority="high">
         <button class="info-button" onclick="showInfo()">More Info</button>
         <p><em>“We been knew. They just needed the data.”</em></p>
       </div>
@@ -449,7 +444,6 @@
 
   <footer class="footer">
     <div class="secure-copyright">
-      <p class="secure">🔒 All payments are securely processed by Stripe</p>
       <div class="copyright">© 2025 BlackHoles.Store. All rights reserved.</div>
     </div>
     <div class="footer-links">
@@ -463,7 +457,7 @@
   <a href="https://buy.stripe.com/9AQcQ2aqD95NgmsbII" class="bottom-banner">Own the Signal</a>
 
   <div class="zoom-modal" id="zoomModal" onclick="hideZoom()">
-    <img src="Mannequin_Image1.png" alt="K2-18b Drop Shirt Zoomed" loading="lazy">
+    <img src="images/Mannequin_Image1.png" alt="K2-18b Drop Shirt Zoomed" loading="lazy">
   </div>
 
   <div class="info-modal" id="infoModal" onclick="hideInfo(event)">
@@ -550,24 +544,24 @@
         </div>
         <div class="info-section-image">
           <picture>
-            <source srcset="Model_images1.webp" type="image/webp">
-            <img src="Model_images1.jpg" alt="K2-18b Shirt Model 1" class="modal-image" loading="lazy" decoding="async" fetchpriority="low" onerror="this.classList.add('image-placeholder'); this.src=''; this.alt='Image 1 Failed to Load';">
+            <source srcset="images/Model_images1.webp" type="image/webp">
+            <img src="images/Model_images1.jpg" alt="Model Image 1" class="modal-image" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg'; if(!this.src) this.classList.add('image-placeholder');">
           </picture>
           <picture>
-            <source srcset="Model_images2.webp" type="image/webp">
-            <img src="Model_images2.jpg" alt="K2-18b Shirt Model 2" class="modal-image" loading="lazy" decoding="async" fetchpriority="low" onerror="this.classList.add('image-placeholder'); this.src=''; this.alt='Image 2 Failed to Load';">
+            <source srcset="images/Model_images2.webp" type="image/webp">
+            <img src="images/Model_images2.jpg" alt="Model Image 2" class="modal-image" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg'; if(!this.src) this.classList.add('image-placeholder');">
           </picture>
           <picture>
-            <source srcset="Model_images3.webp" type="image/webp">
-            <img src="Model_images3.jpg" alt="K2-18b Shirt Model 3" class="modal-image" loading="lazy" decoding="async" fetchpriority="low" onerror="this.classList.add('image-placeholder'); this.src=''; this.alt='Image 3 Failed to Load';">
+            <source srcset="images/Model_images3.webp" type="image/webp">
+            <img src="images/Model_images3.jpg" alt="Model Image 3" class="modal-image" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg'; if(!this.src) this.classList.add('image-placeholder');">
           </picture>
           <picture>
-            <source srcset="Model_images4.webp" type="image/webp">
-            <img src="Model_images4.jpg" alt="K2-18b Shirt Model 4" class="modal-image" loading="lazy" decoding="async" fetchpriority="low" onerror="this.classList.add('image-placeholder'); this.src=''; this.alt='Image 4 Failed to Load';">
+            <source srcset="images/Model_images4.webp" type="image/webp">
+            <img src="images/Model_images4.jpg" alt="Model Image 4" class="modal-image" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg'; if(!this.src) this.classList.add('image-placeholder');">
           </picture>
           <picture>
-            <source srcset="Model_images5.webp" type="image/webp">
-            <img src="Model_images5.jpg" alt="K2-18b Shirt Model 5" class="modal-image" loading="lazy" decoding="async" fetchpriority="low" onerror="this.classList.add('image-placeholder'); this.src=''; this.alt='Image 5 Failed to Load';">
+            <source srcset="images/Model_images5.webp" type="image/webp">
+            <img src="images/Model_images5.jpg" alt="Model Image 5" class="modal-image" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg'; if(!this.src) this.classList.add('image-placeholder');">
           </picture>
         </div>
       </div>
@@ -581,7 +575,45 @@
     <div class="privacy-modal-content">
       <span class="close-button" onclick="hidePrivacy(event)" aria-label="Close Privacy Policy">✕</span>
       <h2>Privacy Policy</h2>
-      <p>This is the Privacy Policy for BlackHoles.Store. We are committed to protecting your personal information. Details about data collection, usage, and protection will be provided here. Please replace this placeholder with your actual privacy policy content.</p>
+      <p><strong>Effective Date: April 19, 2025</strong></p>
+      <p>At BlackHoles.Store, we value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your data when you visit our website or make a purchase.</p>
+      <h3>1. Information We Collect</h3>
+      <p>We may collect the following types of information:</p>
+      <ul>
+        <li><strong>Personal Information:</strong> Name, email address, shipping address, payment information, and phone number provided during checkout or account creation.</li>
+        <li><strong>Non-Personal Information:</strong> Browser type, IP address, device type, and browsing behavior (e.g., pages visited, time spent) collected via cookies and analytics tools.</li>
+        <li><strong>Order Information:</strong> Details about products purchased, order history, and preferences.</li>
+      </ul>
+      <h3>2. How We Use Your Information</h3>
+      <p>Your information is used to:</p>
+      <ul>
+        <li>Process and fulfill orders, including shipping and payment processing.</li>
+        <li>Communicate with you about your order, promotions, or customer service inquiries.</li>
+        <li>Improve our website, products, and services through analytics and feedback.</li>
+        <li>Prevent fraud and ensure the security of our website.</li>
+      </ul>
+      <h3>3. Sharing Your Information</h3>
+      <p>We do not sell your personal information. We may share your data with:</p>
+      <ul>
+        <li><strong>Service Providers:</strong> Third parties like Stripe for payment processing, shipping carriers, and analytics providers (e.g., Google Analytics).</li>
+        <li><strong>Legal Requirements:</strong> If required by law or to protect our rights, we may disclose your information to authorities.</li>
+      </ul>
+      <h3>4. Cookies and Tracking</h3>
+      <p>We use cookies to enhance your browsing experience, track analytics, and personalize content. You can manage cookie preferences through your browser settings.</p>
+      <h3>5. Your Rights</h3>
+      <p>You have the right to:</p>
+      <ul>
+        <li>Access, update, or delete your personal information.</li>
+        <li>Opt out of marketing emails via the unsubscribe link in our emails.</li>
+        <li>Request information about how your data is used.</li>
+      </ul>
+      <p>To exercise these rights, contact us at <a href="mailto:support@blackholes.store">support@blackholes.store</a>.</p>
+      <h3>6. Data Security</h3>
+      <p>We use industry-standard encryption (e.g., SSL) and secure payment gateways to protect your data. However, no online transmission is 100% secure, and you share information at your own risk.</p>
+      <h3>7. Changes to This Policy</h3>
+      <p>We may update this Privacy Policy periodically. Changes will be posted on this page with an updated effective date.</p>
+      <h3>8. Contact Us</h3>
+      <p>For questions about this Privacy Policy, please contact us at <a href="mailto:support@blackholes.store">support@blackholes.store</a>.</p>
     </div>
   </div>
 
@@ -589,7 +621,28 @@
     <div class="shipping-modal-content">
       <span class="close-button" onclick="hideShipping(event)" aria-label="Close Shipping Terms">✕</span>
       <h2>Shipping Terms</h2>
-      <p>This is the Shipping Terms for BlackHoles.Store. Information about shipping times, costs, and policies will be provided here. Please replace this placeholder with your actual shipping terms content.</p>
+      <p><strong>Effective Date: April 19, 2025</strong></p>
+      <p>BlackHoles.Store is committed to delivering your orders efficiently and reliably. Below are our shipping terms and policies.</p>
+      <h3>1. Shipping Destinations</h3>
+      <p>We currently ship to addresses within the United States, Canada, and select international destinations. Please check availability at checkout.</p>
+      <h3>2. Shipping Rates</h3>
+      <p>Shipping costs are calculated at checkout based on your location, order weight, and selected shipping method. We offer:</p>
+      <ul>
+        <li><strong>Standard Shipping:</strong> 5-7 business days (US), 7-14 business days (Canada/International).</li>
+        <li><strong>Express Shipping:</strong> 2-3 business days (US only).</li>
+      </ul>
+      <h3>3. Processing Time</h3>
+      <p>Orders are processed within 1-2 business days. Custom or pre-order items may take 3-5 business days. You will receive a confirmation email once your order is processed.</p>
+      <h3>4. Tracking Your Order</h3>
+      <p>Once your order ships, you will receive a tracking number via email. Use this to track your package on the carrier’s website.</p>
+      <h3>5. Delivery Issues</h3>
+      <p>If your order is delayed, lost, or damaged, please contact us at <a href="mailto:support@blackholes.store">support@blackholes.store</a> within 30 days of shipment. We’ll work with the carrier to resolve the issue.</p>
+      <h3>6. International Shipping</h3>
+      <p>International orders may incur customs fees, duties, or taxes, which are the responsibility of the recipient. Delivery times vary based on customs processing.</p>
+      <h3>7. Returns and Exchanges</h3>
+      <p>Please see our <a onclick="showTerms()">Terms of Use</a> for information on returns and exchanges.</p>
+      <h3>8. Contact Us</h3>
+      <p>For shipping inquiries, reach out to <a href="mailto:support@blackholes.store">support@blackholes.store</a>.</p>
     </div>
   </div>
 
@@ -597,7 +650,31 @@
     <div class="terms-modal-content">
       <span class="close-button" onclick="hideTerms(event)" aria-label="Close Terms of Use">✕</span>
       <h2>Terms of Use</h2>
-      <p>This is the Terms of Use for BlackHoles.Store. Details about the rules and conditions for using our website and services will be provided here. Please replace this placeholder with your actual terms of use content.</p>
+      <p><strong>Effective Date: April 19, 2025</strong></p>
+      <p>By accessing or using BlackHoles.Store, you agree to these Terms of Use. Please read them carefully.</p>
+      <h3>1. Use of Our Website</h3>
+      <p>You agree to use our website for lawful purposes only. You may not:</p>
+      <ul>
+        <li>Use the site to engage in fraudulent or illegal activities.</li>
+        <li>Attempt to hack, disrupt, or gain unauthorized access to our systems.</li>
+        <li>Reproduce or distribute our content without permission.</li>
+      </ul>
+      <h3>2. Product Information</h3>
+      <p>We strive to provide accurate product descriptions and pricing. However, errors may occur, and we reserve the right to correct them or cancel orders affected by such errors.</p>
+      <h3>3. Orders and Payments</h3>
+      <p>All orders are subject to acceptance and availability. We use Stripe for secure payment processing. You agree to provide accurate payment and shipping information.</p>
+      <h3>4. Returns and Refunds</h3>
+      <p>We accept returns within 30 days of delivery for unworn, undamaged items in original packaging. Refunds are issued to the original payment method within 7-10 business days of receiving the return. Shipping costs are non-refundable. To initiate a return, contact <a href="mailto:support@blackholes.store">support@blackholes.store</a>.</p>
+      <h3>5. Intellectual Property</h3>
+      <p>All content on BlackHoles.Store, including images, text, and designs, is owned by us or our licensors. You may not use our content without written permission.</p>
+      <h3>6. Limitation of Liability</h3>
+      <p>BlackHoles.Store is not liable for indirect, incidental, or consequential damages arising from your use of our website or products. Our liability is limited to the amount paid for your order.</p>
+      <h3>7. Governing Law</h3>
+      <p>These Terms are governed by the laws of the State of California, USA. Any disputes will be resolved in the courts of California.</p>
+      <h3>8. Changes to These Terms</h3>
+      <p>We may update these Terms periodically. Changes will be posted on this page with an updated effective date.</p>
+      <h3>9. Contact Us</h3>
+      <p>For questions about these Terms, contact us at <a href="mailto:support@blackholes.store">support@blackholes.store</a>.</p>
     </div>
   </div>
 
@@ -605,7 +682,21 @@
     <div class="contact-modal-content">
       <span class="close-button" onclick="hideContact(event)" aria-label="Close Contact Us">✕</span>
       <h2>Contact Us</h2>
-      <p>For support, please reach out to <a href="mailto:support@blackholes.store">support@blackholes.store</a>. Additional contact information or a contact form will be provided here. Please replace this placeholder with your actual contact details.</p>
+      <p>We’re here to help with any questions, concerns, or feedback about your BlackHoles.Store experience.</p>
+      <h3>Contact Information</h3>
+      <p><strong>Email:</strong> <a href="mailto:support@blackholes.store">support@blackholes.store</a></p>
+      <p><strong>Business Hours:</strong> Monday–Friday, 9:00 AM–5:00 PM PST</p>
+      <p><strong>Mailing Address:</strong> BlackHoles.Store, 123 Cosmic Way, Suite 100, Los Angeles, CA 90001, USA</p>
+      <h3>Customer Support</h3>
+      <p>For order inquiries, returns, or shipping issues, please email us with your order number. We aim to respond within 24–48 hours during business hours.</p>
+      <h3>Wholesale and Partnerships</h3>
+      <p>Interested in carrying BlackHoles.Store products or collaborating? Reach out to <a href="mailto:partnerships@blackholes.store">partnerships@blackholes.store</a>.</p>
+      <h3>Social Media</h3>
+      <p>Connect with us on social media for updates and promotions:</p>
+      <ul>
+        <li>Instagram: @BlackHolesStore</li>
+        <li>X: @BlackHolesStore</li>
+      </ul>
     </div>
   </div>
 
@@ -666,7 +757,6 @@
     }
     document.querySelectorAll('img').forEach(img => {
       img.addEventListener('contextmenu', e => e.preventDefault());
-      img.addEventListener('error', () => console.log(`Failed to load image: ${img.src}`));
     });
   </script>
 </body>
