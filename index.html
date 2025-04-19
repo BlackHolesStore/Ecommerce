@@ -78,7 +78,7 @@
       position: relative;
       z-index: 1;
       padding: 20px;
-      padding-bottom: 40px;
+      padding-bottom: 60px; /* Space for footer and bottom banner */
     }
     .content-wrapper {
       max-width: 600px;
@@ -147,7 +147,7 @@
       font-size: 0.9rem;
       text-align: left;
     }
-    .zoom-modal, .info-modal {
+    .zoom-modal, .info-modal, .privacy-modal, .shipping-modal, .terms-modal, .contact-modal {
       display: none;
       position: fixed;
       top: 0;
@@ -168,7 +168,7 @@
       -webkit-user-drag: none;
       pointer-events: none;
     }
-    .info-modal-content {
+    .info-modal-content, .privacy-modal-content, .shipping-modal-content, .terms-modal-content, .contact-modal-content {
       background: #111;
       padding: 20px;
       border-radius: 10px;
@@ -176,6 +176,9 @@
       max-height: 80%;
       overflow-y: auto;
       position: relative;
+      border: 1px solid #8f00ff;
+    }
+    .info-modal-content {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px;
@@ -188,11 +191,10 @@
       flex-direction: column;
       gap: 10px;
     }
-    .info-modal-content h2 {
+    .info-modal-content h2, .privacy-modal-content h2, .shipping-modal-content h2, .terms-modal-content h2, .contact-modal-content h2 {
       font-size: 1.5rem;
       margin-bottom: 1rem;
       text-shadow: 0 0 10px #8f00ff;
-      grid-column: 1 / -1;
     }
     .info-modal-content h3 {
       font-size: 1.2rem;
@@ -208,7 +210,7 @@
       font-size: 0.9rem;
       margin-bottom: 0.5rem;
     }
-    .info-modal-content p {
+    .info-modal-content p, .privacy-modal-content p, .shipping-modal-content p, .terms-modal-content p, .contact-modal-content p {
       font-size: 0.9rem;
       margin-bottom: 0.5rem;
     }
@@ -263,6 +265,39 @@
     audio {
       display: none;
     }
+    .footer {
+      background: #111;
+      color: #ffffff;
+      padding: 10px;
+      text-align: center;
+      position: absolute;
+      bottom: 40px; /* Above bottom banner */
+      width: 100%;
+      z-index: 2;
+      font-size: 0.8rem;
+    }
+    .footer p {
+      margin: 5px 0;
+      text-shadow: none;
+    }
+    .footer .secure {
+      color: #8f00ff;
+      font-weight: 700;
+    }
+    .footer-links a {
+      color: #ffffff;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+    .footer-links a:hover {
+      color: #8f00ff;
+      text-shadow: 0 0 10px #8f00ff;
+    }
+    .footer .copyright {
+      color: #888;
+    }
     @media (max-width: 768px) {
       .content-wrapper {
         grid-template-columns: 1fr;
@@ -288,6 +323,17 @@
       }
       .modal-image {
         max-height: 80px;
+      }
+      .footer {
+        bottom: 50px; /* Adjust for mobile */
+        padding: 5px;
+      }
+      .footer-links a {
+        display: block;
+        margin: 5px 0;
+      }
+      .main-content {
+        padding-bottom: 80px; /* Adjust for footer and banner */
       }
     }
   </style>
@@ -327,6 +373,18 @@
     </div>
   </div>
 
+  <footer class="footer">
+    <p class="secure">🔒 All payments are securely processed by Stripe</p>
+    <p>100% Satisfaction Guaranteed</p>
+    <div class="footer-links">
+      <a onclick="showPrivacy()" aria-label="View Privacy Policy">Privacy Policy</a>
+      <a onclick="showShipping()" aria-label="View Shipping Terms">Shipping Terms</a>
+      <a onclick="showTerms()" aria-label="View Terms of Use">Terms of Use</a>
+      <a onclick="showContact()" aria-label="Contact Support">Contact Us</a>
+    </div>
+    <div class="copyright">© 2025 BlackHoles.Store. All rights reserved.</div>
+  </footer>
+
   <a href="https://buy.stripe.com/9AQcQ2aqD95NgmsbII" class="bottom-banner">Own the Signal</a>
 
   <div class="zoom-modal" id="zoomModal" onclick="hideZoom()">
@@ -335,7 +393,7 @@
 
   <div class="info-modal" id="infoModal" onclick="hideInfo(event)">
     <div class="info-modal-content">
-      <span class="close-button" onclick="hideInfo(event)">✕</span>
+      <span class="close-button" onclick="hideInfo(event)" aria-label="Close Product Details">✕</span>
       <h2>Product Details</h2>
       <div class="left-section">
         <script async src="https://js.stripe.com/v3/buy-button.js"></script>
@@ -424,6 +482,38 @@
     </div>
   </div>
 
+  <div class="privacy-modal" id="privacyModal" onclick="hidePrivacy(event)">
+    <div class="privacy-modal-content">
+      <span class="close-button" onclick="hidePrivacy(event)" aria-label="Close Privacy Policy">✕</span>
+      <h2>Privacy Policy</h2>
+      <p>This is the Privacy Policy for BlackHoles.Store. We are committed to protecting your personal information. Details about data collection, usage, and protection will be provided here. Please replace this placeholder with your actual privacy policy content.</p>
+    </div>
+  </div>
+
+  <div class="shipping-modal" id="shippingModal" onclick="hideShipping(event)">
+    <div class="shipping-modal-content">
+      <span class="close-button" onclick="hideShipping(event)" aria-label="Close Shipping Terms">✕</span>
+      <h2>Shipping Terms</h2>
+      <p>This is the Shipping Terms for BlackHoles.Store. Information about shipping times, costs, and policies will be provided here. Please replace this placeholder with your actual shipping terms content.</p>
+    </div>
+  </div>
+
+  <div class="terms-modal" id="termsModal" onclick="hideTerms(event)">
+    <div class="terms-modal-content">
+      <span class="close-button" onclick="hideTerms(event)" aria-label="Close Terms of Use">✕</span>
+      <h2>Terms of Use</h2>
+      <p>This is the Terms of Use for BlackHoles.Store. Details about the rules and conditions for using our website and services will be provided here. Please replace this placeholder with your actual terms of use content.</p>
+    </div>
+  </div>
+
+  <div class="contact-modal" id="contactModal" onclick="hideContact(event)">
+    <div class="contact-modal-content">
+      <span class="close-button" onclick="hideContact(event)" aria-label="Close Contact Us">✕</span>
+      <h2>Contact Us</h2>
+      <p>For support, please reach out to <a href="mailto:support@blackholes.store">support@blackholes.store</a>. Additional contact information or a contact form will be provided here. Please replace this placeholder with your actual contact details.</p>
+    </div>
+  </div>
+
   <script>
     window.addEventListener('load', () => {
       const audio = document.getElementById('bg-audio');
@@ -445,6 +535,38 @@
     function hideInfo(event) {
       if (event.target.classList.contains('info-modal') || event.target.classList.contains('close-button')) {
         document.getElementById('infoModal').style.display = 'none';
+      }
+    }
+    function showPrivacy() {
+      document.getElementById('privacyModal').style.display = 'flex';
+    }
+    function hidePrivacy(event) {
+      if (event.target.classList.contains('privacy-modal') || event.target.classList.contains('close-button')) {
+        document.getElementById('privacyModal').style.display = 'none';
+      }
+    }
+    function showShipping() {
+      document.getElementById('shippingModal').style.display = 'flex';
+    }
+    function hideShipping(event) {
+      if (event.target.classList.contains('shipping-modal') || event.target.classList.contains('close-button')) {
+        document.getElementById('shippingModal').style.display = 'none';
+      }
+    }
+    function showTerms() {
+      document.getElementById('termsModal').style.display = 'flex';
+    }
+    function hideTerms(event) {
+      if (event.target.classList.contains('terms-modal') || event.target.classList.contains('close-button')) {
+        document.getElementById('termsModal').style.display = 'none';
+      }
+    }
+    function showContact() {
+      document.getElementById('contactModal').style.display = 'flex';
+    }
+    function hideContact(event) {
+      if (event.target.classList.contains('contact-modal') || event.target.classList.contains('close-button')) {
+        document.getElementById('contactModal').style.display = 'none';
       }
     }
     document.querySelectorAll('img').forEach(img => {
