@@ -46,10 +46,11 @@
     }
     .banner-text {
       display: inline-block;
-      animation: slide 15s linear infinite;
+      padding-right: 100%; /* Ensure seamless looping */
+      animation: slide 10s linear infinite;
     }
     @keyframes slide {
-      0% { transform: translateX(100%); }
+      0% { transform: translateX(0); }
       100% { transform: translateX(-100%); }
     }
     .bottom-banner {
@@ -65,6 +66,12 @@
       z-index: 2;
       text-decoration: none;
       display: block;
+      animation: pulseText 2s infinite ease-in-out;
+    }
+    @keyframes pulseText {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
     }
     .bottom-banner:hover {
       background: #a033ff;
@@ -133,6 +140,27 @@
       animation: pulse 2s infinite ease-in-out;
       box-shadow: 0 0 10px #8f00ff;
     }
+    .buy-now-button {
+      display: inline-block;
+      padding: 10px 20px;
+      border: 2px solid #8f00ff;
+      color: #8f00ff;
+      background: transparent;
+      text-decoration: none;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+      text-shadow: none;
+      cursor: pointer;
+      animation: pulse 2s infinite ease-in-out;
+      box-shadow: 0 0 10px #8f00ff;
+      text-align: center;
+    }
+    .buy-now-button:hover {
+      background: #8f00ff;
+      color: #000;
+      box-shadow: 0 0 20px #8f00ff;
+    }
     @keyframes pulse {
       0% { box-shadow: 0 0 10px #8f00ff, 0 0 20px #8f00ff66; }
       50% { box-shadow: 0 0 20px #8f00ff, 0 0 30px #8f00ff; }
@@ -177,19 +205,6 @@
       overflow-y: auto;
       position: relative;
       border: 1px solid #8f00ff;
-    }
-    .info-modal-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-    .info-modal-content .left-section {
-      text-align: left;
-    }
-    .info-modal-content .right-section {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
     }
     .info-modal-content h2, .privacy-modal-content h2, .shipping-modal-content h2, .terms-modal-content h2, .contact-modal-content h2 {
       font-size: 1.5rem;
@@ -268,16 +283,23 @@
     .footer {
       background: #111;
       color: #ffffff;
-      padding: 10px;
-      text-align: center;
+      padding: 8px 20px;
       position: absolute;
       bottom: 40px; /* Above bottom banner */
       width: 100%;
       z-index: 2;
-      font-size: 0.8rem;
+      font-size: 0.7rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer .secure-copyright {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
     .footer p {
-      margin: 5px 0;
+      margin: 0;
       text-shadow: none;
     }
     .footer .secure {
@@ -315,9 +337,6 @@
       .info-button {
         margin-bottom: 0.5rem;
       }
-      .info-modal-content {
-        grid-template-columns: 1fr;
-      }
       .image-placeholder {
         height: 80px;
       }
@@ -326,7 +345,13 @@
       }
       .footer {
         bottom: 50px; /* Adjust for mobile */
-        padding: 5px;
+        padding: 5px 10px;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .footer .secure-copyright {
+        flex-direction: column;
+        gap: 5px;
       }
       .footer-links a {
         display: block;
@@ -374,15 +399,16 @@
   </div>
 
   <footer class="footer">
-    <p class="secure">🔒 All payments are securely processed by Stripe</p>
-    <p>100% Satisfaction Guaranteed</p>
+    <div class="secure-copyright">
+      <p class="secure">🔒 All payments are securely processed by Stripe</p>
+      <div class="copyright">© 2025 BlackHoles.Store. All rights reserved.</div>
+    </div>
     <div class="footer-links">
       <a onclick="showPrivacy()" aria-label="View Privacy Policy">Privacy Policy</a>
       <a onclick="showShipping()" aria-label="View Shipping Terms">Shipping Terms</a>
       <a onclick="showTerms()" aria-label="View Terms of Use">Terms of Use</a>
       <a onclick="showContact()" aria-label="Contact Support">Contact Us</a>
     </div>
-    <div class="copyright">© 2025 BlackHoles.Store. All rights reserved.</div>
   </footer>
 
   <a href="https://buy.stripe.com/9AQcQ2aqD95NgmsbII" class="bottom-banner">Own the Signal</a>
@@ -395,90 +421,87 @@
     <div class="info-modal-content">
       <span class="close-button" onclick="hideInfo(event)" aria-label="Close Product Details">✕</span>
       <h2>Product Details</h2>
-      <div class="left-section">
-        <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-        <stripe-buy-button
-          buy-button-id="buy_btn_1RFi50AlwjiwrLydljQzw32O"
-          publishable-key="pk_live_51RFhj1AlwjiwrLyd4SFcr0ieaGMeFGOhT3Vy0q2RtRl4N3mxwjvL6Vgu03TuwPVGK0LRNS80peowiCEu8LSnFq8t00qNUR8VNI"
-        ></stripe-buy-button>
-        <h3>Features</h3>
-        <ul>
-          <li>Distressed hem</li>
-          <li>Drop shoulders</li>
-          <li>Crew neck</li>
-          <li>Ribbed collar</li>
-          <li>Oversized fit</li>
-          <li>Washed effect</li>
-        </ul>
-        <h3>Fabric</h3>
-        <ul>
-          <li>100% cotton</li>
-          <li>Pre-shrunk</li>
-          <li>Washed and distressed, easy to fade</li>
-          <li>260gm²</li>
-          <li>16 singles plain weave</li>
-        </ul>
-        <h3>Process</h3>
-        <ul>
-          <li>Side-seamed construction</li>
-          <li>Double-stitched ribbed collar</li>
-          <li>Taped neck and shoulders</li>
-          <li>Double-stitched cuffs and hem</li>
-        </ul>
-        <h3>Care Instructions</h3>
-        <p>Wash on the reverse side with neutral detergents. Do not soak, expose to the sun, and bleach. Iron, steam, or tumble dry at low temperature (max 30°C or 90°F). Slight floating color may occur during initial washing. It is recommended to wash with clothes of similar color.</p>
-        <p><em>More Info</em><br>Washed fabric, fading is normal<br>Hand wash is recommended</p>
-        <h3>Size Guide (Metric)</h3>
-        <table>
-          <tr>
-            <th></th>
-            <th>S</th>
-            <th>M</th>
-            <th>L</th>
-            <th>XL</th>
-            <th>2XL</th>
-          </tr>
-          <tr>
-            <td>Length</td>
-            <td>29.1</td>
-            <td>29.9</td>
-            <td>30.7</td>
-            <td>31.5</td>
-            <td>32.3</td>
-          </tr>
-          <tr>
-            <td>Chest</td>
-            <td>22.8</td>
-            <td>23.6</td>
-            <td>24.4</td>
-            <td>25.2</td>
-            <td>26.0</td>
-          </tr>
-          <tr>
-            <td>Shoulder</td>
-            <td>21.3</td>
-            <td>22.0</td>
-            <td>22.8</td>
-            <td>23.6</td>
-            <td>24.4</td>
-          </tr>
-          <tr>
-            <td>Sleeve Length</td>
-            <td>9.1</td>
-            <td>9.3</td>
-            <td>9.4</td>
-            <td>9.6</td>
-            <td>9.8</td>
-          </tr>
-        </table>
-      </div>
-      <div class="right-section">
-        <img src="Model_images1.jpg" alt="Model Image 1" class="modal-image" onerror="this.classList.add('image-placeholder'); this.src='';">
-        <img src="Model_images2.jpg" alt="Model Image 2" class="modal-image" onerror="this.classList.add('image-placeholder'); this.src='';">
-        <img src="Model_images3.jpg" alt="Model Image 3" class="modal-image" onerror="this.classList.add('image-placeholder'); this.src='';">
-        <img src="Model_images4.jpg" alt="Model Image 4" class="modal-image" onerror="this.classList.add('image-placeholder'); this.src='';">
-        <img src="Model_images5.jpg" alt="Model Image 5" class="modal-image" onerror="this.classList.add('image-placeholder'); this.src='';">
-      </div>
+      <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+      <stripe-buy-button
+        buy-button-id="buy_btn_1RFi50AlwjiwrLydljQzw32O"
+        publishable-key="pk_live_51RFhj1AlwjiwrLyd4SFcr0ieaGMeFGOhT3Vy0q2RtRl4N3mxwjvL6Vgu03TuwPVGK0LRNS80peowiCEu8LSnFq8t00qNUR8VNI"
+      ></stripe-buy-button>
+      <h3>Features</h3>
+      <ul>
+        <li>Distressed hem</li>
+        <li>Drop shoulders</li>
+        <li>Crew neck</li>
+        <li>Ribbed collar</li>
+        <li>Oversized fit</li>
+        <li>Washed effect</li>
+      </ul>
+      <h3>Fabric</h3>
+      <ul>
+        <li>100% cotton</li>
+        <li>Pre-shrunk</li>
+        <li>Washed and distressed, easy to fade</li>
+        <li>260gm²</li>
+        <li>16 singles plain weave</li>
+      </ul>
+      <h3>Process</h3>
+      <ul>
+        <li>Side-seamed construction</li>
+        <li>Double-stitched ribbed collar</li>
+        <li>Taped neck and shoulders</li>
+        <li>Double-stitched cuffs and hem</li>
+      </ul>
+      <h3>Care Instructions</h3>
+      <p>Wash on the reverse side with neutral detergents. Do not soak, expose to the sun, and bleach. Iron, steam, or tumble dry at low temperature (max 30°C or 90°F). Slight floating color may occur during initial washing. It is recommended to wash with clothes of similar color.</p>
+      <p><em>More Info</em><br>Washed fabric, fading is normal<br>Hand wash is recommended</p>
+      <h3>Size Guide (Metric)</h3>
+      <table>
+        <tr>
+          <th></th>
+          <th>S</th>
+          <th>M</th>
+          <th>L</th>
+          <th>XL</th>
+          <th>2XL</th>
+        </tr>
+        <tr>
+          <td>Length</td>
+          <td>29.1</td>
+          <td>29.9</td>
+          <td>30.7</td>
+          <td>31.5</td>
+          <td>32.3</td>
+        </tr>
+        <tr>
+          <td>Chest</td>
+          <td>22.8</td>
+          <td>23.6</td>
+          <td>24.4</td>
+          <td>25.2</td>
+          <td>26.0</td>
+        </tr>
+        <tr>
+          <td>Shoulder</td>
+          <td>21.3</td>
+          <td>22.0</td>
+          <td>22.8</td>
+          <td>23.6</td>
+          <td>24.4</td>
+        </tr>
+        <tr>
+          <td>Sleeve Length</td>
+          <td>9.1</td>
+          <td>9.3</td>
+          <td>9.4</td>
+          <td>9.6</td>
+          <td>9.8</td>
+        </tr>
+      </table>
+      <img src="Model_images1.jpg" alt="Model Image 1" class="modal-image" onerror="this.classList.add('image-placeholder'); this.src='';">
+      <img src="Model_images2.jpg" alt="Model Image 2" class="modal-image" onerror="this.classList.add('image-placeholder'); this.src='';">
+      <img src="Model_images3.jpg" alt="Model Image 3" class="modal-image" onerror="this.classList.add('image-placeholder'); this.src='';">
+      <img src="Model_images4.jpg" alt="Model Image 4" class="modal-image" onerror="this.classList.add('image-placeholder'); this.src='';">
+      <img src="Model_images5.jpg" alt="Model Image 5" class="modal-image" onerror="this.classList.add('image-placeholder'); this.src='';">
+      <a href="https://buy.stripe.com/9AQcQ2aqD95NgmsbII" class="buy-now-button" aria-label="Buy K2-18b Drop Shirt">Buy Now</a>
     </div>
   </div>
 
