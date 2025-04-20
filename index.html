@@ -414,7 +414,7 @@
     }
   </style>
 </head>
-<body>
+<body oncopy="return false" oncut="return false" onselectstart="return false">
   <video id="bg-video" autoplay loop muted playsinline fetchpriority="high">
     <source src="site background ‐.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -694,64 +694,6 @@
     </div>
   </div>
 
-  <script>
-    window.addEventListener('load', () => {
-      const audio = document.getElementById('bg-audio');
-      audio.play().catch(error => {
-        console.log('Autoplay failed:', error);
-        document.addEventListener('click', () => audio.play(), { once: true });
-      });
-    });
-
-    function showZoom() {
-      document.getElementById('zoomModal').style.display = 'flex';
-    }
-    function hideZoom() {
-      document.getElementById('zoomModal').style.display = 'none';
-    }
-    function showInfo() {
-      document.getElementById('infoModal').style.display = 'flex';
-    }
-    function hideInfo(event) {
-      if (event.target.classList.contains('info-modal') || event.target.classList.contains('close-button')) {
-        document.getElementById('infoModal').style.display = 'none';
-      }
-    }
-    function showPrivacy() {
-      document.getElementById('privacyModal').style.display = 'flex';
-    }
-    function hidePrivacy(event) {
-      if (event.target.classList.contains('privacy-modal') || event.target.classList.contains('close-button')) {
-        document.getElementById('privacyModal').style.display = 'none';
-      }
-    }
-    function showShipping() {
-      document.getElementById('shippingModal').style.display = 'flex';
-    }
-    function hideShipping(event) {
-      if (event.target.classList.contains('shipping-modal') || event.target.classList.contains('close-button')) {
-        document.getElementById('shippingModal').style.display = 'none';
-      }
-    }
-    function showTerms() {
-      document.getElementById('termsModal').style.display = 'flex';
-    }
-    function hideTerms(event) {
-      if (event.target.classList.contains('terms-modal') || event.target.classList.contains('close-button')) {
-        document.getElementById('termsModal').style.display = 'none';
-      }
-    }
-    function showContact() {
-      document.getElementById('contactModal').style.display = 'flex';
-    }
-    function hideContact(event) {
-      if (event.target.classList.contains('contact-modal') || event.target.classList.contains('close-button')) {
-        document.getElementById('contactModal').style.display = 'none';
-      }
-    }
-    document.querySelectorAll('img').forEach(img => {
-      img.addEventListener('contextmenu', e => e.preventDefault());
-    });
-  </script>
+  <script src="script.js" defer></script>
 </body>
 </html>
