@@ -1,4 +1,3 @@
-// script.js
 window.addEventListener('load', () => {
   const audio = document.getElementById('bg-audio');
   audio.play().catch(error => {
