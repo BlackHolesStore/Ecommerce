@@ -379,77 +379,158 @@
     audio {
       display: none;
     }
-    .footer {
-      background: #111;
-      color: #ffffff;
-      padding: 8px 20px;
-      position: absolute;
-      bottom: 40px;
-      width: 100%;
-      z-index: 2;
-      font-size: 0.7rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .footer .secure-copyright {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .footer p {
-      margin: 0;
-      text-shadow: none;
-    }
-    .footer .secure {
-      color: #8f00ff;
-      font-weight: 700;
-    }
-    .footer-links {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .footer-links a {
-      color: #ffffff;
-      text-decoration: none;
-      transition: color 0.3s ease;
-      cursor: pointer;
-    }
-    .footer-links a:hover {
-      color: #8f00ff;
-      text-shadow: 0 0 10px #8f00ff;
-    }
-    .footer .social {
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-    }
-    .footer .social a {
-      padding: 5px;
-      transition: 700ms;
-      color: #000;
-      text-align: center;
-      transform: scale(0);
-      opacity: 0;
-      text-decoration: none;
-      font-size: 16px;
-    }
-    .footer .main:hover .social a {
-      transform: scale(1);
-      opacity: 1;
-      transition-timing-function: cubic-bezier(1,-0.03,0,1.85);
-      color: #000;
-    }
-    .footer .social a.icon-3d {
-      animation: icon3d 200ms 10;
-    }
-    .footer .social a.icon-3d:hover {
-      animation: icon3d 200ms infinite;
-      color: #fb3;
-      transition-timing-function: ease-in-out !important;
-      transition-delay: 1ms !important;
-    }
+.footer .social {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.footer .social a {
+  padding: 5px;
+  transition: 700ms;
+  color: #000;
+  text-align: center;
+  transform: scale(1); /* Always visible by default */
+  opacity: 1; /* Always fully opaque */
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.footer .main:hover .social a {
+  transform: scale(1); /* Maintain visibility on hover */
+  opacity: 1; /* Maintain opacity */
+  transition-timing-function: cubic-bezier(1, -0.03, 0, 1.85);
+  color: #000;
+}
+
+.footer .social a.icon-3d {
+  animation: icon3d 200ms 10;
+}
+
+.footer .social a.icon-3d:hover {
+  animation: icon3d 200ms infinite;
+  color: #fb3;
+  transition-timing-function: ease-in-out !important;
+  transition-delay: 1ms !important;
+}
+
+@keyframes icon3d {
+  0% {
+    text-shadow: 5px 4px rgba(244, 67, 54, 1), -5px -6px rgba(33, 150, 243, 1);
+  }
+  25% {
+    text-shadow: -5px -6px rgba(244, 67, 54, 1), 5px 4px rgba(33, 150, 243, 1);
+  }
+  50% {
+    text-shadow: 5px -4px rgba(244, 67, 54, 1), -8px 4px rgba(33, 150, 243, 1);
+  }
+  75% {
+    text-shadow: -8px -4px rgba(244, 67, 54, 1), -5px -4px rgba(33, 150, 243, 1);
+  }
+  100% {
+    text-shadow: -5px 0 rgba(244, 67, 54, 1), 5px -4px rgba(33, 150, 243, 1);
+  }
+}
+
+.footer .social a:nth-child(1) {
+  transition-delay: 85ms;
+}
+
+.footer .social a:nth-child(2) {
+  transition-delay: 170ms;
+}
+
+.footer .main {
+  width: 50px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background: #fff;
+  border-radius: 15px;
+  text-align: center;
+  font-weight: bold;
+  overflow: hidden;
+  color: #252525;
+  position: relative;
+}
+
+.footer .main .btn {
+  display: flex;
+  width: 50px;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #252525;
+  border-radius: 15px;
+  color: #fff;
+  transition: 950ms cubic-bezier(0.89, 0.03, 0.06, 1.5);
+}
+
+.footer .main .btn i {
+  transform: scale(1);
+  display: flex;
+  opacity: 1;
+  padding: 0;
+  margin: auto;
+  color: #fff;
+  font-size: 16px;
+}
+
+.footer .main:hover .btn {
+  transform: translateX(-100px); /* Animation for desktop */
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+  .footer .main {
+    width: 50px; /* Slightly larger for better tap target */
+    height: 50px;
+    border-radius: 25px;
+  }
+
+  .footer .main .btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    transform: translateX(0); /* No transform on mobile */
+    transition: none; /* Disable transition */
+  }
+
+  .footer .main:hover .btn {
+    transform: translateX(0); /* Disable animation on mobile */
+  }
+
+  .footer .social a {
+    font-size: 24px; /* Larger icons for mobile */
+    padding: 10px;
+    transform: scale(1); /* Always visible */
+    opacity: 1; /* Always fully opaque */
+    transition: none; /* Disable transition */
+  }
+
+  .footer .main:hover .social a {
+    transform: scale(1); /* No scaling on hover */
+    opacity: 1; /* No opacity change */
+    transition: none; /* Disable transition */
+  }
+
+  .footer .social a.icon-3d {
+    animation: none; /* Disable 3D animation */
+  }
+
+  .footer .social a.icon-3d:hover {
+    animation: none; /* Disable 3D animation on hover */
+    color: #000; /* Maintain color */
+  }
+
+  .footer .social a:nth-child(1),
+  .footer .social a:nth-child(2) {
+    transition-delay: 0ms; /* Remove delays */
+  }
+}
     @keyframes icon3d {
       0% {
         text-shadow: 5px 4px rgba(244, 67, 54, 1), -5px -6px rgba(33, 150, 243, 1);
