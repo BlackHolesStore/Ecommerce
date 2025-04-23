@@ -607,42 +607,22 @@
         font-size: 0.6rem;
       }
       .footer .main {
-        width: 50px; /* Larger for better tap target */
+        width: 50px;
         height: 50px;
         border-radius: 25px;
       }
       .footer .main .btn {
-        width: 50px;
-        height: 50px;
-        border-radius: 25px;
-        transform: translateX(0); /* Disable animation */
-        transition: none; /* Remove transition */
-      }
-      .footer .main:hover .btn {
-        transform: translateX(0); /* Ensure no animation on mobile */
+        display: none; /* Hide the share button on mobile */
       }
       .footer .social a {
-        font-size: 24px; /* Larger icons for better visibility */
-        padding: 10px;
-        transform: scale(1); /* Always visible */
-        opacity: 1; /* Always fully opaque */
-        transition: none; /* Disable animation */
+        display: none; /* Hide all social icons by default */
       }
-      .footer .main:hover .social a {
-        transform: scale(1); /* No scaling on hover */
-        opacity: 1; /* No opacity change */
-        transition: none; /* Disable animation */
-      }
-      .footer .social a.icon-3d {
-        animation: none; /* Disable 3D animation */
-      }
-      .footer .social a.icon-3d:hover {
-        animation: none; /* Disable 3D animation on hover */
-        color: #000; /* Maintain color */
-      }
-      .footer .social a:nth-child(1),
-      .footer .social a:nth-child(2) {
-        transition-delay: 0ms; /* Remove delays */
+      .footer .social a.fab.fa-facebook-f {
+        display: inline-block; /* Show only Facebook icon */
+        transform: scale(1);
+        opacity: 1;
+        transition: none;
+        font-size: 24px; /* Adjust size as needed */
       }
       .bottom-banner {
         font-size: 0.7rem;
