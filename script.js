@@ -9,7 +9,7 @@ window.addEventListener('load', () => {
 // Disable right-click
 document.addEventListener('contextmenu', (e) => {
   e.preventDefault();
-  alert('Right-click is disabled for security reasons.');
+  alert('FREE SHIPPING,use promo code : "SpaceSHip" ');
 });
 
 // Disable text selection
