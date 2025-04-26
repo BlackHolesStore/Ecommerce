@@ -566,6 +566,21 @@
       border-left: 4px solid #8f00ff;
       background: rgba(143, 0, 255, 0.1);
     }
+    /* Mute Button Styles */
+    .mute-button {
+      position: absolute;
+      top: 50px;
+      right: 20px;
+      z-index: 3;
+      color: #ffffff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .mute-button:hover {
+      color: #8f00ff;
+      text-shadow: 0 0 10px #8f00ff;
+    }
     /* Crisp Chat Widget Adjustment */
     #crisp-chatbox {
       z-index: 4 !important; /* Increased z-index to ensure it's above footer */
@@ -732,6 +747,12 @@
         font-size: 0.9rem;
         padding: 6px 10px;
       }
+      /* Adjust Mute Button for Mobile */
+      .mute-button {
+        top: 40px;
+        right: 10px;
+        font-size: 0.8rem;
+      }
       /* Adjust Crisp Chat for Mobile */
       #crisp-chatbox > div > div > span {
         bottom: 130px !important; /* Adjusted for mobile footer height (50px) + bottom banner (30px) + buffer */
@@ -756,6 +777,10 @@
       <span>B</span><span>l</span><span>a</span><span>c</span><span>k</span><span>H</span><span>o</span><span>l</span><span>e</span><span>s</span><span>.</span><span>S</span><span>t</span><span>o</span><span>r</span><span>e</span>
     </a>
   </header>
+
+  <button id="muteButton" class="mute-button" onclick="toggleMute()" aria-label="Mute audio">
+    <i class="fas fa-volume-up"></i>
+  </button>
 
   <div class="top-banner">
     <span class="banner-text">K2-18b Drop 01 // Inspired by the biosignature signal 124 light-years away // Own the Signal</span>
@@ -1056,6 +1081,25 @@
         document.addEventListener('click', () => audio.play(), { once: true });
       });
     });
+
+    // Mute button functionality
+    function toggleMute() {
+      const audio = document.getElementById('bg-audio');
+      const muteButton = document.getElementById('muteButton');
+      const icon = muteButton.querySelector('i');
+      
+      if (audio.muted) {
+        audio.muted = false;
+        icon.classList.remove('fa-volume-mute');
+        icon.classList.add('fa-volume-up');
+        muteButton.setAttribute('aria-label', 'Mute audio');
+      } else {
+        audio.muted = true;
+        icon.classList.remove('fa-volume-up');
+        icon.classList.add('fa-volume-mute');
+        muteButton.setAttribute('aria-label', 'Unmute audio');
+      }
+    }
 
     // Disable right-click globally
     document.addEventListener('contextmenu', (e) => {
