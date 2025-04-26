@@ -601,7 +601,7 @@
       }
       .main-content {
         padding: 10px;
-        padding-top: 60px;
+        padding-top: 120px; /* Increased to account for the navigation menu height */
         padding-bottom: 80px;
         margin-left: 0; /* Remove margin on small screens */
       }
@@ -708,13 +708,15 @@
       }
       /* Mobile Dropdown Menu */
       .game-menu {
-        position: relative;
-        top: 0;
+        position: absolute;
+        top: 70px; /* Position below the header (30px top + ~30px height + buffer) */
         left: 0;
+        right: 0;
         width: 100%;
         max-width: 250px;
-        margin: 0 auto 10px auto;
+        margin: 0 auto;
         padding: 10px;
+        z-index: 3;
       }
       .game-menu h2 {
         font-size: 1.2rem;
@@ -738,6 +740,14 @@
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.3s ease-out;
+        position: absolute; /* Make the dropdown overlay content */
+        top: 100%; /* Position directly below the h2 */
+        left: 0;
+        right: 0;
+        background: rgba(17, 17, 17, 0.95);
+        border: 2px solid #8f00ff;
+        border-top: none;
+        z-index: 3;
       }
       .game-menu ul.active {
         display: block;
@@ -789,6 +799,7 @@
   <div class="game-menu">
     <h2 onclick="toggleMenu()">Navigation</h2>
     <ul id="navMenu">
+      <li><a href="https://billing.stripe.com/p/login/eVadRu2Qe0qCeycfYY">My Account</a></li>
       <li><a href="#about-us">About Us</a></li>
       <li><a href="#apparel">Apparel</a></li>
       <li><a href="#toys">Toys</a></li>
@@ -1064,9 +1075,7 @@
       <h3>Wholesale and Partnerships</h3>
       <p>Interested in carrying BlackHoles.Store products or collaborating? Reach out to <a href="mailto:partnerships@blackholes.store">partnerships@blackholes.store</a>.</p>
       <h3>Social Media</h3>
-      <p>Connect with us on social media for updates and promotions:</p>
-      <ul>
-        <li>Instagram: @BlackHolesStore</li>
+     क्ति: @BlackHolesStore</li>
         <li>X: @BlackHolesStore</li>
       </ul>
     </div>
