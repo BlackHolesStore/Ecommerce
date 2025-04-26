@@ -423,6 +423,10 @@
       color: #8f00ff;
       text-shadow: 0 0 10px #8f00ff;
     }
+    .footer-links a[aria-label="Placeholder"] {
+      min-width: 70px; /* Approximate width of "Contact Us" to ensure spacing */
+      cursor: default; /* Remove pointer cursor since it's not clickable */
+    }
     .footer .social {
       display: flex;
       justify-content: space-evenly;
@@ -562,6 +566,14 @@
       border-left: 4px solid #8f00ff;
       background: rgba(143, 0, 255, 0.1);
     }
+    /* Crisp Chat Widget Adjustment */
+    #crisp-chatbox {
+      z-index: 4 !important; /* Increased z-index to ensure it's above footer */
+    }
+    #crisp-chatbox > div > div > span {
+      bottom: 120px !important; /* Increased to clear footer (40px) + bottom banner (40px) + extra buffer */
+      right: 20px !important;
+    }
     @media (max-width: 768px) {
       .header {
         padding: 5px 10px;
@@ -654,6 +666,9 @@
         margin: 0 3px;
         font-size: 0.6rem;
       }
+      .footer-links a[aria-label="Placeholder"] {
+        min-width: 60px; /* Adjusted for mobile font size */
+      }
       .footer .main {
         width: 50px;
         height: 50px;
@@ -676,8 +691,9 @@
         font-size: 0.7rem;
         padding: 6px;
       }
+      /* Mobile Dropdown Menu */
       .game-menu {
-        position: relative; /* Change to relative for stacking */
+        position: relative;
         top: 0;
         left: 0;
         width: 100%;
@@ -687,10 +703,39 @@
       }
       .game-menu h2 {
         font-size: 1.2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+      }
+      .game-menu h2::after {
+        content: '\f078'; /* FontAwesome chevron-down */
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        color: #8f00ff;
+        transition: transform 0.3s ease;
+      }
+      .game-menu h2.active::after {
+        transform: rotate(180deg);
+      }
+      .game-menu ul {
+        display: none;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+      }
+      .game-menu ul.active {
+        display: block;
+        max-height: 500px; /* Adjust based on content */
       }
       .game-menu a {
         font-size: 0.9rem;
         padding: 6px 10px;
+      }
+      /* Adjust Crisp Chat for Mobile */
+      #crisp-chatbox > div > div > span {
+        bottom: 130px !important; /* Adjusted for mobile footer height (50px) + bottom banner (30px) + buffer */
+        right: 10px !important;
       }
     }
   </style>
@@ -717,8 +762,8 @@
   </div>
 
   <div class="game-menu">
-    <h2>Navigation</h2>
-    <ul>
+    <h2 onclick="toggleMenu()">Navigation</h2>
+    <ul id="navMenu">
       <li><a href="#about-us">About Us</a></li>
       <li><a href="#apparel">Apparel</a></li>
       <li><a href="#toys">Toys</a></li>
@@ -762,7 +807,7 @@
       <a onclick="showPrivacy()" aria-label="View Privacy Policy">Privacy Policy</a>
       <a onclick="showShipping()" aria-label="View Shipping Terms">Shipping Terms</a>
       <a onclick="showTerms()" aria-label="View Terms of Use">Terms of Use</a>
-      <a onclick="showContact()" aria-label="Contact Support">Contact Us</a>
+      <a aria-label="Placeholder"></a> <!-- Blank placeholder with min-width to maintain spacing -->
     </div>
   </footer>
 
@@ -1130,6 +1175,14 @@
       if (event.target.classList.contains('contact-modal') || event.target.classList.contains('close-button')) {
         document.getElementById('contactModal').style.display = 'none';
       }
+    }
+
+    // Toggle mobile menu
+    function toggleMenu() {
+      const menu = document.getElementById('navMenu');
+      const header = document.querySelector('.game-menu h2');
+      menu.classList.toggle('active');
+      header.classList.toggle('active');
     }
 
     // Prevent modal close on content click
