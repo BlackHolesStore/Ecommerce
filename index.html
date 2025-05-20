@@ -1,33 +1,1267 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>SPA SDK Sample</title>
-    <link rel="stylesheet" type="text/css" href="/css/main.css" />
-  </head>
+<html lang="en">
+<head>
+  <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="bf4268c7-f384-4b52-aa0e-739f01fe1c47";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+  <link rel="canonical" href="https://blackholes.store/">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SXTGPDNDX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SXTGPDNDX');
+  </script>
+  <link rel="icon" href="favicon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlackHoles.Store – K2-18b Drop</title>
+  <meta name="description" content="BlackHoles.Store offers the K2-18b Drop 01 shirt, inspired by the biosignature signal 124 light-years away. Shop cosmic fashion with a QR code linking to JWST data.">
+  <meta name="keywords" content="BlackHoles.Store, K2-18b shirt, space fashion, cosmic clothing, astronomy apparel, oversized cotton shirt, JWST data">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="BlackHoles.Store">
+  <!-- Open Graph for social media -->
+  <meta property="og:title" content="BlackHoles.Store – K2-18b Drop">
+  <meta property="og:description" content="Discover the K2-18b Drop 01 shirt, a cosmic design inspired by space exploration. Shop now for $45.00 USD.">
+  <meta property="og:image" content="https://blackholes.store/Mannequin_Image1.png">
+  <meta property="og:url" content="https://blackholes.store/">
+  <meta property="og:type" content="website">
+  <!-- Twitter Card for X/Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BlackHoles.Store – K2-18b Drop">
+  <meta name="twitter:description" content="Shop the K2-18b Drop 01 shirt, inspired by the universe. Includes JWST QR code. $45.00 USD.">
+  <meta name="twitter:image" content="https://blackholes.store/Mannequin_Image1.png">
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,400" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/main.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Unbounded', sans-serif;
+      color: #ffffff;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: #000;
+    }
+    video#bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 1;
+      pointer-events: none;
+      background: #000;
+    }
+    .header {
+      background: #111;
+      color: #ffffff;
+      padding: 8px 20px;
+      position: absolute;
+      top: 40px;
+      width: 100%;
+      z-index: 2;
+      font-size: 0.7rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .header .store-name {
+      font-weight: 700;
+      color: #ffffff;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .header .store-name span {
+      transition: all 0.3s ease;
+    }
+    .header .store-name span:hover {
+      color: #8f00ff;
+      text-shadow: 0 0 15px #8f00ff, 0 0 25px #8f00ff;
+      animation: glow 1.5s linear infinite;
+    }
+    @keyframes glow {
+      0% {
+        filter: hue-rotate(0deg);
+      }
+      100% {
+        filter: hue-rotate(360deg);
+      }
+    }
+    .top-banner {
+      background: #8f00ff;
+      color: #000;
+      padding: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+    }
+    .banner-text {
+      display: inline-block;
+      animation: marquee 15s linear infinite;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    .bottom-banner {
+      background: #8f00ff;
+      color: #000;
+      padding: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      z-index: 2;
+      text-decoration: none;
+      display: block;
+      animation: pulseText 2s infinite ease-in-out;
+      transition: box-shadow 0.3s ease;
+    }
+    @keyframes pulseText {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    @keyframes glowButton {
+      0% { box-shadow: 0 0 5px #8f00ff, 0 0 10px #8f00ff66; }
+      50% { box-shadow: 0 0 15px #8f00ff, 0 0 20px #8f00ff; }
+      100% { box-shadow: 0 0 5px #8f00ff, 0 0 10px #8f00ff66; }
+    }
+    .bottom-banner:hover {
+      background: #a033ff;
+      animation: glowButton 1.5s infinite ease-in-out;
+    }
+    .main-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      padding: 15px;
+      padding-top: 70px;
+      padding-bottom: 70px;
+      margin-left: 340px; /* Adjusted to account for the menu width + padding */
+    }
+    .content-wrapper {
+      max-width: 500px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      align-items: center;
+      justify-items: center;
+    }
+    .left-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .right-column {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    h1 {
+      font-size: 1.8rem;
+      text-shadow: 0 0 15px #8f00ff, 0 0 8px #8f00ff;
+      margin-bottom: 0.8rem;
+    }
+    p {
+      font-size: 0.8rem;
+      line-height: 1.3;
+      margin-bottom: 0.4rem;
+      text-shadow: 0 0 8px #8f00ff;
+    }
+    .product-img {
+      width: 100%;
+      max-width: 200px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #8f00ff66;
+      margin-bottom: 0.8rem;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .info-button {
+      display: inline-block;
+      padding: 8px 16px;
+      border: 2px solid #8f00ff;
+      color: #8f00ff;
+      background: transparent;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.8rem;
+      transition: all 0.3s ease;
+      margin-bottom: 0.8rem;
+      text-shadow: none;
+      cursor: pointer;
+      animation: pulse 2s infinite ease-in-out;
+      box-shadow: 0 0 10px #8f00ff;
+    }
+    .info-button:hover {
+      background: #8f00ff;
+      color: #000;
+      animation: glowButton 1.5s infinite ease-in-out;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 10px #8f00ff, 0 0 20px #8f00ff66; }
+      50% { box-shadow: 0 0 20px #8f00ff, 0 0 30px #8f00ff; }
+      100% { box-shadow: 0 0 10px #8f00ff, 0 0 20px #8f00ff66; }
+    }
+    .buy-now-button {
+      display: inline-block;
+      padding: 8px 16px;
+      border: 2px solid #8f00ff;
+      color: #8f00ff;
+      background: transparent;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.8rem;
+      transition: all 0.3s ease;
+      text-shadow: none;
+      cursor: pointer;
+      animation: pulse 2s infinite ease-in-out;
+      box-shadow: 0 0 10px #8f00ff;
+      text-align: center;
+    }
+    .buy-now-button:hover {
+      background: #8f00ff;
+      color: #000;
+      box-shadow: 0 0 20px #8f00ff;
+    }
+    .details {
+      font-size: 0.7rem;
+      text-align: left;
+    }
+    .zoom-modal, .info-modal, .privacy-modal, .shipping-modal, .terms-modal, .contact-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 10;
+      align-items: center;
+      justify-content: center;
+      pointer-events: auto;
+    }
+    .zoom-modal img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
+    }
+    .info-modal-content, .privacy-modal-content, .shipping-modal-content, .terms-modal-content, .contact-modal-content {
+      background: #111;
+      padding: 15px;
+      border-radius: 10px;
+      max-width: 90%;
+      max-height: 80%;
+      overflow-y: auto;
+      position: relative;
+      border: 1px solid #8f00ff;
+    }
+    .info-modal-content h2, .privacy-modal-content h2, .shipping-modal-content h2, .terms-modal-content h2, .contact-modal-content h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      text-shadow: 0 0 10px #8f00ff;
+    }
+    .info-modal-content h3 {
+      font-size: 1rem;
+      margin: 0.8rem 0 0.4rem;
+      text-shadow: 0 0 5px #8f00ff;
+    }
+    .info-modal-content ul {
+      list-style-type: disc;
+      padding-left: 15px;
+      margin-bottom: 0.8rem;
+    }
+    .info-modal-content li {
+      font-size: 0.7rem;
+      margin-bottom: 0.4rem;
+    }
+    .info-modal-content p, .privacy-modal-content p, .shipping-modal-content p, .terms-modal-content p, .contact-modal-content p {
+      font-size: 0.7rem;
+      margin-bottom: 0.4rem;
+    }
+    .info-modal-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.8rem;
+    }
+    .info-modal-content th, .info-modal-content td {
+      border: 1px solid #8f00ff;
+      padding: 6px;
+      text-align: center;
+      font-size: 0.7rem;
+    }
+    .info-modal-content th {
+      background: #8f00ff;
+      color: #000;
+    }
+    .image-placeholder {
+      width: 100%;
+      height: 80px;
+      background: #333;
+      border: 1px solid #8f00ff;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: #8f00ff;
+      text-align: center;
+    }
+    .modal-image {
+      width: 100%;
+      max-width: 200px;
+      height: auto;
+      object-fit: cover;
+      border-radius: 5px;
+      border: 1px solid #8f00ff;
+      display: block;
+    }
+    .info-section {
+      display: grid;
+      grid-template-columns: 1fr 200px;
+      gap: 15px;
+      margin-bottom: 0.8rem;
+      align-items: start;
+    }
+    .info-section-text {
+      flex: 1;
+    }
+    .info-section-image {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+      width: 100%;
+      max-width: 200px;
+    }
+    .info-section-image img {
+      margin-bottom: 0;
+    }
+    .buy-now-container {
+      text-align: right;
+      margin-top: 0.8rem;
+    }
+    stripe-buy-button {
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+    .close-button {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      color: #8f00ff;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    audio {
+      display: none;
+    }
+    .footer {
+      background: #111;
+      color: #ffffff;
+      padding: 8px 20px;
+      position: absolute;
+      bottom: 40px;
+      width: 100%;
+      z-index: 2;
+      font-size: 0.7rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer .secure-copyright {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer p {
+      margin: 0;
+      text-shadow: none;
+    }
+    .footer .secure {
+      color: #8f00ff;
+      font-weight: 700;
+    }
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-links a {
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+    .footer-links a:hover {
+      color: #8f00ff;
+      text-shadow: 0 0 10px #8f00ff;
+    }
+    .footer-links a[aria-label="Placeholder"] {
+      min-width: 70px; /* Approximate width of "Contact Us" to ensure spacing */
+      cursor: default; /* Remove pointer cursor since it's not clickable */
+    }
+    .footer .social {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+    .footer .social a {
+      padding: 5px;
+      transition: 700ms;
+      color: #000;
+      text-align: center;
+      transform: scale(0);
+      opacity: 0;
+      text-decoration: none;
+      font-size: 16px;
+    }
+    .footer .main:hover .social a {
+      transform: scale(1);
+      opacity: 1;
+      transition-timing-function: cubic-bezier(1,-0.03,0,1.85);
+      color: #000;
+    }
+    .footer .social a.icon-3d {
+      animation: icon3d 200ms 10;
+    }
+    .footer .social a.icon-3d:hover {
+      animation: icon3d 200ms infinite;
+      color: #fb3;
+      transition-timing-function: ease-in-out !important;
+      transition-delay: 1ms !important;
+    }
+    @keyframes icon3d {
+      0% {
+        text-shadow: 5px 4px rgba(244, 67, 54, 1), -5px -6px rgba(33, 150, 243, 1);
+      }
+      25% {
+        text-shadow: -5px -6px rgba(244, 67, 54, 1), 5px 4px rgba(33, 150, 243, 1);
+      }
+      50% {
+        text-shadow: 5px -4px rgba(244, 67, 54, 1), -8px 4px rgba(33, 150, 243, 1);
+      }
+      75% {
+        text-shadow: -8px -4px rgba(244, 67, 54, 1), -5px -4px rgba(33, 150, 243, 1);
+      }
+      100% {
+        text-shadow: -5px 0 rgba(244, 67, 54, 1), 5px -4px rgba(33, 150, 243, 1);
+      }
+    }
+    .footer .social a:nth-child(1) {
+      transition-delay: 85ms;
+    }
+    .footer .social a:nth-child(2) {
+      transition-delay: 170ms;
+    }
+    .footer .main {
+      width: 50px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      flex-direction: row;
+      flex-wrap: wrap;
+      background: #fff;
+      border-radius: 15px;
+      text-align: center;
+      font-weight: bold;
+      overflow: hidden;
+      color: #252525;
+      position: relative;
+    }
+    .footer .main .btn {
+      display: flex;
+      width: 50px;
+      height: 30px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: #252525;
+      border-radius: 15px;
+      color: #fff;
+      transition: 950ms cubic-bezier(.89,.03,.06,1.50);
+    }
+    .footer .main .btn i {
+      transform: scale(1);
+      display: flex;
+      opacity: 1;
+      padding: 0;
+      margin: auto;
+      color: #fff;
+      font-size: 16px;
+    }
+    .footer .main:hover .btn {
+      transform: translateX(-100px);
+    }
+    .footer .copyright {
+      color: #888;
+    }
+    /* Integrated Game Menu Styles */
+    .game-menu {
+      position: absolute;
+      top: 90px;
+      left: 20px;
+      z-index: 3;
+      background: rgba(17, 17, 17, 0.95);
+      border: 2px solid #8f00ff;
+      width: 300px;
+      padding: 15px;
+      font-family: 'Orbitron', sans-serif;
+      color: #ffffff;
+    }
+    .game-menu h2 {
+      font-size: 1.5rem;
+      color: #8f00ff;
+      text-shadow: 0 0 10px #8f00ff;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .game-menu ul {
+      list-style: none;
+    }
+    .game-menu li {
+      margin: 10px 0;
+    }
+    .game-menu a {
+      color: #ffffff;
+      font-size: 1.1rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      display: block;
+      padding: 8px 15px;
+      border-left: 4px solid transparent;
+    }
+    .game-menu a:hover {
+      color: #8f00ff;
+      text-shadow: 0 0 10px #8f00ff;
+      border-left: 4px solid #8f00ff;
+      background: rgba(143, 0, 255, 0.1);
+    }
+    /* Mute Button Styles */
+    .mute-button {
+      position: absolute;
+      top: 50px;
+      right: 20px;
+      z-index: 3;
+      color: #8f00ff; /* Changed default color */
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      /* text-shadow property removed */
+      /* .mute-button:hover rule removed */
+    }
+    /* Crisp Chat Widget Adjustment */
+    #crisp-chatbox {
+      z-index: 4 !important; /* Increased z-index to ensure it's above footer */
+    }
+    #crisp-chatbox > div > div > span {
+      bottom: 120px !important; /* Increased to clear footer (40px) + bottom banner (40px) + extra buffer */
+      right: 20px !important;
+    }
+    @media (max-width: 768px) {
+      .header {
+        padding: 5px 10px;
+        top: 30px;
+        font-size: 0.6rem;
+      }
+      .top-banner {
+        padding: 6px;
+        font-size: 0.7rem;
+      }
+      .main-content {
+        padding: 10px;
+        padding-top: 120px; /* Increased to account for the navigation menu height */
+        padding-bottom: 80px;
+        margin-left: 0; /* Remove margin on small screens */
+      }
+      .content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        max-width: 90%;
+        margin: 0 auto;
+      }
+      .left-column, .right-column {
+        align-items: center;
+        text-align: center;
+      }
+      .right-column {
+        justify-content: center;
+      }
+      .details {
+        text-align: center;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+      p {
+        font-size: 0.7rem;
+      }
+      .product-img {
+        max-width: 150px;
+      }
+      .info-button {
+        margin-bottom: 0.5rem;
+        padding: 6px 12px;
+        font-size: 0.7rem;
+      }
+      .image-placeholder {
+        width: 100%;
+        height: 60px;
+      }
+      .modal-image {
+        max-width: 150px;
+        height: auto;
+      }
+      .info-section {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .info-section-image {
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .buy-now-container {
+        text-align: center;
+      }
+      .footer {
+        bottom: 50px;
+        padding: 5px 10px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 5px;
+      }
+      .footer .secure-copyright {
+        flex-direction: row;
+        gap: 5px;
+        flex: 1;
+        font-size: 0.6rem;
+      }
+      .footer-links {
+        flex-direction: row;
+        gap: 5px;
+        flex: 2;
+        justify-content: flex-end;
+        align-items: center;
+      }
+      .footer-links a {
+        margin: 0 3px;
+        font-size: 0.6rem;
+      }
+      .footer-links a[aria-label="Placeholder"] {
+        min-width: 60px; /* Adjusted for mobile font size */
+      }
+      .footer .main {
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+      }
+      .footer .main .btn {
+        display: none;
+      }
+      .footer .social a {
+        display: none;
+      }
+      .footer .social a.fab.fa-facebook-f {
+        display: inline-block;
+        transform: scale(1);
+        opacity: 1;
+        transition: none;
+        font-size: 24px;
+      }
+      .bottom-banner {
+        font-size: 0.7rem;
+        padding: 6px;
+      }
+      /* Mobile Dropdown Menu */
+      .game-menu {
+        position: absolute;
+        top: 70px; /* Position below the header (30px top + ~30px height + buffer) */
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-width: 250px;
+        margin: 0 auto;
+        padding: 10px;
+        z-index: 3;
+      }
+      .game-menu h2 {
+        font-size: 1.2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+      }
+      .game-menu h2::after {
+        content: '\f078'; /* FontAwesome chevron-down */
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        color: #8f00ff;
+        transition: transform 0.3s ease;
+      }
+      .game-menu h2.active::after {
+        transform: rotate(180deg);
+      }
+      .game-menu ul {
+        display: none;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        position: absolute; /* Make the dropdown overlay content */
+        top: 100%; /* Position directly below the h2 */
+        left: 0;
+        right: 0;
+        background: rgba(17, 17, 17, 0.95);
+        border: 2px solid #8f00ff;
+        border-top: none;
+        z-index: 3;
+      }
+      .game-menu ul.active {
+        display: block;
+        max-height: 500px; /* Adjust based on content */
+      }
+      .game-menu a {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+      }
+      /* Adjust Mute Button for Mobile */
+      .mute-button {
+        top: 40px;
+        right: 10px;
+        font-size: 0.8rem;
+      }
+      /* Adjust Crisp Chat for Mobile */
+      #crisp-chatbox > div > div > span {
+        bottom: 130px !important; /* Adjusted for mobile footer height (50px) + bottom banner (30px) + buffer */
+        right: 10px !important;
+      }
+    }
+  </style>
+</head>
+<body oncopy="return false" oncut="return false" onselectstart="return false">
+  <video id="bg-video" autoplay loop muted playsinline fetchpriority="high">
+    <source src="site background ‐.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
 
-  <body>
-    <h2>SPA Authentication Sample</h2>
-    <p>Welcome to our page!</p>
+  <audio id="bg-audio" loop preload="auto">
+    <source src="Beyond the Stars remix v2 (1).mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <header class="header">
+    <a href="https://blackholes.store/" class="store-name">
+      <span>B</span><span>l</span><span>a</span><span>c</span><span>k</span><span>H</span><span>o</span><span>l</span><span>e</span><span>s</span><span>.</span><span>S</span><span>t</span><span>o</span><span>r</span><span>e</span>
+    </a>
+  </header>
+
+  <button id="muteButton" class="mute-button" onclick="toggleMute()" aria-label="Mute audio">
+    <i class="fas fa-volume-up"></i>
+  </button>
+
+  <div class="top-banner">
+    <span class="banner-text">K2-18b Drop 01 // Inspired by the biosignature signal 124 light-years away // Own the Signal</span>
+  </div>
+
+  <div class="game-menu">
+    <h2 onclick="toggleMenu()">Navigation</h2>
+    <ul id="navMenu">
+      <li><a href="https://billing.stripe.com/p/login/eVadRu2Qe0qCeycfYY">My Account</a></li>
+      <li><a href="#about-us">About Us</a></li>
+      <li><a href="#apparel">Apparel</a></li>
+      <li><a href="#toys">Toys</a></li>
+      <li><a href="https://horizon.meta.com/world/1348781343028385">Virtual Worlds</a></li>
+    </ul>
     <button id="btn-login" disabled="true" onclick="login()">Log in</button>
     <button id="btn-logout" disabled="true" onclick="logout()">Log out</button>
+  </div>
 
-    <div class="hidden" id="gated-content">
-      <p>
-        You're seeing this content because you're currently
-        <strong>logged in</strong>.
-      </p>
-      <label>
-        Access token:
-        <pre id="ipt-access-token"></pre>
-      </label>
-      <label>
-        User profile:
-        <pre id="ipt-user-profile"></pre>
-      </label>
+  <div class="hidden" id="gated-content">
+    <p>
+      You're seeing this content because you're currently
+      <strong>logged in</strong>.
+    </p>
+    <label>
+      Access token:
+      <pre id="ipt-access-token"></pre>
+    </label>
+    <label>
+      User profile:
+      <pre id="ipt-user-profile"></pre>
+    </label>
+  </div>
+
+  <div class="main-content">
+    <div class="content-wrapper">
+      <div class="left-column">
+        <img src="Mannequin_Image1.png" alt="K2-18b Drop Shirt" class="product-img" onclick="showZoom()" loading="lazy" fetchpriority="high" oncontextmenu="return false">
+        <button class="info-button" onclick="showInfo()">More Info</button>
+        <p><em>“We been knew. They just needed the data.”</em></p>
+      </div>
+      <div class="right-column">
+        <p>We wear the unknown.</p>
+        <p><em>“The universe never hid its secrets. It whispered them in light we couldn’t read. Until now.”</em></p>
+        <div class="details">
+          <p><strong>K2-18b // Drop 01</strong></p>
+          <p>100% Cotton<br>Oversized Fit<br>Washed and distressed, easy to fade<br>Sizes: S, M, L, XL, XXL<br>$45.00 USD</p>
+          <p>Includes QR code linking to K2-18b JWST data.</p>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
-    <script src="js/app.js"></script>
-  </body>
+  <footer class="footer">
+    <div class="secure-copyright">
+      <div class="copyright">© 2025 BlackHoles.Store. All rights reserved.</div>
+    </div>
+    <div class="footer-links">
+      <div class="main">
+        <div class="social">
+          <a href="https://www.facebook.com/BlackholesStore/" class="fab fa-facebook-f icon-3d" aria-label="Visit our Facebook page"></a>
+          <a href="[Insert YouTube URL here]" class="fab fa-youtube icon-3d" aria-label="Visit our YouTube channel"></a>
+        </div>
+        <div class="btn">
+          <i class="fas fa-share-alt"></i>
+        </div>
+      </div>
+      <a onclick="showPrivacy()" aria-label="View Privacy Policy">Privacy Policy</a>
+      <a onclick="showShipping()" aria-label="View Shipping Terms">Shipping Terms</a>
+      <a onclick="showTerms()" aria-label="View Terms of Use">Terms of Use</a>
+      <a aria-label="Placeholder"></a> <!-- Blank placeholder with min-width to maintain spacing -->
+    </div>
+  </footer>
+
+  <a href="https://buy.stripe.com/9AQcQ2aqD95NgmsbII" class="bottom-banner">Own the Signal</a>
+
+  <div class="zoom-modal" id="zoomModal" onclick="hideZoom(event)">
+    <img src="Mannequin_Image1.png" alt="K2-18b Drop Shirt Zoomed" loading="lazy" oncontextmenu="return false">
+  </div>
+
+  <div class="info-modal" id="infoModal" onclick="hideInfo(event)">
+    <div class="info-modal-content">
+      <span class="close-button" onclick="hideInfo(event)" aria-label="Close Product Details">✕</span>
+      <h2>Product Details</h2>
+      <div class="info-section">
+        <div class="info-section-text">
+          <p><strong>K2-18b // Drop 01</strong></p>
+          <p><strong>$45.00 USD</strong></p>
+          <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+          <stripe-buy-button
+            buy-button-id="buy_btn_1RFi50AlwjiwrLydljQzw32O"
+            publishable-key="pk_live_51RFhj1AlwjiwrLyd4SFcr0ieaGMeFGOhT3Vy0q2RtRl4N3mxwjvL6Vgu03TuwPVGK0LRNS80peowiCEu8LSnFq8t00qNUR8VNI"
+          ></stripe-buy-button>
+          <h3>Features</h3>
+          <ul>
+            <li>Distressed hem</li>
+            <li>Drop shoulders</li>
+            <li>Crew neck</li>
+            <li>Ribbed collar</li>
+            <li>Oversized fit</li>
+            <li>Washed effect</li>
+          </ul>
+          <h3>Fabric</h3>
+          <ul>
+            <li>100% cotton</li>
+            <li>Pre-shrunk</li>
+            <li>Washed and distressed, easy to fade</li>
+            <li>260gm²</li>
+            <li>16 singles plain weave</li>
+          </ul>
+          <h3>Process</h3>
+          <ul>
+            <li>Side-seamed construction</li>
+            <li>Double-stitched ribbed collar</li>
+            <li>Taped neck and shoulders</li>
+            <li>Double-stitched cuffs and hem</li>
+          </ul>
+          <h3>Care Instructions</h3>
+          <p>Wash on the reverse side with neutral detergents. Do not soak, expose to the sun, and bleach. Iron, steam, or tumble dry at low temperature (max 30°C or 90°F). Slight floating color may occur during initial washing. It is recommended to wash with clothes of similar color.</p>
+          <p><em>More Info</em><br>Washed fabric, fading is normal<br>Hand wash is recommended</p>
+          <h3>Size Guide (Metric)</h3>
+          <table>
+            <tr>
+              <th></th>
+              <th>S</th>
+              <th>M</th>
+              <th>L</th>
+              <th>XL</th>
+              <th>2XL</th>
+            </tr>
+            <tr>
+              <td>Length</td>
+              <td>29.1</td>
+              <td>29.9</td>
+              <td>30.7</td>
+              <td>31.5</td>
+              <td>32.3</td>
+            </tr>
+            <tr>
+              <td>Chest</td>
+              <td>22.8</td>
+              <td>23.6</td>
+              <td>24.4</td>
+              <td>25.2</td>
+              <td>26.0</td>
+            </tr>
+            <tr>
+              <td>Shoulder</td>
+              <td>21.3</td>
+              <td>22.0</td>
+              <td>22.8</td>
+              <td>23.6</td>
+              <td>24.4</td>
+            </tr>
+            <tr>
+              <td>Sleeve Length</td>
+              <td>9.1</td>
+              <td>9.3</td>
+              <td>9.4</td>
+              <td>9.6</td>
+              <td>9.8</td>
+            </tr>
+          </table>
+        </div>
+        <div class="info-section-image">
+          <img src="Model_images1.jpg" alt="K2-18b Drop 01 Shirt on Model, Front View" class="modal-image" loading="lazy" onerror="this.classList.add('image-placeholder'); this.src='';" oncontextmenu="return false">
+          <img src="Model_images2.jpg" alt="K2-18b Drop 01 Shirt on Model, Side View" class="modal-image" loading="lazy" onerror="this.classList.add('image-placeholder'); this.src='';" oncontextmenu="return false">
+          <img src="Model_images3.jpg" alt="K2-18b Drop 01 Shirt on Model, Back View" class="modal-image" loading="lazy" onerror="this.classList.add('image-placeholder'); this.src='';" oncontextmenu="return false">
+          <img src="Model_images4.jpg" alt="K2-18b Drop 01 Shirt, Close-Up of Distressed Fabric" class="modal-image" loading="lazy" onerror="this.classList.add('image-placeholder'); this.src='';" oncontextmenu="return false">
+          <img src="Model_images5.jpg" alt="K2-18b Drop 01 Shirt with JWST QR Code Detail" class="modal-image" loading="lazy" onerror="this.classList.add('image-placeholder'); this.src='';" oncontextmenu="return false">
+        </div>
+      </div>
+      <div class="buy-now-container">
+        <a href="https://buy.stripe.com/9AQcQ2aqD95NgmsbII" class="buy-now-button" aria-label="Buy K2-18b Drop Shirt">Buy Now</a>
+      </div>
+      <div class="seo-content" style="display: none;">
+        <p>BlackHoles.Store presents the K2-18b Drop 01 shirt, a unique piece of cosmic fashion inspired by the biosignature signal detected 124 light-years away. Crafted from 100% cotton with an oversized fit, this distressed, washed-effect shirt is perfect for astronomy enthusiasts and streetwear fans. Each shirt includes a QR code linking to JWST data, connecting you to the universe. Shop now for $45.00 USD and wear the unknown.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="privacy-modal" id="privacyModal" onclick="hidePrivacy(event)">
+    <div class="privacy-modal-content">
+      <span class="close-button" onclick="hidePrivacy(event)" aria-label="Close Privacy Policy">✕</span>
+      <h2>Privacy Policy</h2>
+      <p><strong>Effective Date: April 19, 2025</strong></p>
+      <p>At BlackHoles.Store, we value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your data when you visit our website or make a purchase.</p>
+      <h3>1. Information We Collect</h3>
+      <p>We may collect the following types of information:</p>
+      <ul>
+        <li><strong>Personal Information:</strong> Name, email address, shipping address, payment information, and phone number provided during checkout or account creation.</li>
+        <li><strong>Non-Personal Information:</strong> Browser type, IP address, device type, and browsing behavior (e.g., pages visited, time spent) collected via cookies and analytics tools.</li>
+        <li><strong>Order Information:</strong> Details about products purchased, order history, and preferences.</li>
+      </ul>
+      <h3>2. How We Use Your Information</h3>
+      <p>Your information is used to:</p>
+      <ul>
+        <li>Process and fulfill orders, including shipping and payment processing.</li>
+        <li>Communicate with you about your order, promotions, or customer service inquiries.</li>
+        <li>Improve our website, products, and services through analytics and feedback.</li>
+        <li>Prevent fraud and ensure the security of our website.</li>
+      </ul>
+      <h3>3. Sharing Your Information</h3>
+      <p>We do not sell your personal information. We may share your data with:</p>
+      <ul>
+        <li><strong>Service Providers:</strong> Third parties like Stripe for payment processing, shipping carriers, and analytics providers (e.g., Google Analytics).</li>
+        <li><strong>Legal Requirements:</strong> If required by law or to protect our rights, we may disclose your information to authorities.</li>
+      </ul>
+      <h3>4. Cookies and Tracking</h3>
+      <p>We use cookies to enhance your browsing experience, track analytics, and personalize content. You can manage cookie preferences through your browser settings.</p>
+      <h3>5. Your Rights</h3>
+      <p>You have the right to:</p>
+      <ul>
+        <li>Access, update, or delete your personal information.</li>
+        <li>Opt out of marketing emails via the unsubscribe link in our emails.</li>
+        <li>Request information about how your data is used.</li>
+      </ul>
+      <p>To exercise these rights, contact us at <a href="mailto:support@blackholes.store">support@blackholes.store</a>.</p>
+      <h3>6. Data Security</h3>
+      <p>We use industry-standard encryption (e.g., SSL) and secure payment gateways to protect your data. However, no online transmission is 100% secure, and you share information at your own risk.</p>
+      <h3>7. Changes to This Policy</h3>
+      <p>We may update this Privacy Policy periodically. Changes will be posted on this page with an updated effective date.</p>
+      <h3>8. Contact Us</h3>
+      <p>For questions about this Privacy Policy, please contact us at <a href="mailto:support@blackholes.store">support@blackholes.store</a>.</p>
+    </div>
+  </div>
+
+  <div class="shipping-modal" id="shippingModal" onclick="hideShipping(event)">
+    <div class="shipping-modal-content">
+      <span class="close-button" onclick="hideShipping(event)" aria-label="Close Shipping Terms">✕</span>
+      <h2>Shipping Terms</h2>
+      <p><strong>Effective Date: April 19, 2025</strong></p>
+      <p>BlackHoles.Store is committed to delivering your orders efficiently and reliably. Below are our shipping terms and policies.</p>
+      <h3>1. Shipping Destinations</h3>
+      <p>We currently ship to addresses within the United States, Canada, and select international destinations. Please check availability at checkout.</p>
+      <h3>2. Shipping Rates</h3>
+      <p>Shipping costs are calculated at checkout based on your location, order weight, and selected shipping method. We offer:</p>
+      <ul>
+        <li><strong>Standard Shipping:</strong> 5-7 business days (US), 7-14 business days (Canada/International).</li>
+        <li><strong>Express Shipping:</strong> 2-3 business days (US only).</li>
+      </ul>
+      <h3>3. Processing Time</h3>
+      <p>Orders are processed within 1-2 business days. Custom or pre-order items may take 3-5 business days. You will receive a confirmation email once your order is processed.</p>
+      <h3>4. Tracking Your Order</h3>
+      <p>Once your order ships, you will receive a tracking number via email. Use this to track your package on the carrier’s website.</p>
+      <h3>5. Delivery Issues</h3>
+      <p>If your order is delayed, lost, or damaged, please contact us at <a href="mailto:support@blackholes.store">support@blackholes.store</a> within 30 days of shipment. We’ll work with the carrier to resolve the issue.</p>
+      <h3>6. International Shipping</h3>
+      <p>International orders may incur customs fees, duties, or taxes, which are the responsibility of the recipient. Delivery times vary based on customs processing.</p>
+      <h3>7. Returns and Exchanges</h3>
+      <p>Please see our <a onclick="showTerms()">Terms of Use</a> for information on returns and exchanges.</p>
+      <h3>8. Contact Us</h3>
+      <p>For shipping inquiries, reach out to <a href="mailto:support@blackholes.store">support@blackholes.store</a>.</p>
+    </div>
+  </div>
+
+  <div class="terms-modal" id="termsModal" onclick="hideTerms(event)">
+    <div class="terms-modal-content">
+      <span class="close-button" onclick="hideTerms(event)" aria-label="Close Terms of Use">✕</span>
+      <h2>Terms of Use</h2>
+      <p><strong>Effective Date: April 19, 2025</strong></p>
+      <p>By accessing or using BlackHoles.Store, you agree to these Terms of Use. Please read them carefully.</p>
+      <h3>1. Use of Our Website</h3>
+      <p>You agree to use our website for lawful purposes only. You may not:</p>
+      <ul>
+        <li>Use the site to engage in fraudulent or illegal activities.</li>
+        <li>Attempt to hack, disrupt, or gain unauthorized access to our systems.</li>
+        <li>Reproduce or distribute our content without permission.</li>
+      </ul>
+      <h3>2. Product Information</h3>
+      <p>We strive to provide accurate product descriptions and pricing. However, errors may occur, and we reserve the right to correct them or cancel orders affected by such errors.</p>
+      <h3>3. Orders and Payments</h3>
+      <p>All orders are subject to acceptance and availability. We use Stripe for secure payment processing. You agree to provide accurate payment and shipping information.</p>
+      <h3>4. Returns and Refunds</h3>
+      <p>We accept returns within 30 days of delivery for unworn, undamaged items in original packaging. Refunds are issued to the original payment method within 7-10 business days of receiving the return. Shipping costs are non-refundable. To initiate a return, contact <a href="mailto:support@blackholes.store">support@blackholes.store</a>.</p>
+      <h3>5. Intellectual Property</h3>
+      <p>All content on BlackHoles.Store, including images, text, and designs, is owned by us or our licensors. You may not use our content without written permission.</p>
+      <h3>6. Limitation of Liability</h3>
+      <p>BlackHoles.Store is not liable for indirect, incidental, or consequential damages arising from your use of our website or products. Our liability is limited to the amount paid for your order.</p>
+      <h3>7. Governing Law</h3>
+      <p>These Terms are governed by the laws of the State of California, USA. Any disputes will be resolved in the courts of California.</p>
+      <h3>8. Changes to These Terms</h3>
+      <p>We may update these Terms periodically. Changes will be posted on this page with an updated effective date.</p>
+      <h3>9. Contact Us</h3>
+      <p>For questions about these Terms, contact us at <a href="mailto:support@blackholes.store">support@blackholes.store</a>.</p>
+    </div>
+  </div>
+
+  <div class="contact-modal" id="contactModal" onclick="hideContact(event)">
+    <div class="contact-modal-content">
+      <span class="close-button" onclick="hideContact(event)" aria-label="Close Contact Us">✕</span>
+      <h2>Contact Us</h2>
+      <p>We’re here to help with any questions, concerns, or feedback about your BlackHoles.Store experience.</p>
+      <h3>Contact Information</h3>
+      <p><strong>Email:</strong> <a href="mailto:support@blackholes.store">support@blackholes.store</a></p>
+      <p><strong>Business Hours:</strong> Monday–Friday, 9:00 AM–5:00 PM PST</p>
+      <p><strong>Mailing Address:</strong> BlackHoles.Store, 123 Cosmic Way, Suite 100, Los Angeles, CA 90001, USA</p>
+      <h3>Customer Support</h3>
+      <p>For order inquiries, returns, or shipping issues, please email us with your order number. We aim to respond within 24–48 hours during business hours.</p>
+      <h3>Wholesale and Partnerships</h3>
+      <p>Interested in carrying BlackHoles.Store products or collaborating? Reach out to <a href="mailto:partnerships@blackholes.store">partnerships@blackholes.store</a>.</p>
+      <h3>Social Media</h3>
+     क्ति: @BlackHolesStore</li>
+        <li>X: @BlackHolesStore</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // Play background audio on load
+    window.addEventListener('load', () => {
+      const audio = document.getElementById('bg-audio');
+      audio.play().catch(error => {
+        console.log('Autoplay failed:', error);
+        document.addEventListener('click', () => audio.play(), { once: true });
+      });
+    });
+
+    // Mute button functionality
+    function toggleMute() {
+      const audio = document.getElementById('bg-audio');
+      const muteButton = document.getElementById('muteButton');
+      const icon = muteButton.querySelector('i');
+      
+      if (audio.muted) {
+        audio.muted = false;
+        icon.classList.remove('fa-volume-mute');
+        icon.classList.add('fa-volume-up');
+        muteButton.setAttribute('aria-label', 'Mute audio');
+      } else {
+        audio.muted = true;
+        icon.classList.remove('fa-volume-up');
+        icon.classList.add('fa-volume-mute');
+        muteButton.setAttribute('aria-label', 'Unmute audio');
+      }
+    }
+
+    // Disable right-click globally
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      alert('PROMOCODE "SPACESHIP"');
+      return false;
+    }, { capture: true });
+
+    // Disable right-click specifically on images
+    document.querySelectorAll('img').forEach(img => {
+      img.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }, { capture: true });
+    });
+
+    // Disable text selection
+    document.addEventListener('selectstart', (e) => {
+      e.preventDefault();
+    });
+
+    // Disable copy and cut
+    document.addEventListener('copy', (e) => {
+      e.preventDefault();
+    });
+    document.addEventListener('cut', (e) => {
+      e.preventDefault();
+    });
+
+    // Disable specific keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      if (
+        (e.ctrlKey && e.key === 'u') || // Ctrl+U (view source)
+        (e.ctrlKey && e.shiftKey && e.key === 'I') || // Ctrl+Shift+I (dev tools)
+        (e.ctrlKey && e.shiftKey && e.key === 'J') || // Ctrl+Shift+J (dev tools)
+        (e.ctrlKey && e.key === 's') // Ctrl+S (save)
+      ) {
+        e.preventDefault();
+      }
+    });
+
+    // Detect developer tools (not foolproof)
+    (function checkDevTools() {
+      const threshold = 160;
+      const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+      const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+      if (widthThreshold || heightThreshold) {
+        alert('Developer tools are disabled on this site.');
+        // Optionally redirect: window.location.href = 'about:blank';
+      }
+      setTimeout(checkDevTools, 1000);
+    })();
+
+    // Block view-source (less reliable)
+    if (window.location.protocol === 'view-source:') {
+      window.location.href = 'about:blank';
+    }
+
+    // Modal functions
+    function showZoom() {
+      document.getElementById('zoomModal').style.display = 'flex';
+    }
+
+    function hideZoom(event) {
+      if (event.target.classList.contains('zoom-modal') || event.target.classList.contains('close-button')) {
+        document.getElementById('zoomModal').style.display = 'none';
+      }
+    }
+
+    function showInfo() {
+      document.getElementById('infoModal').style.display = 'flex';
+    }
+
+    function hideInfo(event) {
+      if (event.target.classList.contains('info-modal') || event.target.classList.contains('close-button')) {
+        document.getElementById('infoModal').style.display = 'none';
+      }
+    }
+
+    function showPrivacy() {
+      document.getElementById('privacyModal').style.display = 'flex';
+    }
+
+    function hidePrivacy(event) {
+      if (event.target.classList.contains('privacy-modal') || event.target.classList.contains('close-button')) {
+        document.getElementById('privacyModal').style.display = 'none';
+      }
+    }
+
+    function showShipping() {
+      document.getElementById('shippingModal').style.display = 'flex';
+    }
+
+    function hideShipping(event) {
+      if (event.target.classList.contains('shipping-modal') || event.target.classList.contains('close-button')) {
+        document.getElementById('shippingModal').style.display = 'none';
+      }
+    }
+
+    function showTerms() {
+      document.getElementById('termsModal').style.display = 'flex';
+    }
+
+    function hideTerms(event) {
+      if (event.target.classList.contains('terms-modal') || event.target.classList.contains('close-button')) {
+        document.getElementById('termsModal').style.display = 'none';
+      }
+    }
+
+    function showContact() {
+      document.getElementById('contactModal').style.display = 'flex';
+    }
+
+    function hideContact(event) {
+      if (event.target.classList.contains('contact-modal') || event.target.classList.contains('close-button')) {
+        document.getElementById('contactModal').style.display = 'none';
+      }
+    }
+
+    // Toggle mobile menu
+    function toggleMenu() {
+      const menu = document.getElementById('navMenu');
+      const header = document.querySelector('.game-menu h2');
+      menu.classList.toggle('active');
+      header.classList.toggle('active');
+    }
+
+    // Prevent modal close on content click
+    document.querySelectorAll('.info-modal-content, .privacy-modal-content, .shipping-modal-content, .terms-modal-content, .contact-modal-content').forEach(function(element) {
+      element.addEventListener('click', function(event) {
+        event.stopPropagation();
+      });
+    });
+  </script>
+</body>
 </html>
