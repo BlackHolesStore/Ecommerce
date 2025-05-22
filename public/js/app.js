@@ -39,6 +39,9 @@ window.onload = async () => {
     console.error('#myAccountLink not found. Cannot attach click listener.');
   }
 
+    console.log('myAccountLink element:', document.getElementById('myAccountLink'));
+    console.log('logoutButton element:', document.getElementById('logoutButton'));
+
   // Event listener for Logout button
   const logoutButton = document.getElementById('logoutButton');
   if (logoutButton) {
