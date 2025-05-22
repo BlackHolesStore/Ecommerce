@@ -1,4 +1,5 @@
 {
   "domain": "blackholesstore.us.auth0.com",
-  "clientId": "TZWQfdvTs1iGGveJFHRNULJ4vYRXn9lF"
+  "clientId": "TZWQfdvTs1iGGveJFHRNULJ4vYRXn9lF",
+  "audience": "YOUR_API_IDENTIFIER"
 }
