@@ -798,12 +798,19 @@
   <div class="game-menu">
     <h2 onclick="toggleMenu()">Navigation</h2>
     <ul id="navMenu">
+
+      <li><a id="myAccountLink" href="#">My Account</a></li>
+
       <li><a href="https://billing.stripe.com/p/login/eVadRu2Qe0qCeycfYY">My Account</a></li>
+
       <li><a href="#about-us">About Us</a></li>
       <li><a href="#apparel">Apparel</a></li>
       <li><a href="#toys">Toys</a></li>
       <li><a href="https://horizon.meta.com/world/1348781343028385">Virtual Worlds</a></li>
     </ul>
+
+    <button id="logoutButton">Log out</button>
+
     <button id="btn-login" disabled="true" onclick="login()">Log in</button>
     <button id="btn-logout" disabled="true" onclick="logout()">Log out</button>
   </div>
@@ -821,6 +828,7 @@
       User profile:
       <pre id="ipt-user-profile"></pre>
     </label>
+ main
   </div>
 
   <div class="main-content">
