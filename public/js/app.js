@@ -1,3 +1,4 @@
+console.log('=== APP.JS STARTING ===');
 let auth0Client = null;
 
 const fetchAuthConfig = () => fetch("/auth_config.json");
