@@ -1,5 +1,5 @@
 {
   "domain": "blackholesstore.us.auth0.com",
   "clientId": "TZWQfdvTs1iGGveJFHRNULJ4vYRXn9lF",
-  "redirectUri": "https://blackholes.store"
+  "audience": "https://blackholesstore.us.auth0.com/api/v2/"
 }
