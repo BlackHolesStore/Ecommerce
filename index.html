@@ -160,6 +160,22 @@
       padding-bottom: 70px;
       margin-left: 340px; /* Adjusted to account for the menu width + padding */
     }
+    .product-carousel-viewport {
+      overflow: hidden;
+      width: 100%; /* This will take the width of its container, .main-content */
+      max-width: 500px; /* To match the original max-width of content-wrapper, ensuring the viewport is not too wide */
+      margin: 0 auto; /* To keep it centered like the original content-wrapper was */
+      cursor: grab; /* Add grab cursor for draggable items */
+    }
+    .product-carousel-slider {
+      display: flex;
+      transition: transform 0.3s ease-in-out;
+    }
+    .product-carousel-slider > .content-wrapper {
+      flex-shrink: 0;
+      width: 100%; /* Each slide takes the full width of the viewport */
+      box-sizing: border-box; /* Ensure padding/border don't expand its width in flex context */
+    }
     .content-wrapper {
       max-width: 500px;
       width: 100%;
@@ -846,19 +862,41 @@
   </div>
 
   <div class="main-content">
-    <div class="content-wrapper">
-      <div class="left-column">
-        <img src="Mannequin_Image1.png" alt="K2-18b Drop Shirt" class="product-img" onclick="showZoom()" loading="lazy" fetchpriority="high" oncontextmenu="return false">
-        <button class="info-button" onclick="showInfo()">More Info</button>
-        <p><em>“We been knew. They just needed the data.”</em></p>
-      </div>
-      <div class="right-column">
-        <p>We wear the unknown.</p>
-        <p><em>“The universe never hid its secrets. It whispered them in light we couldn’t read. Until now.”</em></p>
-        <div class="details">
-          <p><strong>K2-18b // Drop 01</strong></p>
-          <p>100% Cotton<br>Oversized Fit<br>Washed and distressed, easy to fade<br>Sizes: S, M, L, XL, XXL<br>$45.00 USD</p>
-          <p>Includes QR code linking to K2-18b JWST data.</p>
+    <div class="product-carousel-viewport">
+      <div class="product-carousel-slider">
+        <!-- Original content-wrapper -->
+        <div class="content-wrapper">
+          <div class="left-column">
+            <img src="Mannequin_Image1.png" alt="K2-18b Drop Shirt" class="product-img" onclick="showZoom()" loading="lazy" fetchpriority="high" oncontextmenu="return false">
+            <button class="info-button" onclick="showInfo()">More Info</button>
+            <p><em>“We been knew. They just needed the data.”</em></p>
+          </div>
+          <div class="right-column">
+            <p>We wear the unknown.</p>
+            <p><em>“The universe never hid its secrets. It whispered them in light we couldn’t read. Until now.”</em></p>
+            <div class="details">
+              <p><strong>K2-18b // Drop 01</strong></p>
+              <p>100% Cotton<br>Oversized Fit<br>Washed and distressed, easy to fade<br>Sizes: S, M, L, XL, XXL<br>$45.00 USD</p>
+              <p>Includes QR code linking to K2-18b JWST data.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Duplicated content-wrapper for testing -->
+        <div class="content-wrapper">
+          <div class="left-column">
+            <img src="Mannequin_Image1.png" alt="K2-18b Drop Shirt" class="product-img" onclick="showZoom()" loading="lazy" fetchpriority="high" oncontextmenu="return false">
+            <button class="info-button" onclick="showInfo()">More Info</button>
+            <p><em>“We been knew. They just needed the data.”</em></p>
+          </div>
+          <div class="right-column">
+            <p>We wear the unknown.</p>
+            <p><em>“The universe never hid its secrets. It whispered them in light we couldn’t read. Until now.”</em></p>
+            <div class="details">
+              <p><strong>K2-18b // Drop 01</strong></p>
+              <p>100% Cotton<br>Oversized Fit<br>Washed and distressed, easy to fade<br>Sizes: S, M, L, XL, XXL<br>$45.00 USD</p>
+              <p>Includes QR code linking to K2-18b JWST data.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1281,6 +1319,103 @@
       element.addEventListener('click', function(event) {
         event.stopPropagation();
       });
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const carouselViewport = document.querySelector('.product-carousel-viewport');
+      const slider = document.querySelector('.product-carousel-slider');
+      const slides = document.querySelectorAll('.product-carousel-slider > .content-wrapper');
+      let currentIndex = 0;
+      let isDragging = false;
+      let startX = 0;
+      let currentTranslate = 0;
+      let prevTranslate = 0;
+      let animationFrameId = null; // For requestAnimationFrame
+
+      function getPositionX(event) {
+        return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+      }
+
+      function setSliderPosition() {
+        if (slides.length === 0) return;
+        const slideWidth = slides[0].offsetWidth;
+        currentTranslate = -currentIndex * slideWidth;
+        slider.style.transform = `translateX(${currentTranslate}px)`;
+      }
+
+      // Initialize slider position
+      setSliderPosition();
+
+      function dragStart(event) {
+        isDragging = true;
+        startX = getPositionX(event);
+        prevTranslate = currentTranslate; // Store the current position before drag starts
+        carouselViewport.style.cursor = 'grabbing';
+        slider.style.transition = 'none'; // Disable transition during drag for smoother movement
+
+        // Prevent default drag behavior and text selection
+        if (event.type.includes('mouse')) {
+          event.preventDefault(); // Prevents image dragging etc.
+        }
+      }
+
+      function dragMove(event) {
+        if (isDragging) {
+          const currentX = getPositionX(event);
+          const diffX = currentX - startX;
+          // Update slider position directly based on drag difference from the start of the drag
+          slider.style.transform = `translateX(${prevTranslate + diffX}px)`;
+        }
+      }
+
+      function dragEnd(event) {
+        if (!isDragging) return;
+        isDragging = false;
+        carouselViewport.style.cursor = 'grab';
+        slider.style.transition = 'transform 0.3s ease-in-out'; // Re-enable transition
+
+        const currentX = getPositionX(event);
+        const movedBy = currentX - startX; // Total distance moved during the drag
+        const slideWidth = slides[0].offsetWidth;
+        const threshold = slideWidth / 4; // Swipe threshold
+
+        // Determine if it was a swipe or just a small drag/click
+        if (Math.abs(movedBy) > threshold) {
+          if (movedBy < 0 && currentIndex < slides.length - 1) {
+            // Swiped left
+            currentIndex++;
+          } else if (movedBy > 0 && currentIndex > 0) {
+            // Swiped right
+            currentIndex--;
+          }
+        }
+        // Snap to the determined slide
+        setSliderPosition();
+      }
+
+      // Touch events
+      carouselViewport.addEventListener('touchstart', dragStart, { passive: true }); // passive:true for performance if not preventing default
+      carouselViewport.addEventListener('touchmove', (event) => {
+        if (isDragging) {
+          event.preventDefault(); // Prevent page scroll while swiping horizontally
+          dragMove(event);
+        }
+      });
+      carouselViewport.addEventListener('touchend', dragEnd);
+
+      // Mouse events
+      carouselViewport.addEventListener('mousedown', dragStart);
+      carouselViewport.addEventListener('mousemove', dragMove);
+      carouselViewport.addEventListener('mouseup', dragEnd);
+      carouselViewport.addEventListener('mouseleave', () => {
+        if (isDragging) {
+          dragEnd({ pageX: startX }); // Simulate drag end if mouse leaves while dragging
+        }
+      });
+      
+      // Recalculate on resize
+      window.addEventListener('resize', setSliderPosition);
     });
   </script>
 </body>
