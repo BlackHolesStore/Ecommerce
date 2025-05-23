@@ -849,10 +849,43 @@
         right: 0px; /* Position flush with the right edge of the viewport */
       }
     }
+
+    #splash-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+    }
+
+    #splash-screen h1 {
+      color: #ffffff;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 3rem;
+      text-align: center;
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
     
   </style>
 </head>
 <body oncopy="return false" oncut="return false" onselectstart="return false">
+  <div id="splash-screen">
+    <h1>BlackHoles Store</h1>
+  </div>
   <video id="bg-video" autoplay loop muted playsinline fetchpriority="high">
     <source src="site background ‐.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -1202,14 +1235,29 @@
   <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
   <script src="js/app.js"></script>
   <script>
-    // Play background audio on load
-    window.addEventListener('load', () => {
+    window.onload = () => {
+      // Splash screen logic
+      const splashScreen = document.getElementById('splash-screen');
+      if (splashScreen) {
+        setTimeout(() => {
+          splashScreen.style.animation = 'fadeOut 1s ease-out forwards';
+          setTimeout(() => {
+            splashScreen.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Allow scrolling
+          }, 1000); // Duration of fadeOut animation
+        }, 2500); // Delay before splash screen starts fading out
+      }
+
+      // Original background audio playback logic
       const audio = document.getElementById('bg-audio');
-      audio.play().catch(error => {
-        console.log('Autoplay failed:', error);
-        document.addEventListener('click', () => audio.play(), { once: true });
-      });
-    });
+      if (audio) { // Check if audio element exists
+        audio.play().catch(error => {
+          console.log('Autoplay failed:', error);
+          // Fallback for browsers that block autoplay: play on first click
+          document.addEventListener('click', () => audio.play(), { once: true });
+        });
+      }
+    };
 
     // Mute button functionality
     function toggleMute() {
