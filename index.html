@@ -176,6 +176,30 @@
       width: 100%; /* Each slide takes the full width of the viewport */
       box-sizing: border-box; /* Ensure padding/border don't expand its width in flex context */
     }
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-size: 24px;
+      cursor: pointer;
+      border-radius: 50%;
+      user-select: none; /* Prevent text selection on click */
+      transition: background-color 0.3s ease;
+    }
+    .carousel-arrow:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    .carousel-arrow-prev {
+      left: 10px;
+    }
+    .carousel-arrow-next {
+      right: 10px;
+    }
     .content-wrapper {
       max-width: 500px;
       width: 100%;
@@ -863,6 +887,8 @@
 
   <div class="main-content">
     <div class="product-carousel-viewport">
+      <button class="carousel-arrow carousel-arrow-prev" id="carouselArrowPrev">&lt;</button>
+      <button class="carousel-arrow carousel-arrow-next" id="carouselArrowNext">&gt;</button>
       <div class="product-carousel-slider">
         <!-- Original content-wrapper -->
         <div class="content-wrapper">
@@ -1324,8 +1350,11 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const carouselViewport = document.querySelector('.product-carousel-viewport');
+      const carouselViewport = document.querySelector('.product-carousel-viewport');
       const slider = document.querySelector('.product-carousel-slider');
       const slides = document.querySelectorAll('.product-carousel-slider > .content-wrapper');
+      const prevButton = document.getElementById('carouselArrowPrev');
+      const nextButton = document.getElementById('carouselArrowNext');
       let currentIndex = 0;
       let isDragging = false;
       let startX = 0;
@@ -1346,6 +1375,27 @@
 
       // Initialize slider position
       setSliderPosition();
+      updateArrowVisibility(); // Initial call
+
+      function updateArrowVisibility() {
+        if (!prevButton || !nextButton || slides.length === 0) return; // Defensive check
+
+        if (currentIndex === 0) {
+          prevButton.classList.add('hidden');
+          nextButton.classList.remove('hidden');
+        } else if (currentIndex === slides.length - 1) {
+          nextButton.classList.add('hidden');
+          prevButton.classList.remove('hidden');
+        } else {
+          prevButton.classList.remove('hidden');
+          nextButton.classList.remove('hidden');
+        }
+        // Ensure nextButton is hidden if there's only one slide or no slides
+        if (slides.length <= 1) {
+            nextButton.classList.add('hidden');
+            prevButton.classList.add('hidden');
+        }
+      }
 
       function dragStart(event) {
         isDragging = true;
@@ -1392,6 +1442,28 @@
         }
         // Snap to the determined slide
         setSliderPosition();
+        updateArrowVisibility(); // Call after drag/swipe
+      }
+
+      // Arrow button event listeners
+      if (prevButton) {
+        prevButton.addEventListener('click', () => {
+          if (currentIndex > 0) {
+            currentIndex--;
+            setSliderPosition();
+            updateArrowVisibility();
+          }
+        });
+      }
+
+      if (nextButton) {
+        nextButton.addEventListener('click', () => {
+          if (currentIndex < slides.length - 1) {
+            currentIndex++;
+            setSliderPosition();
+            updateArrowVisibility();
+          }
+        });
       }
 
       // Touch events
