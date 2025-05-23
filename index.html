@@ -180,7 +180,7 @@
     }
     .carousel-arrow {
       position: absolute;
-      top: 45%; /* Changed from 50% */
+      top: 35%; /* Adjusted to move arrows higher */
       transform: translateY(-50%);
       z-index: 2;
       background-color: transparent; /* Changed */
@@ -197,10 +197,10 @@
       background-color: rgba(143, 0, 255, 0.1); /* Adjusted hover */
     }
     .carousel-arrow-prev {
-      left: 10px;
+      left: 5px; /* Adjusted to move arrow closer to the edge */
     }
     .carousel-arrow-next {
-      right: 10px;
+      right: 5px; /* Adjusted to move arrow closer to the edge */
     }
     .content-wrapper {
       max-width: 500px;
@@ -1358,139 +1358,74 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const carouselViewport = document.querySelector('.product-carousel-viewport');
-      const carouselViewport = document.querySelector('.product-carousel-viewport');
       const slider = document.querySelector('.product-carousel-slider');
-      const slides = document.querySelectorAll('.product-carousel-slider > .content-wrapper');
+      // Use slider.children for a live HTMLCollection, convert to array if specific array methods are needed
+      const slides = slider ? Array.from(slider.children) : []; 
       const prevButton = document.getElementById('carouselArrowPrev');
       const nextButton = document.getElementById('carouselArrowNext');
       let currentIndex = 0;
-      // let isDragging = false; // Removed for drag functionality
-      // let startX = 0; // Removed for drag functionality
-      // let prevTranslate = 0; // Removed for drag functionality
-      // let animationFrameId = null; // Removed for drag functionality
-
-      // function getPositionX(event) { // Removed for drag functionality
-      //   return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
-      // }
 
       function setSliderPosition() {
-        if (slides.length === 0 || !carouselViewport) return; // Added check for carouselViewport
-        const slideWidth = carouselViewport.offsetWidth; // Use viewport's width
+        if (!slider || !carouselViewport || slides.length === 0) {
+          // console.error('[setSliderPosition] Aborting: Essential elements missing or no slides.');
+          return;
+        }
+        const slideWidth = carouselViewport.offsetWidth;
+        if (slideWidth === 0 && slides.length > 0) {
+          // console.warn('[setSliderPosition] slideWidth is 0. Carousel may not display correctly until layout is finalized.');
+          // It's possible the element is not visible yet; transform will be re-applied on window.load or resize.
+        }
         slider.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
       }
 
-      // Initialize slider position
-      setSliderPosition();
-      updateArrowVisibility(); // Initial call
-
       function updateArrowVisibility() {
-        if (!prevButton || !nextButton || slides.length === 0) return; // Defensive check
-
-        if (currentIndex === 0) {
-          prevButton.classList.add('hidden');
-          nextButton.classList.remove('hidden');
-        } else if (currentIndex === slides.length - 1) {
-          nextButton.classList.add('hidden');
-          prevButton.classList.remove('hidden');
-        } else {
-          prevButton.classList.remove('hidden');
-          nextButton.classList.remove('hidden');
+        if (!prevButton || !nextButton || slides.length === 0) {
+            // console.error('[updateArrowVisibility] Aborting: Buttons not found or no slides.');
+            return;
         }
-        // Ensure nextButton is hidden if there's only one slide or no slides
+
+        prevButton.classList.toggle('hidden', currentIndex === 0);
+        nextButton.classList.toggle('hidden', currentIndex >= slides.length - 1 || slides.length <= 1);
+        
+        // Ensure both are hidden if only one or zero slides
         if (slides.length <= 1) {
-            nextButton.classList.add('hidden');
             prevButton.classList.add('hidden');
+            nextButton.classList.add('hidden');
+        }
+      }
+      
+      function navigateCarousel(direction) {
+        const newIndex = currentIndex + direction;
+        if (newIndex >= 0 && newIndex < slides.length) {
+          currentIndex = newIndex;
+          setSliderPosition();
+          updateArrowVisibility();
         }
       }
 
-      // function dragStart(event) { // Removed for drag functionality
-      //   isDragging = true;
-      //   startX = getPositionX(event);
-      //   prevTranslate = currentTranslate; 
-      //   carouselViewport.style.cursor = 'grabbing';
-      //   slider.style.transition = 'none'; 
-      //   if (event.type.includes('mouse')) {
-      //     event.preventDefault(); 
-      //   }
-      // }
-
-      // function dragMove(event) { // Removed for drag functionality
-      //   if (isDragging) {
-      //     const currentX = getPositionX(event);
-      //     const diffX = currentX - startX;
-      //     slider.style.transform = `translateX(${prevTranslate + diffX}px)`;
-      //   }
-      // }
-
-      // function dragEnd(event) { // Removed for drag functionality
-      //   if (!isDragging) return;
-      //   isDragging = false;
-      //   carouselViewport.style.cursor = 'grab';
-      //   slider.style.transition = 'transform 0.3s ease-in-out'; 
-      //   const currentX = getPositionX(event);
-      //   const movedBy = currentX - startX; 
-      //   const slideWidth = slides[0].offsetWidth;
-      //   const threshold = slideWidth / 4; 
-      //   if (Math.abs(movedBy) > threshold) {
-      //     if (movedBy < 0 && currentIndex < slides.length - 1) {
-      //       currentIndex++;
-      //     } else if (movedBy > 0 && currentIndex > 0) {
-      //       currentIndex--;
-      //     }
-      //   }
-      //   setSliderPosition();
-      //   updateArrowVisibility(); 
-      // }
-
-      // Arrow button event listeners
       if (prevButton) {
-        prevButton.addEventListener('click', () => {
-          console.log('Previous arrow clicked');
-          console.log('carouselViewport.offsetWidth:', carouselViewport ? carouselViewport.offsetWidth : 'null');
-          if (currentIndex > 0) {
-            currentIndex--;
-            setSliderPosition();
-            updateArrowVisibility();
-          }
-        });
+        prevButton.addEventListener('click', () => navigateCarousel(-1));
       }
 
       if (nextButton) {
-        nextButton.addEventListener('click', () => {
-          console.log('Next arrow clicked');
-          console.log('carouselViewport.offsetWidth:', carouselViewport ? carouselViewport.offsetWidth : 'null');
-          if (currentIndex < slides.length - 1) {
-            currentIndex++;
-            setSliderPosition();
-            updateArrowVisibility();
-          }
-        });
+        nextButton.addEventListener('click', () => navigateCarousel(1));
       }
-
-      // Touch events -- Removed for drag functionality
-      // carouselViewport.addEventListener('touchstart', dragStart, { passive: true }); 
-      // carouselViewport.addEventListener('touchmove', (event) => {
-      //   if (isDragging) {
-      //     event.preventDefault(); 
-      //     dragMove(event);
-      //   }
-      // });
-      // carouselViewport.addEventListener('touchend', dragEnd);
-
-      // Mouse events -- Removed for drag functionality
-      // carouselViewport.addEventListener('mousedown', dragStart);
-      // carouselViewport.addEventListener('mousemove', dragMove);
-      // carouselViewport.addEventListener('mouseup', dragEnd);
-      // carouselViewport.addEventListener('mouseleave', () => {
-      //   if (isDragging) {
-      //     dragEnd({ pageX: startX }); 
-      //   }
-      // });
       
+      // Initial setup on DOMContentLoaded
+      setSliderPosition();
+      updateArrowVisibility();
+
+      // Further ensure correct sizing and visibility after all page resources (images, styles) are loaded
+      window.addEventListener('load', () => {
+        // console.log('Window loaded. Re-running setSliderPosition and updateArrowVisibility.');
+        setSliderPosition();
+        updateArrowVisibility();
+      });
+
       // Recalculate on resize and update arrows
       window.addEventListener('resize', () => {
         setSliderPosition();
-        updateArrowVisibility(); // Also update arrows on resize
+        updateArrowVisibility();
       });
     });
   </script>
