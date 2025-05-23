@@ -36,6 +36,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" type="text/css" href="/css/main.css" />
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap');
     * {
       margin: 0;
       padding: 0;
@@ -860,7 +861,8 @@
       z-index: 9999;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-around; /* Changed from center */
+      flex-direction: column; /* Added */
       opacity: 1;
     }
 
@@ -879,12 +881,49 @@
         opacity: 0;
       }
     }
+
+    .loading-animation-container {
+      text-align: center; /* Center the 'Loading' h2 and the dots block */
+      padding-bottom: 50px; /* Add some padding from the bottom edge */
+    }
+
+    .loading-animation-container h2 {
+      font-family: 'Open Sans', sans-serif; /* As per user example */
+      font-size: 2rem; /* Smaller than main brand name */
+      color: #ffffff;
+      margin-bottom: 10px; /* Space between "Loading" and dots */
+    }
+
+    .dots { display: inline-flex; } /* inline-flex to sit nicely with centered text */
+    .dot { width: 10px; height: 10px; background: #ffffff; border-radius: 10px; position: relative; margin-left: 6px; }
+    .dot.t { background: transparent; }
+    .dot.l { margin-left: 0; position: absolute; top: 0; left: 0; }
+    .dot.z { position: absolute; transform: scale(0); }
+    .dots--animate .dot.z { animation: scale .8s .2s forwards; }
+    .dots--animate .dot.f, .dots--animate .dot.s { animation: right .5s forwards; }
+    .dots--animate .dot.l { animation: rightDown .4s .1s forwards linear, drop 2s .4s forwards linear; }
+
+    @keyframes scale { 100% { transform: scale(1); } }
+    @keyframes right { 100% { transform: translateX(16px); } }
+    @keyframes rightDown { 50% { top: 4px; left: 16px; } 100% { top: 12px; left: 24px; } }
+    @keyframes drop { 100% { transform: translate(70px, 150px); } } /* Simplified drop Y value */
     
   </style>
 </head>
 <body oncopy="return false" oncut="return false" onselectstart="return false">
   <div id="splash-screen">
     <h1>BlackHoles Store</h1>
+    <div class="loading-animation-container">
+      <h2>Loading</h2>
+      <div class="dots">
+        <span class="dot z"></span>
+        <span class="dot f"></span>
+        <span class="dot s"></span>
+        <span class="dot t">
+          <span class="dot l"></span>
+        </span>
+      </div>
+    </div>
   </div>
   <video id="bg-video" autoplay loop muted playsinline fetchpriority="high">
     <source src="site background ‐.mp4" type="video/mp4">
@@ -1235,9 +1274,29 @@
   <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
   <script src="js/app.js"></script>
   <script>
+    function animate(element, className) {
+      if (!element) return; // Add a guard clause in case the element doesn't exist
+      element.classList.add(className);
+      setTimeout(() => {
+        element.classList.remove(className);
+        // Ensure the element still exists and is part of the document before re-animating
+        // This is important because the splash screen gets hidden
+        if (document.body.contains(element) && element.offsetParent !== null) {
+          setTimeout(() => animate(element, className), 500);
+        }
+      }, 2500); // Duration the class is applied
+    }
+
     window.onload = () => {
       // Splash screen logic
       const splashScreen = document.getElementById('splash-screen');
+
+      // Initiate dot animation
+      const dotsElement = document.querySelector('.dots');
+      if (dotsElement) {
+        animate(dotsElement, 'dots--animate');
+      }
+
       if (splashScreen) {
         setTimeout(() => {
           splashScreen.style.animation = 'fadeOut 1s ease-out forwards';
