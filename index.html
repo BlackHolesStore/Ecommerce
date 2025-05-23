@@ -1288,6 +1288,7 @@
     }
 
     window.onload = () => {
+      initAuth(); // Initialize Auth0 client and listeners
       // Splash screen logic
       const splashScreen = document.getElementById('splash-screen');
 
@@ -1302,9 +1303,9 @@
           splashScreen.style.animation = 'fadeOut 1s ease-out forwards';
           setTimeout(() => {
             splashScreen.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Allow scrolling
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
           }, 1000); // Duration of fadeOut animation
-        }, 2500); // Delay before splash screen starts fading out
+        }, 2000); // Delay before splash screen starts fading out
       }
 
       // Original background audio playback logic
