@@ -16,7 +16,7 @@ const configureClient = async () => {
   });
 };
 
-window.onload = async () => {
+async function initAuth() {
   await configureClient();
 
   updateUI();
