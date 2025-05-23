@@ -166,6 +166,7 @@
       max-width: 500px; /* To match the original max-width of content-wrapper, ensuring the viewport is not too wide */
       margin: 0 auto; /* To keep it centered like the original content-wrapper was */
       /* cursor: grab; -- Removed to disable drag cursor */
+      position: relative; /* Ensure arrows are positioned relative to this container */
     }
     .product-carousel-slider {
       display: flex;
@@ -185,7 +186,7 @@
       background-color: transparent; /* Changed */
       color: #8f00ff; /* Changed */
       border: 1px solid #8f00ff; /* Changed */
-      padding: 10px 15px;
+      padding: 12px 18px; /* Increased padding for easier mobile tap */
       font-size: 24px;
       cursor: pointer;
       border-radius: 50%;
@@ -808,6 +809,12 @@
         bottom: 130px !important; /* Adjusted for mobile footer height (50px) + bottom banner (30px) + buffer */
         right: 10px !important;
       }
+      /* Ensure carousel slides are full width on mobile, overriding general .content-wrapper mobile style */
+      .product-carousel-slider > .content-wrapper {
+        width: 100% !important; 
+        max-width: none !important; 
+        margin: 0 !important; 
+      }
     }
     .hidden {
       display: none !important;
@@ -1359,7 +1366,6 @@
       let currentIndex = 0;
       // let isDragging = false; // Removed for drag functionality
       // let startX = 0; // Removed for drag functionality
-      // let currentTranslate = 0; // Kept for setSliderPosition, but might be simplified later
       // let prevTranslate = 0; // Removed for drag functionality
       // let animationFrameId = null; // Removed for drag functionality
 
@@ -1368,9 +1374,8 @@
       // }
 
       function setSliderPosition() {
-        if (slides.length === 0) return;
-        const slideWidth = slides[0].offsetWidth;
-        // currentTranslate = -currentIndex * slideWidth; // Direct calculation is fine
+        if (slides.length === 0 || !carouselViewport) return; // Added check for carouselViewport
+        const slideWidth = carouselViewport.offsetWidth; // Use viewport's width
         slider.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
       }
 
@@ -1440,6 +1445,8 @@
       // Arrow button event listeners
       if (prevButton) {
         prevButton.addEventListener('click', () => {
+          console.log('Previous arrow clicked');
+          console.log('carouselViewport.offsetWidth:', carouselViewport ? carouselViewport.offsetWidth : 'null');
           if (currentIndex > 0) {
             currentIndex--;
             setSliderPosition();
@@ -1450,6 +1457,8 @@
 
       if (nextButton) {
         nextButton.addEventListener('click', () => {
+          console.log('Next arrow clicked');
+          console.log('carouselViewport.offsetWidth:', carouselViewport ? carouselViewport.offsetWidth : 'null');
           if (currentIndex < slides.length - 1) {
             currentIndex++;
             setSliderPosition();
@@ -1478,8 +1487,11 @@
       //   }
       // });
       
-      // Recalculate on resize
-      window.addEventListener('resize', setSliderPosition);
+      // Recalculate on resize and update arrows
+      window.addEventListener('resize', () => {
+        setSliderPosition();
+        updateArrowVisibility(); // Also update arrows on resize
+      });
     });
   </script>
 </body>
