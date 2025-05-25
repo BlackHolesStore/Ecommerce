@@ -968,6 +968,14 @@
     #goggleIcon::after {
       right: 7px; /* Position for right lens */
     }
+
+    @media (max-width: 768px) {
+      #goggleLinkToVR {
+        bottom: auto; /* Remove bottom positioning */
+        top: 20px;    /* Position from top */
+        left: 20px;   /* Position from left */
+      }
+    }
   </style>
 </head>
 <body oncopy="return false" oncut="return false" onselectstart="return false">
@@ -1078,7 +1086,7 @@
     </div>
   </div>
 
-  <a href="vr-experience.html" id="goggleLinkToVR" aria-label="Enter VR Experience">
+  <a href="#" id="goggleLinkToVR" role="button" aria-label="Enter VR Experience">
     <span id="goggleIcon"></span>
   </a>
   <footer class="footer">
@@ -1621,6 +1629,124 @@
         setSliderPosition();
         updateArrowVisibility();
       });
+    });
+  </script>
+
+  <div id="aframeVRContainer" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9998; background-color: #000;">
+    <a-scene vr-mode-ui="enabled: true">
+      <a-sky color="#00001a"></a-sky>
+
+      <!-- Camera Rig and Controls -->
+      <a-entity id="playerRig">
+        <a-camera id="playerCamera" position="0 1.6 0" look-controls wasd-controls="enabled: false">
+          <!-- For pointer-based interaction if needed later, not strictly for visualization -->
+          <!-- <a-cursor></a-cursor> -->
+        </a-camera>
+        <a-entity id="leftHand" meta-quest-touch-controls="hand: left"></a-entity>
+        <a-entity id="rightHand" meta-quest-touch-controls="hand: right"></a-entity>
+        <a-entity id="leftHandVisual" hand-tracking-controls="hand: left; modelStyle: basic; modelColor: #ffdbac;" visible="false"></a-entity>
+        <a-entity id="rightHandVisual" hand-tracking-controls="hand: right; modelStyle: basic; modelColor: #ffdbac;" visible="false"></a-entity>
+      </a-entity>
+
+      <!-- Scene content (torus, text, sound) -->
+      <a-sphere id="blackHoleSphere"
+                position="0 1.5 -5"
+                radius="0.9"
+                color="#000000"
+                material="shader: standard; roughness: 0.8; metalness: 0.2">
+        <a-animation attribute="scale" from="0.1 0.1 0.1" to="20 20 20" dur="1500" easing="ease-in-out" fill="forwards"></a-animation>
+      </a-sphere>
+
+      <a-torus id="accretionDisk"
+               color="#dd2200"
+               radius="1"
+               radius-tubular="0.15"
+               rotation="90 0 0"
+               scale="0.1 0.1 0.1"
+               position="0 1.5 -5"
+               material="shader: standard; emissive: #dd2200; emissiveIntensity: 0.2">
+        <a-animation attribute="scale" to="20 20 20" dur="1500" easing="ease-in-out" fill="forwards"></a-animation>
+        <a-animation attribute="material.emissiveIntensity" from="0.2" to="1.5" dur="500" delay="1000" easing="ease-in-out" direction="alternate" repeat="1"></a-animation>
+      </a-torus>
+
+      <a-text id="enterText"
+              value="ENTER THE VOID"
+              color="#cc00ff"
+              position="0 1.5 -15"
+              align="center"
+              width="10"
+              material="shader: standard; emissive: #cc00ff; emissiveIntensity: 0.2">
+        <a-animation attribute="position" to="0 1.5 -3" dur="2000" easing="ease-in-out" fill="forwards"></a-animation>
+        <a-animation attribute="material.emissiveIntensity" to="1.5" dur="2000" easing="ease-in" fill="forwards"></a-animation>
+      </a-text>
+
+      <a-entity id="splashSound" sound="src: url(https://raw.githubusercontent.com/BlackHolesStore/Ecommerce/main/SPLASHSCREEN%20SOUND.wav); autoplay: true; volume: 0.8"></a-entity>
+    </a-scene>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const goggleButton = document.getElementById('goggleLinkToVR');
+      const aframeContainer = document.getElementById('aframeVRContainer');
+      const mainContent = document.querySelector('.main-content'); // Or other main sections
+      const footer = document.querySelector('.footer');
+      // Add other elements you want to hide: header, banners, game-menu etc.
+      const header = document.querySelector('.header');
+      const topBanner = document.querySelector('.top-banner');
+      const bottomBanner = document.querySelector('.bottom-banner');
+      const gameMenu = document.querySelector('.game-menu');
+      const muteButton = document.getElementById('muteButton'); // Added mute button
+
+      if (goggleButton && aframeContainer) {
+        goggleButton.addEventListener('click', function(event) {
+          event.preventDefault(); // Prevent default anchor action
+
+          // Hide main page elements
+          if (mainContent) mainContent.style.display = 'none';
+          if (footer) footer.style.display = 'none';
+          if (header) header.style.display = 'none';
+          if (topBanner) topBanner.style.display = 'none';
+          if (bottomBanner) bottomBanner.style.display = 'none';
+          if (gameMenu) gameMenu.style.display = 'none';
+          if (muteButton) muteButton.style.display = 'none'; // Hide mute button
+
+          // Show A-Frame container
+          aframeContainer.style.display = 'block';
+          document.body.style.overflow = 'auto'; // Ensure A-Frame can control overflow
+
+          // Attempt to enter VR
+          const aScene = aframeContainer.querySelector('a-scene');
+          if (aScene && aScene.hasLoaded) {
+            aScene.enterVR().catch(err => {
+              console.error("Error attempting to enter VR:", err);
+              // Fallback: if auto enterVR fails, user might need to click default A-Frame button
+            });
+          } else if (aScene) {
+            aScene.addEventListener('loaded', function() {
+              aScene.enterVR().catch(err => {
+                console.error("Error attempting to enter VR after scene load:", err);
+              });
+            }, { once: true });
+          }
+        });
+      }
+
+      const aSceneInContainer = document.querySelector('#aframeVRContainer a-scene');
+      if (aSceneInContainer) {
+        aSceneInContainer.addEventListener('exit-vr', function () {
+          aframeContainer.style.display = 'none';
+          document.body.style.overflow = 'hidden'; // Restore original body overflow
+
+          // Show main page elements again
+          if (mainContent) mainContent.style.display = ''; // Or original display value
+          if (footer) footer.style.display = '';
+          if (header) header.style.display = '';
+          if (topBanner) topBanner.style.display = '';
+          if (bottomBanner) bottomBanner.style.display = '';
+          if (gameMenu) gameMenu.style.display = '';
+          if (muteButton) muteButton.style.display = ''; // Show mute button again
+        });
+      }
     });
   </script>
 </body>
