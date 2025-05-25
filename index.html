@@ -35,6 +35,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" type="text/css" href="/css/main.css" />
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap');
     * {
@@ -100,7 +101,8 @@
     }
     .top-banner {
       background: #8f00ff;
-      color: #000;
+      color: #ffffff; /* Updated color */
+      text-shadow: 0 0 5px #cc00ff; /* Added text-shadow */
       padding: 8px;
       font-size: 0.8rem;
       font-weight: 700;
@@ -120,7 +122,8 @@
     }
     .bottom-banner {
       background: #8f00ff;
-      color: #000;
+      color: #ffffff; /* Updated color */
+      text-shadow: 0 0 5px #cc00ff; /* Added text-shadow */
       padding: 8px;
       font-size: 0.8rem;
       font-weight: 700;
@@ -146,6 +149,7 @@
     }
     .bottom-banner:hover {
       background: #a033ff;
+      color: #ffffff; /* Ensured text color on hover */
       animation: glowButton 1.5s infinite ease-in-out;
     }
     .main-content {
@@ -262,7 +266,7 @@
     }
     .info-button:hover {
       background: #8f00ff;
-      color: #000;
+      color: #ffffff; /* Updated text color on hover */
       animation: glowButton 1.5s infinite ease-in-out;
     }
     @keyframes pulse {
@@ -288,7 +292,7 @@
     }
     .buy-now-button:hover {
       background: #8f00ff;
-      color: #000;
+      color: #ffffff; /* Updated text color on hover */
       box-shadow: 0 0 20px #8f00ff;
     }
     .details {
@@ -497,7 +501,7 @@
     }
     .footer .social a.icon-3d:hover {
       animation: icon3d 200ms infinite;
-      color: #fb3;
+      color: #ffbb33; /* Corrected color code */
       transition-timing-function: ease-in-out !important;
       transition-delay: 1ms !important;
     }
@@ -816,6 +820,13 @@
         max-width: none !important; 
         margin: 0 !important; 
       }
+      /* Mobile Carousel Arrow Adjustments */
+      .carousel-arrow-prev {
+        left: 10px; /* Adjusted for mobile */
+      }
+      .carousel-arrow-next {
+        right: 10px; /* Adjusted for mobile */
+      }
     }
     .hidden {
       display: none !important;
@@ -912,18 +923,31 @@
 </head>
 <body oncopy="return false" oncut="return false" onselectstart="return false">
   <div id="splash-screen">
-    <h1>BlackHoles Store</h1>
-    <div class="loading-animation-container">
-      <h2>Loading</h2>
-      <div class="dots">
-        <span class="dot z"></span>
-        <span class="dot f"></span>
-        <span class="dot s"></span>
-        <span class="dot t">
-          <span class="dot l"></span>
-        </span>
-      </div>
-    </div>
+    <a-scene embedded>
+      <a-sky color="#00001a"></a-sky>
+      <a-torus id="accretionDisk"
+               color="#ff3300"
+               radius="1"
+               radius-tubular="0.1"
+               rotation="90 0 0"
+               scale="0.1 0.1 0.1"
+               position="0 1.5 -5"
+               material="shader: standard; emissive: #ff3300; emissiveIntensity: 0.1">
+        <a-animation attribute="scale" to="20 20 20" dur="1500" easing="ease-in-out" fill="forwards"></a-animation>
+        <a-animation attribute="material.emissiveIntensity" from="0.1" to="1" dur="500" delay="1000" easing="ease-in-out" direction="alternate" repeat="1"></a-animation>
+      </a-torus>
+      <a-text id="enterText"
+              value="ENTER THE VOID"
+              color="#cc00ff"
+              position="0 1.5 -15"
+              align="center"
+              width="10"
+              material="shader: standard; emissive: #cc00ff; emissiveIntensity: 0.2">
+        <a-animation attribute="position" to="0 1.5 -3" dur="2000" easing="ease-in-out" fill="forwards"></a-animation>
+        <a-animation attribute="material.emissiveIntensity" to="1.5" dur="2000" easing="ease-in" fill="forwards"></a-animation>
+      </a-text>
+      <a-entity id="splashSound" sound="src: url(https://github.com/BlackHolesStore/Ecommerce/blob/3d13ff71d934ab74cc7b62c078e59f307717304a/SPLASHSCREEN%20SOUND.wav); autoplay: true; volume: 0.8"></a-entity>
+    </a-scene>
   </div>
   <video id="bg-video" autoplay loop muted playsinline fetchpriority="high">
     <source src="site background ‐.mp4" type="video/mp4">
@@ -1293,10 +1317,10 @@
       const splashScreen = document.getElementById('splash-screen');
 
       // Initiate dot animation
-      const dotsElement = document.querySelector('.dots');
-      if (dotsElement) {
-        animate(dotsElement, 'dots--animate');
-      }
+      // const dotsElement = document.querySelector('.dots'); // Old animation removed
+      // if (dotsElement) { // Old animation removed
+      //   animate(dotsElement, 'dots--animate'); // Old animation removed
+      // } // Old animation removed
 
       if (splashScreen) {
         setTimeout(() => {
@@ -1304,19 +1328,32 @@
           setTimeout(() => {
             splashScreen.style.display = 'none';
             document.body.style.overflow = 'hidden'; // Prevent scrolling
+
+            // New interaction-based playback logic for background audio
+            const mainContentElement = document.querySelector('.main-content');
+            if (mainContentElement) {
+              const backgroundAudio = document.getElementById('bg-audio');
+              if (backgroundAudio) {
+                const playBackgroundAudioOnClick = () => {
+                  backgroundAudio.play().catch(error => console.log('Background audio play failed:', error));
+                  mainContentElement.removeEventListener('click', playBackgroundAudioOnClick); // Play only once on first click
+                };
+                mainContentElement.addEventListener('click', playBackgroundAudioOnClick);
+              }
+            }
           }, 1000); // Duration of fadeOut animation
         }, 2000); // Delay before splash screen starts fading out
       }
 
-      // Original background audio playback logic
-      const audio = document.getElementById('bg-audio');
-      if (audio) { // Check if audio element exists
-        audio.play().catch(error => {
-          console.log('Autoplay failed:', error);
-          // Fallback for browsers that block autoplay: play on first click
-          document.addEventListener('click', () => audio.play(), { once: true });
-        });
-      }
+      // Original background audio playback logic - REMOVED
+      // const audio = document.getElementById('bg-audio');
+      // if (audio) { // Check if audio element exists
+      //   audio.play().catch(error => {
+      //     console.log('Autoplay failed:', error);
+      //     // Fallback for browsers that block autoplay: play on first click
+      //     document.addEventListener('click', () => audio.play(), { once: true });
+      //   });
+      // }
     };
 
     // Mute button functionality
