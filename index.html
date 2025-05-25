@@ -919,35 +919,43 @@
     @keyframes rightDown { 50% { top: 4px; left: 16px; } 100% { top: 12px; left: 24px; } }
     @keyframes drop { 100% { transform: translate(70px, 150px); } } /* Simplified drop Y value */
     
+    #enterVRButton {
+      position: fixed;
+      left: 20px;
+      bottom: 60px;  /* Adjusted from 70px to ensure it's just above a typical footer height */
+      z-index: 1000;
+      padding: 10px 15px;
+      background-color: #8f00ff; /* Purple, consistent with theme */
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Orbitron', sans-serif; /* Consistent with game menu */
+      font-size: 0.9rem; /* Added for better text scaling */
+      box-shadow: 0 0 10px #8f00ff, 0 0 15px #8f00ff66; /* Added glow effect */
+      transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    }
+
+    #enterVRButton:hover {
+      background-color: #a033ff; /* Lighter purple */
+      box-shadow: 0 0 15px #a033ff, 0 0 20px #a033ff66; /* Enhanced glow on hover */
+    }
   </style>
 </head>
 <body oncopy="return false" oncut="return false" onselectstart="return false">
   <div id="splash-screen">
-    <a-scene embedded>
-      <a-sky color="#00001a"></a-sky>
-      <a-torus id="accretionDisk"
-               color="#ff3300"
-               radius="1"
-               radius-tubular="0.1"
-               rotation="90 0 0"
-               scale="0.1 0.1 0.1"
-               position="0 1.5 -5"
-               material="shader: standard; emissive: #ff3300; emissiveIntensity: 0.1">
-        <a-animation attribute="scale" to="20 20 20" dur="1500" easing="ease-in-out" fill="forwards"></a-animation>
-        <a-animation attribute="material.emissiveIntensity" from="0.1" to="1" dur="500" delay="1000" easing="ease-in-out" direction="alternate" repeat="1"></a-animation>
-      </a-torus>
-      <a-text id="enterText"
-              value="ENTER THE VOID"
-              color="#cc00ff"
-              position="0 1.5 -15"
-              align="center"
-              width="10"
-              material="shader: standard; emissive: #cc00ff; emissiveIntensity: 0.2">
-        <a-animation attribute="position" to="0 1.5 -3" dur="2000" easing="ease-in-out" fill="forwards"></a-animation>
-        <a-animation attribute="material.emissiveIntensity" to="1.5" dur="2000" easing="ease-in" fill="forwards"></a-animation>
-      </a-text>
-      <a-entity id="splashSound" sound="src: url(https://github.com/BlackHolesStore/Ecommerce/blob/3d13ff71d934ab74cc7b62c078e59f307717304a/SPLASHSCREEN%20SOUND.wav); autoplay: true; volume: 0.8"></a-entity>
-    </a-scene>
+    <h1>BlackHoles Store</h1>
+    <div class="loading-animation-container">
+      <h2>Loading</h2>
+      <div class="dots">
+        <span class="dot z"></span>
+        <span class="dot f"></span>
+        <span class="dot s"></span>
+        <span class="dot t">
+          <span class="dot l"></span>
+        </span>
+      </div>
+    </div>
   </div>
   <video id="bg-video" autoplay loop muted playsinline fetchpriority="high">
     <source src="site background ‐.mp4" type="video/mp4">
@@ -1042,6 +1050,7 @@
     </div>
   </div>
 
+  <button id="enterVRButton" onclick="window.location.href='vr-experience.html'">ENTER VR</button>
   <footer class="footer">
     <div class="secure-copyright">
       <div class="copyright">© 2025 BlackHoles.Store. All rights reserved.</div>
@@ -1317,10 +1326,10 @@
       const splashScreen = document.getElementById('splash-screen');
 
       // Initiate dot animation
-      // const dotsElement = document.querySelector('.dots'); // Old animation removed
-      // if (dotsElement) { // Old animation removed
-      //   animate(dotsElement, 'dots--animate'); // Old animation removed
-      // } // Old animation removed
+      const dotsElement = document.querySelector('.dots');
+      if (dotsElement) {
+        animate(dotsElement, 'dots--animate');
+      }
 
       if (splashScreen) {
         setTimeout(() => {
