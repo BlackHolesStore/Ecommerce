@@ -2,10 +2,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Enter the Void - VR Experience</title>
+<title>Welcome tp BlackHoles.Store - VR Experience</title>
 <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/aframe-spe-particles-component@0.3.0/dist/aframe-spe-particles-component.min.js"></script>
-<script src="https://unpkg.com/aframe-html-shader@0.2.3/dist/aframe-html-shader.min.js"></script>
 <style>
 body { margin: 0; overflow: hidden; background-color: #000; }
 a-scene { width: 100vw; height: 100vh; }
@@ -14,7 +13,7 @@ a-scene { width: 100vw; height: 100vh; }
 <body>
 <a-scene vr-mode-ui="enabled: true">
 <a-assets>
-<!-- Removed the original video asset as we're using YouTube embed now -->
+<video id="spaceVideo" src="YOUR_DIRECT_MP4_URL_HERE.mp4" autoplay loop muted crossorigin="anonymous"></video>
 </a-assets>
 <a-sky color="#00001a"></a-sky>
 <!-- Camera Rig and Controls -->
@@ -76,19 +75,16 @@ loop: true"
 scale="0.1 0.1 0.1">
 <a-animation attribute="scale" to="5 5 5" dur="1500" easing="ease-in-out" fill="forwards"></a-animation>
 </a-entity>
-<!-- Replaced <a-video> with <a-plane> for YouTube iframe embed -->
-<a-plane id="backgroundVideo"
+<!-- Video Element -->
+<a-video id="backgroundVideo"
+src="#spaceVideo"
 position="0 1.5 -10"
 width="16"
 height="9"
-material="shader: html; target: #youtubeEmbed; transparent: true; opacity: 0.8">
+material="shader: flat; transparent: true; opacity: 0.8">
 <a-animation attribute="material.opacity" from="0" to="0.8" dur="2000" easing="ease-in" fill="forwards"></a-animation>
-</a-plane>
+</a-video>
 <a-entity id="splashSound" sound="src: ur<a href="https://raw.githubusercontent.com/BlackHolesStore/Ecommerce/main/SPLASHSCREEN%20SOUND.wav" target="_blank" rel="noopener noreferrer nofollow"></a>; autoplay: true; volume: 0.8"></a-entity>
 </a-scene>
-<!-- Hidden div for the YouTube iframe embed (modified for autoplay, mute, loop) -->
-<div id="youtubeEmbed" style="display: none;">
-<iframe width="100%" height="100%" src="https://www.youtube.com/embed/6W_K3ETsADU?si=u52-2fq6CLEkHnLw&amp;controls=0&amp;autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=6W_K3ETsADU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
 </body>
 </html>
