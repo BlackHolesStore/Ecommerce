@@ -1,99 +1,94 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enter the Void - VR Experience</title>
-  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/aframe-spe-particles-component@0.3.0/dist/aframe-spe-particles-component.min.js"></script>
-  <style>
-    body { margin: 0; overflow: hidden; background-color: #000; }
-    a-scene { width: 100vw; height: 100vh; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enter the Void - VR Experience</title>
+<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aframe-spe-particles-component@0.3.0/dist/aframe-spe-particles-component.min.js"></script>
+<script src="https://unpkg.com/aframe-html-shader@0.2.3/dist/aframe-html-shader.min.js"></script>
+<style>
+body { margin: 0; overflow: hidden; background-color: #000; }
+a-scene { width: 100vw; height: 100vh; }
+</style>
 </head>
 <body>
-  <a-scene vr-mode-ui="enabled: true">
-    <a-assets>
-      <video id="spaceVideo" src="https://raw.githubusercontent.com/BlackHolesStore/Ecommerce/6fb3556d13365d1ab7fe210fa53022d1cca7e6b3/site%20background%20%E2%80%90.mp4" autoplay loop muted crossorigin="anonymous"></video>
-    </a-assets>
-
-    <a-sky color="#00001a"></a-sky>
-
-    <!-- Camera Rig and Controls -->
-    <a-entity id="playerRig" movement-controls="speed: 0.1; fly: true">
-      <a-camera id="playerCamera" position="0 1.6 0" look-controls wasd-controls="acceleration: 30; fly: true; jumpVelocity: 5"></a-camera>
-      <a-entity id="leftHandVisual" hand-tracking-controls="hand: left; modelStyle: lowPoly; modelColor: #ffdbac;"></a-entity>
-      <a-entity id="rightHandVisual" hand-tracking-controls="hand: right; modelStyle: lowPoly; modelColor: #ffdbac;"></a-entity>
-    </a-entity>
-
-    <!-- Scene content (torus, sphere, text, sound) -->
-    <a-sphere id="blackHoleSphere"
-              position="0 1.5 -5"
-              radius="0.9"
-              color="#000000"
-              material="shader: standard; roughness: 0.8; metalness: 0.2">
-      <a-animation attribute="scale" from="0.1 0.1 0.1" to="5 5 5" dur="1500" easing="ease-in-out" fill="forwards"></a-animation>
-    </a-sphere>
-
-    <a-torus id="accretionDisk"
-             color="#dd2200"
-             radius="1"
-             radius-tubular="0.15"
-             rotation="90 0 0"
-             scale="0.1 0.1 0.1"
-             position="0 1.5 -5"
-             material="shader: standard; emissive: #dd2200; emissiveIntensity: 0.2"
-             segments-radial="16"
-             segments-tubular="32">
-      <a-animation attribute="scale" to="5 5 5" dur="1500" easing="ease-in-out" fill="forwards"></a-animation>
-      <a-animation attribute="material.emissiveIntensity" from="0.2" to="1.5" dur="500" delay="1000" easing="ease-in-out" direction="alternate" repeat="1"></a-animation>
-    </a-torus>
-
-    <a-text id="enterText"
-            value="ENTER THE VOID"
-            color="#cc00ff"
-            position="0 6.5 -5"
-            align="center"
-            width="12"
-            font-size="0.5"
-            material="shader: standard; emissive: #cc00ff; emissiveIntensity: 0.2">
-      <a-animation attribute="position" to="0 7 -5" dur="2000" easing="ease-in-out" fill="forwards"></a-animation>
-      <a-animation attribute="material.emissiveIntensity" to="1.5" dur="2000" easing="ease-in" fill="forwards"></a-animation>
-    </a-text>
-
-    <!-- Particle System -->
-    <a-entity id="particleSystem"
-              position="0 1.5 -5"
-              spe-particles="
-                maxParticleCount: 500;
-                texture: https://cdn.jsdelivr.net/npm/aframe-spe-particles-component@0.3.0/examples/assets/star.png;
-                distribution: sphere;
-                radius: 1.5;
-                maxAge: 3;
-                velocity: 0 -0.5 0;
-                velocitySpread: 0.2 0.2 0.2;
-                size: 0.05;
-                sizeSpread: 0.02;
-                color: #ffffff, #dd2200, #cc00ff;
-                opacity: 1, 0.5, 0;
-                particleCount: 300;
-                emitterScale: 0.1;
-                loop: true"
-              scale="0.1 0.1 0.1">
-      <a-animation attribute="scale" to="5 5 5" dur="1500" easing="ease-in-out" fill="forwards"></a-animation>
-    </a-entity>
-
-    <!-- Video Element -->
-    <a-video id="backgroundVideo"
-             src="#spaceVideo"
-             position="0 1.5 -10"
-             width="16"
-             height="9"
-             material="shader: flat; transparent: true; opacity: 0.8">
-      <a-animation attribute="material.opacity" from="0" to="0.8" dur="2000" easing="ease-in" fill="forwards"></a-animation>
-    </a-video>
-
-    <a-entity id="splashSound" sound="src: url(https://raw.githubusercontent.com/BlackHolesStore/Ecommerce/main/SPLASHSCREEN%20SOUND.wav); autoplay: true; volume: 0.8"></a-entity>
-  </a-scene>
+<a-scene vr-mode-ui="enabled: true">
+<a-assets>
+<!-- Removed the original video asset as we're using YouTube embed now -->
+</a-assets>
+<a-sky color="#00001a"></a-sky>
+<!-- Camera Rig and Controls -->
+<a-entity id="playerRig" movement-controls="speed: 0.1; fly: true">
+<a-camera id="playerCamera" position="0 1.6 0" look-controls wasd-controls="acceleration: 30; fly: true; jumpVelocity: 5"></a-camera>
+<a-entity id="leftHandVisual" hand-tracking-controls="hand: left; modelStyle: lowPoly; modelColor: #ffdbac;"></a-entity>
+<a-entity id="rightHandVisual" hand-tracking-controls="hand: right; modelStyle: lowPoly; modelColor: #ffdbac;"></a-entity>
+</a-entity>
+<!-- Scene content (torus, sphere, text, sound) -->
+<a-sphere id="blackHoleSphere"
+position="0 1.5 -5"
+radius="0.9"
+color="#000000"
+material="shader: standard; roughness: 0.8; metalness: 0.2">
+<a-animation attribute="scale" from="0.1 0.1 0.1" to="5 5 5" dur="1500" easing="ease-in-out" fill="forwards"></a-animation>
+</a-sphere>
+<a-torus id="accretionDisk"
+color="#dd2200"
+radius="1"
+radius-tubular="0.15"
+rotation="90 0 0"
+scale="0.1 0.1 0.1"
+position="0 1.5 -5"
+material="shader: standard; emissive: #dd2200; emissiveIntensity: 0.2"
+segments-radial="16"
+segments-tubular="32">
+<a-animation attribute="scale" to="5 5 5" dur="1500" easing="ease-in-out" fill="forwards"></a-animation>
+<a-animation attribute="material.emissiveIntensity" from="0.2" to="1.5" dur="500" delay="1000" easing="ease-in-out" direction="alternate" repeat="1"></a-animation>
+</a-torus>
+<a-text id="enterText"
+value="ENTER THE VOID"
+color="#cc00ff"
+position="0 6.5 -5"
+align="center"
+width="12"
+font-size="0.5"
+material="shader: standard; emissive: #cc00ff; emissiveIntensity: 0.2">
+<a-animation attribute="position" to="0 7 -5" dur="2000" easing="ease-in-out" fill="forwards"></a-animation>
+<a-animation attribute="material.emissiveIntensity" to="1.5" dur="2000" easing="ease-in" fill="forwards"></a-animation>
+</a-text>
+<!-- Particle System -->
+<a-entity id="particleSystem"
+position="0 1.5 -5"
+spe-particles="
+maxParticleCount: 500;
+texture: https://cdn.jsdelivr.net/npm/aframe-spe-particles-component@0.3.0/examples/assets/star.png;
+distribution: sphere;
+radius: 1.5;
+maxAge: 3;
+velocity: 0 -0.5 0;
+velocitySpread: 0.2 0.2 0.2;
+size: 0.05;
+sizeSpread: 0.02;
+color: #ffffff, #dd2200, #cc00ff;
+opacity: 1, 0.5, 0;
+particleCount: 300;
+emitterScale: 0.1;
+loop: true"
+scale="0.1 0.1 0.1">
+<a-animation attribute="scale" to="5 5 5" dur="1500" easing="ease-in-out" fill="forwards"></a-animation>
+</a-entity>
+<!-- Replaced <a-video> with <a-plane> for YouTube iframe embed -->
+<a-plane id="backgroundVideo"
+position="0 1.5 -10"
+width="16"
+height="9"
+material="shader: html; target: #youtubeEmbed; transparent: true; opacity: 0.8">
+<a-animation attribute="material.opacity" from="0" to="0.8" dur="2000" easing="ease-in" fill="forwards"></a-animation>
+</a-plane>
+<a-entity id="splashSound" sound="src: ur<a href="https://raw.githubusercontent.com/BlackHolesStore/Ecommerce/main/SPLASHSCREEN%20SOUND.wav" target="_blank" rel="noopener noreferrer nofollow"></a>; autoplay: true; volume: 0.8"></a-entity>
+</a-scene>
+<!-- Hidden div for the YouTube iframe embed (modified for autoplay, mute, loop) -->
+<div id="youtubeEmbed" style="display: none;">
+<iframe width="100%" height="100%" src="https://www.youtube.com/embed/6W_K3ETsADU?si=u52-2fq6CLEkHnLw&amp;controls=0&amp;autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=6W_K3ETsADU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
 </body>
 </html>
