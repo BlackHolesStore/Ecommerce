@@ -35,7 +35,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" type="text/css" href="/css/main.css" />
-  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="httpsaframe.io/releases/1.5.0/aframe.min.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap');
     * {
@@ -177,7 +177,7 @@
       display: flex;
       transition: transform 0.3s ease-in-out;
     }
-    .product-carousel-slider > .content-wrapper {
+    .main-content .product-carousel-slider > .content-wrapper {
       flex-shrink: 0;
       width: 100%; /* Each slide takes the full width of the viewport */
       box-sizing: border-box; /* Ensure padding/border don't expand its width in flex context */
@@ -185,17 +185,17 @@
     }
     .carousel-arrow {
       position: absolute;
-      top: 35%; /* Adjusted to move arrows higher */
+      top: 80%; /* Position arrows lower */
       transform: translateY(-50%);
       z-index: 2;
-      background-color: transparent; /* Changed */
-      color: #8f00ff; /* Changed */
-      border: 1px solid #8f00ff; /* Changed */
-      padding: 12px 18px; /* Increased padding for easier mobile tap */
-      font-size: 24px;
+      background-color: transparent;
+      color: #8f00ff;
+      border: 1px solid #8f00ff;
+      padding: 8px 12px; /* Make arrows smaller */
+      font-size: 18px; /* Make arrow icon smaller */
       cursor: pointer;
       border-radius: 50%;
-      user-select: none; /* Prevent text selection on click */
+      user-select: none;
       transition: background-color 0.3s ease;
     }
     .carousel-arrow:hover {
@@ -1057,20 +1057,68 @@
             </div>
           </div>
         </div>
-        <!-- Duplicated content-wrapper for testing -->
         <div class="content-wrapper">
           <div class="left-column">
-            <img src="Mannequin_Image1.png" alt="K2-18b Drop Shirt" class="product-img" onclick="showZoom()" loading="lazy" fetchpriority="high" oncontextmenu="return false">
+            <img src="apparel/dist/placeholder.svg" alt="Just Shoot Bro Premium Hoodie" class="product-img" onclick="showZoom()" loading="lazy" fetchpriority="high" oncontextmenu="return false">
             <button class="info-button" onclick="showInfo()">More Info</button>
-            <p><em>“We been knew. They just needed the data.”</em></p>
           </div>
           <div class="right-column">
-            <p>We wear the unknown.</p>
-            <p><em>“The universe never hid its secrets. It whispered them in light we couldn’t read. Until now.”</em></p>
             <div class="details">
-              <p><strong>K2-18b // Drop 01</strong></p>
-              <p>100% Cotton<br>Oversized Fit<br>Washed and distressed, easy to fade<br>Sizes: S, M, L, XL, XXL<br>$45.00 USD</p>
-              <p>Includes QR code linking to K2-18b JWST data.</p>
+              <p><strong>Just Shoot Bro Premium Hoodie</strong></p>
+              <p>Stay warm during intense Battle World sieges with this premium, fleece-lined hoodie. Features reinforced seams for tactical maneuvers.</p>
+              <p>$65.00 USD</p>
+            </div>
+          </div>
+        </div>
+        <div class="content-wrapper">
+          <div class="left-column">
+            <img src="apparel/dist/placeholder.svg" alt="Live From Earth Alien Broadcast Tee" class="product-img" onclick="showZoom()" loading="lazy" fetchpriority="high" oncontextmenu="return false">
+            <button class="info-button" onclick="showInfo()">More Info</button>
+          </div>
+          <div class="right-column">
+            <div class="details">
+              <p><strong>Live From Earth Alien Broadcast Tee</strong></p>
+              <p>Commemorate the first contact with this vintage-style tee, featuring a distressed print of the original DNN broadcast.</p>
+              <p>$45.00 USD</p>
+            </div>
+          </div>
+        </div>
+        <div class="content-wrapper">
+          <div class="left-column">
+            <img src="apparel/dist/placeholder.svg" alt="Handknit Landscape Sweater" class="product-img" onclick="showZoom()" loading="lazy" fetchpriority="high" oncontextmenu="return false">
+            <button class="info-button" onclick="showInfo()">More Info</button>
+          </div>
+          <div class="right-column">
+            <div class="details">
+              <p><strong>Handknit Landscape Sweater</strong></p>
+              <p>A cozy sweater featuring the landscape of a distant, peaceful world. Handknit by Celestial Warden artisans.</p>
+              <p>$65.00 USD</p>
+            </div>
+          </div>
+        </div>
+        <div class="content-wrapper">
+          <div class="left-column">
+            <img src="apparel/dist/placeholder.svg" alt="Alien Founding Father Zip Hoodie" class="product-img" onclick="showZoom()" loading="lazy" fetchpriority="high" oncontextmenu="return false">
+            <button class="info-button" onclick="showInfo()">More Info</button>
+          </div>
+          <div class="right-column">
+            <div class="details">
+              <p><strong>Alien Founding Father Zip Hoodie</strong></p>
+              <p>Show your revolutionary spirit with this zip hoodie, depicting a famous alien leader in a historical pose.</p>
+              <p>$65.00 USD</p>
+            </div>
+          </div>
+        </div>
+        <div class="content-wrapper">
+          <div class="left-column">
+            <img src="apparel/dist/placeholder.svg" alt="CLASSIFIED: Alien Citizen Hoodie" class="product-img" onclick="showZoom()" loading="lazy" fetchpriority="high" oncontextmenu="return false">
+            <button class="info-button" onclick="showInfo()">More Info</button>
+          </div>
+          <div class="right-column">
+            <div class="details">
+              <p><strong>CLASSIFIED: Alien Citizen Hoodie</strong></p>
+              <p>This hoodie has been redacted for your protection. Join the cause to unlock its true meaning. Or just enjoy the sleek, mysterious design.</p>
+              <p>$65.00 USD</p>
             </div>
           </div>
         </div>
@@ -1553,42 +1601,38 @@
     document.addEventListener('DOMContentLoaded', () => {
       const carouselViewport = document.querySelector('.product-carousel-viewport');
       const slider = document.querySelector('.product-carousel-slider');
-      // Use slider.children for a live HTMLCollection, convert to array if specific array methods are needed
-      const slides = slider ? Array.from(slider.children) : []; 
       const prevButton = document.getElementById('carouselArrowPrev');
       const nextButton = document.getElementById('carouselArrowNext');
       let currentIndex = 0;
 
+      function getSlides() {
+        return slider ? Array.from(slider.children) : [];
+      }
+
       function setSliderPosition() {
+        const slides = getSlides();
         if (!slider || !carouselViewport || slides.length === 0) {
-          // console.error('[setSliderPosition] Aborting: Essential elements missing or no slides.');
           return;
         }
         const slideWidth = carouselViewport.offsetWidth;
-        if (slideWidth === 0 && slides.length > 0) {
-          // console.warn('[setSliderPosition] slideWidth is 0. Carousel may not display correctly until layout is finalized.');
-          // It's possible the element is not visible yet; transform will be re-applied on window.load or resize.
-        }
         slider.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
       }
 
       function updateArrowVisibility() {
+        const slides = getSlides();
         if (!prevButton || !nextButton || slides.length === 0) {
-            // console.error('[updateArrowVisibility] Aborting: Buttons not found or no slides.');
             return;
         }
-
         prevButton.classList.toggle('hidden', currentIndex === 0);
         nextButton.classList.toggle('hidden', currentIndex >= slides.length - 1 || slides.length <= 1);
-        
-        // Ensure both are hidden if only one or zero slides
         if (slides.length <= 1) {
             prevButton.classList.add('hidden');
             nextButton.classList.add('hidden');
         }
       }
-      
+
       function navigateCarousel(direction) {
+        const slides = getSlides();
         const newIndex = currentIndex + direction;
         if (newIndex >= 0 && newIndex < slides.length) {
           currentIndex = newIndex;
@@ -1600,23 +1644,18 @@
       if (prevButton) {
         prevButton.addEventListener('click', () => navigateCarousel(-1));
       }
-
       if (nextButton) {
         nextButton.addEventListener('click', () => navigateCarousel(1));
       }
       
-      // Initial setup on DOMContentLoaded
       setSliderPosition();
       updateArrowVisibility();
 
-      // Further ensure correct sizing and visibility after all page resources (images, styles) are loaded
       window.addEventListener('load', () => {
-        // console.log('Window loaded. Re-running setSliderPosition and updateArrowVisibility.');
         setSliderPosition();
         updateArrowVisibility();
       });
 
-      // Recalculate on resize and update arrows
       window.addEventListener('resize', () => {
         setSliderPosition();
         updateArrowVisibility();
