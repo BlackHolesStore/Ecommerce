@@ -6,6 +6,29 @@ const footerLinks = [
   { label: 'Terms of Use', href: 'https://blackholes.store/#terms' },
 ];
 
+const paymentIcons = [
+  {
+    alt: 'Google Pay accepted',
+    src: 'https://js.stripe.com/v3/fingerprinted/img/google_pay-ca6cc2f4ee364c7966f8fabf064849fe.svg',
+  },
+  {
+    alt: 'Visa accepted',
+    src: 'https://js.stripe.com/v3/fingerprinted/img/visa-fb36094822f73d7bc581f6c0bad1c201.svg',
+  },
+  {
+    alt: 'American Express accepted',
+    src: 'https://js.stripe.com/v3/fingerprinted/img/amex-b933c9009eeaf8cfd07e789c549b8c57.svg',
+  },
+  {
+    alt: 'Mastercard accepted',
+    src: 'https://js.stripe.com/v3/fingerprinted/img/mastercard-86e9a2b929496a34918767093c470935.svg',
+  },
+  {
+    alt: 'Cash App accepted',
+    src: 'https://js.stripe.com/v3/fingerprinted/img/cashapp-7d18c6569a64a205d8cb64c9309358b5.svg',
+  },
+];
+
 const Footer: React.FC = () => {
   return (
     <>
@@ -18,19 +41,33 @@ const Footer: React.FC = () => {
           <p className="text-xs md:text-sm tracking-wide text-slate-400 uppercase">© 2025 BlackHoles.Store. All rights reserved.</p>
         </div>
 
-        <nav className="flex items-center gap-4 md:gap-6 text-xs md:text-sm font-semibold uppercase tracking-wide text-slate-400">
-          {footerLinks.map(link => (
-            <a
-              key={link.label}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-fuchsia-300"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
+        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+          <div className="flex items-center gap-3" aria-label="Accepted payment methods">
+            {paymentIcons.map(icon => (
+              <img
+                key={icon.alt}
+                src={icon.src}
+                alt={icon.alt}
+                loading="lazy"
+                className="h-5 w-auto drop-shadow-[0_0_10px_rgba(168,85,247,0.45)]"
+              />
+            ))}
+          </div>
+
+          <nav className="flex items-center gap-4 md:gap-6 text-xs md:text-sm font-semibold uppercase tracking-wide text-slate-400">
+            {footerLinks.map(link => (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-fuchsia-300"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        </div>
       </footer>
 
       <a
