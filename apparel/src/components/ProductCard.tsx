@@ -45,12 +45,6 @@ const ProductInfoModalContent: React.FC<{product: Product}> = ({ product }) => {
                 <div className="grid md:grid-cols-2 gap-8">
                     <div className="prose prose-sm prose-invert prose-slate max-w-none prose-h3:font-orbitron prose-h3:text-cyan-300 prose-strong:text-white">
                          <p className="text-2xl font-orbitron font-bold text-green-400">${product.price.toFixed(2)} USD</p>
-                        {stripeLink && (
-                            <a href={stripeLink} target="_blank" rel="noopener noreferrer" className="no-underline block w-full text-center bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300 my-4">
-                                Buy Now on Stripe
-                            </a>
-                        )}
-
                         {stripeBuyButtonId && stripePublishableKey && (
                             <div className="my-4">
                                 <stripe-buy-button
@@ -97,9 +91,9 @@ const ProductInfoModalContent: React.FC<{product: Product}> = ({ product }) => {
                 </div>
                  <div className="p-6 border-t border-slate-700/50 text-right">
                     {stripeLink && (
-                        <a href={stripeLink} target="_blank" rel="noopener noreferrer" className="no-underline inline-block bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300">
-                            Buy Now on Stripe
-                        </a>
+                      <a href={stripeLink} target="_blank" rel="noopener noreferrer" className="no-underline inline-block bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300">
+                        BUY NOW
+                      </a>
                     )}
                 </div>
             </div>

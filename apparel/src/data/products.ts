@@ -6,7 +6,7 @@ export const products: Product[] = [
     name: "Shh... They're Listening T-Shirt",
     type: 'Top',
     description: 'A comfortable cotton tee for the discerning conspiracy theorist. Perfect for blending in, or standing out.',
-    price: 45,
+    price: 50.95,
     image: 'placeholder.svg',
     virtualPrice: 350,
     virtualLink: 'https://horizon.meta.com/avatar/item?id=1372666637592386',
