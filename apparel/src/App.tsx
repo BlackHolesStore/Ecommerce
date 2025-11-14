@@ -5,6 +5,7 @@ import CartView from './components/CartView';
 import WikiPanel from './components/WikiPanel';
 import WikiLauncher from './components/WikiLauncher';
 import Footer from './components/Footer';
+import ComingSoonCard from './components/ComingSoonCard';
 import { products } from './data/products';
 import { CartItem } from './types';
 
@@ -66,6 +67,7 @@ const App: React.FC = () => {
           {products.map(product => (
             <ProductCard key={product.id} product={product} onAddToCart={() => addToCart(product)} />
           ))}
+          <ComingSoonCard />
         </div>
       </main>
 
