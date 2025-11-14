@@ -1,7 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Product } from '../types';
 import { ShirtIcon, CloseIcon } from './IconComponents';
 import Modal from './Modal';
+
+const STRIPE_BUY_BUTTON_SRC = 'https://js.stripe.com/v3/buy-button.js';
+
+const ensureStripeBuyButtonScript = () => {
+  if (typeof document === 'undefined') {
+    return;
+  }
+
+  if (document.querySelector(`script[src="${STRIPE_BUY_BUTTON_SRC}"]`)) {
+    return;
+  }
+
+  const script = document.createElement('script');
+  script.src = STRIPE_BUY_BUTTON_SRC;
+  script.async = true;
+  document.head.appendChild(script);
+};
 
 interface ProductCardProps {
   product: Product;
@@ -10,7 +27,14 @@ interface ProductCardProps {
 
 const ProductInfoModalContent: React.FC<{product: Product}> = ({ product }) => {
     if (!product.details) return null;
-    const { details, stripeLink } = product;
+    const { details, stripeLink, stripeBuyButtonId, stripePublishableKey } = product;
+
+    useEffect(() => {
+        if (!stripeBuyButtonId || !stripePublishableKey) {
+          return;
+        }
+        ensureStripeBuyButtonScript();
+    }, [stripeBuyButtonId, stripePublishableKey]);
 
     return (
         <div className="max-h-[85vh] overflow-y-auto">
@@ -25,6 +49,15 @@ const ProductInfoModalContent: React.FC<{product: Product}> = ({ product }) => {
                             <a href={stripeLink} target="_blank" rel="noopener noreferrer" className="no-underline block w-full text-center bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300 my-4">
                                 Buy Now on Stripe
                             </a>
+                        )}
+
+                        {stripeBuyButtonId && stripePublishableKey && (
+                            <div className="my-4">
+                                <stripe-buy-button
+                                    buy-button-id={stripeBuyButtonId}
+                                    publishable-key={stripePublishableKey}
+                                ></stripe-buy-button>
+                            </div>
                         )}
 
                         <h3>Features</h3>

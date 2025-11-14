@@ -41,6 +41,8 @@ export const products: Product[] = [
     virtualPrice: 300,
     virtualLink: 'https://horizon.meta.com/avatar/item?id=842916754866312',
     stripeLink: 'https://buy.stripe.com/9AQcQ2aqD95NgmsbII',
+    stripeBuyButtonId: 'buy_btn_1RFi50AlwjiwrLydljQzw32O',
+    stripePublishableKey: 'pk_live_51RFhj1AlwjiwrLyd4SFcr0ieaGMeFGOhT3Vy0q2RtRl4N3mxwjvL6Vgu03TuwPVGK0LRNS80peowiCEu8LSnFq8t00qNUR8VNI',
     details: {
       features: ['Distressed hem', 'Drop shoulders', 'Crew neck', 'Ribbed collar', 'Oversized fit', 'Washed effect'],
       fabric: ['100% cotton', 'Pre-shrunk', 'Washed and distressed, easy to fade', '260gm²', '16 singles plain weave'],
