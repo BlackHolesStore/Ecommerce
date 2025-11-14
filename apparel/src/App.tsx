@@ -4,6 +4,7 @@ import ProductCard from './components/ProductCard';
 import CartView from './components/CartView';
 import WikiPanel from './components/WikiPanel';
 import WikiLauncher from './components/WikiLauncher';
+import Footer from './components/Footer';
 import { products } from './data/products';
 import { CartItem } from './types';
 
@@ -43,7 +44,7 @@ const App: React.FC = () => {
   }, [isCartOpen, isWikiOpen]);
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-300">
+    <div className="min-h-screen bg-slate-900 text-slate-300 flex flex-col pb-24">
       <Header
         cartItemCount={totalCartItems}
         onCartClick={() => setIsCartOpen(true)}
@@ -51,7 +52,7 @@ const App: React.FC = () => {
 
       <WikiLauncher onClick={() => setIsWikiOpen(true)} />
 
-      <main className="container mx-auto px-4 py-8 pt-24">
+      <main className="container mx-auto px-4 py-8 pt-24 flex-1">
         <div className="text-center mb-12">
           <h1 className="text-5xl md:text-7xl font-bold font-orbitron text-white drop-shadow-[0_0_15px_rgba(74,222,128,0.5)]">
             Blackholes Store
@@ -67,6 +68,8 @@ const App: React.FC = () => {
           ))}
         </div>
       </main>
+
+      <Footer />
 
       <CartView
         isOpen={isCartOpen}
