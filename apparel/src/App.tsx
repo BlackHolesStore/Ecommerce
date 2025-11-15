@@ -52,6 +52,7 @@ const App: React.FC = () => {
       />
 
       <WikiLauncher onClick={() => setIsWikiOpen(true)} />
+      <ComingSoonCard />
 
       <main className="container mx-auto px-4 py-8 pt-24 flex-1">
         <div className="text-center mb-12">
@@ -67,7 +68,6 @@ const App: React.FC = () => {
           {products.map(product => (
             <ProductCard key={product.id} product={product} onAddToCart={() => addToCart(product)} />
           ))}
-          <ComingSoonCard />
         </div>
       </main>
 
