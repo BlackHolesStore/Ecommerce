@@ -35,8 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     'Pizza Express VR': {
         title: 'Pizza Express VR',
-        content: 'A virtual reality pizza-making and delivery game. Players can create their own pizzas and deliver them to customers across the city.',
-        url: 'https://horizon.meta.com/world/pizza-express-vr'
+        content: '🍕 Drone Pizza Delivery Game! Carry pizzas carefully, fly drones through the city, and deliver to customers. Earn tips, unlock ranks, and collect badges!',
+        url: 'pizza-express-vr/index.html'
     },
     'Tegus Bagel VR': {
         title: 'Tegus Bagel VR',
