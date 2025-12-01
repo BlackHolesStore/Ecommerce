@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="50%" style="stop-color:#16213e"/>
+      <stop offset="100%" style="stop-color:#0f3460"/>
+    </linearGradient>
+    <linearGradient id="pizzaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD93D"/>
+      <stop offset="100%" style="stop-color:#F4A300"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Sky background -->
+  <rect width="1200" height="630" fill="url(#skyGradient)"/>
+  
+  <!-- Stars -->
+  <circle cx="100" cy="80" r="2" fill="white" opacity="0.8"/>
+  <circle cx="200" cy="120" r="1.5" fill="white" opacity="0.6"/>
+  <circle cx="350" cy="60" r="2" fill="white" opacity="0.9"/>
+  <circle cx="500" cy="100" r="1" fill="white" opacity="0.7"/>
+  <circle cx="700" cy="50" r="2.5" fill="white" opacity="0.8"/>
+  <circle cx="900" cy="90" r="1.5" fill="white" opacity="0.6"/>
+  <circle cx="1050" cy="70" r="2" fill="white" opacity="0.9"/>
+  <circle cx="1100" cy="130" r="1" fill="white" opacity="0.5"/>
+  
+  <!-- City silhouette -->
+  <rect x="0" y="480" width="80" height="150" fill="#0a0a15"/>
+  <rect x="70" y="450" width="60" height="180" fill="#0a0a15"/>
+  <rect x="120" y="500" width="50" height="130" fill="#0a0a15"/>
+  <rect x="160" y="420" width="70" height="210" fill="#0a0a15"/>
+  <rect x="220" y="470" width="55" height="160" fill="#0a0a15"/>
+  <rect x="270" y="440" width="80" height="190" fill="#0a0a15"/>
+  <rect x="340" y="490" width="60" height="140" fill="#0a0a15"/>
+  <rect x="390" y="460" width="90" height="170" fill="#0a0a15"/>
+  
+  <rect x="750" y="470" width="70" height="160" fill="#0a0a15"/>
+  <rect x="810" y="430" width="60" height="200" fill="#0a0a15"/>
+  <rect x="860" y="480" width="80" height="150" fill="#0a0a15"/>
+  <rect x="930" y="450" width="55" height="180" fill="#0a0a15"/>
+  <rect x="975" y="500" width="70" height="130" fill="#0a0a15"/>
+  <rect x="1035" y="440" width="60" height="190" fill="#0a0a15"/>
+  <rect x="1085" y="470" width="80" height="160" fill="#0a0a15"/>
+  <rect x="1155" y="490" width="50" height="140" fill="#0a0a15"/>
+  
+  <!-- Building windows -->
+  <rect x="175" y="440" width="10" height="15" fill="#FFE66D" opacity="0.8"/>
+  <rect x="195" y="460" width="10" height="15" fill="#FFE66D" opacity="0.6"/>
+  <rect x="285" y="460" width="10" height="15" fill="#FFE66D" opacity="0.7"/>
+  <rect x="305" y="490" width="10" height="15" fill="#FFE66D" opacity="0.9"/>
+  <rect x="825" y="450" width="10" height="15" fill="#FFE66D" opacity="0.8"/>
+  <rect x="945" y="470" width="10" height="15" fill="#FFE66D" opacity="0.6"/>
+  <rect x="1100" y="490" width="10" height="15" fill="#FFE66D" opacity="0.7"/>
+  
+  <!-- Main pizza with drone -->
+  <g transform="translate(600, 320)">
+    <!-- Drone body -->
+    <ellipse cx="0" cy="-80" rx="60" ry="20" fill="#2C3E50"/>
+    <rect x="-30" y="-95" width="60" height="30" rx="10" fill="#34495E"/>
+    
+    <!-- Drone arms -->
+    <rect x="-100" y="-85" width="80" height="8" fill="#7F8C8D" rx="4"/>
+    <rect x="20" y="-85" width="80" height="8" fill="#7F8C8D" rx="4"/>
+    
+    <!-- Propellers (spinning effect) -->
+    <ellipse cx="-90" cy="-85" rx="35" ry="8" fill="#3498DB" opacity="0.6"/>
+    <ellipse cx="90" cy="-85" rx="35" ry="8" fill="#3498DB" opacity="0.6"/>
+    <circle cx="-90" cy="-85" r="8" fill="#2C3E50"/>
+    <circle cx="90" cy="-85" r="8" fill="#2C3E50"/>
+    
+    <!-- Pizza hanging from drone -->
+    <line x1="0" y1="-60" x2="0" y2="0" stroke="#7F8C8D" stroke-width="3"/>
+    
+    <!-- Pizza box -->
+    <rect x="-70" y="0" width="140" height="30" fill="#E74C3C" rx="5"/>
+    <text x="0" y="22" text-anchor="middle" fill="white" font-family="Arial Black" font-size="16">PIZZA EXPRESS</text>
+    
+    <!-- Pizza slice visible -->
+    <path d="M-50 30 L0 120 L50 30 Z" fill="url(#pizzaGradient)"/>
+    <circle cx="0" cy="65" r="12" fill="#E74C3C"/>
+    <circle cx="-20" cy="85" r="8" fill="#E74C3C"/>
+    <circle cx="20" cy="85" r="8" fill="#E74C3C"/>
+    <path d="M-50 30 Q0 50 50 30" stroke="#D35400" stroke-width="10" fill="none" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Title -->
+  <text x="600" y="550" text-anchor="middle" fill="#FF6B35" font-family="Arial Black, sans-serif" font-size="72" font-weight="bold">
+    PIZZA EXPRESS VR
+  </text>
+  <text x="600" y="600" text-anchor="middle" fill="#FFE66D" font-family="Arial, sans-serif" font-size="28">
+    🚁 Drone Delivery Game • Play Free Now! 🍕
+  </text>
+  
+  <!-- VR badge -->
+  <g transform="translate(1050, 80)">
+    <rect x="-50" y="-25" width="100" height="50" rx="25" fill="#9B59B6"/>
+    <text x="0" y="8" text-anchor="middle" fill="white" font-family="Arial Black" font-size="24">VR</text>
+  </g>
+  
+  <!-- Free badge -->
+  <g transform="translate(150, 80)">
+    <rect x="-60" y="-25" width="120" height="50" rx="25" fill="#27AE60"/>
+    <text x="0" y="8" text-anchor="middle" fill="white" font-family="Arial Black" font-size="22">FREE</text>
+  </g>
+</svg>
