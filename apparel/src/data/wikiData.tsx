@@ -212,12 +212,110 @@ export const WIKI_DATA: WikiTopic[] = [
   },
   {
     id: 'pizza_express',
-    title: 'Pizza Express',
+    title: 'Pizza Express VR',
     icon: React.createElement(PizzaIcon),
     category: 'Locations',
     content: React.createElement(React.Fragment, null,
-      React.createElement('h2', null, 'Galactic Job Simulator: Pizza Pilot'),
-      React.createElement('p', null, "Step into the shoes of a Pizza Express delivery pilot! This high-octane job simulation has you building pizzas, wearing the official crew uniform, doing store chores, and blasting off to make deliveries. Complete orders successfully to earn Shards and unlock exclusive Pizza Express-themed gear."),
+      React.createElement('h2', null, '🍕 Galactic Job Simulator: Pizza Drone Pilot'),
+      React.createElement('p', null, "Welcome to Pizza Express VR - the ultimate pizza delivery drone simulation! Step into the shoes of a pizza delivery pilot at the busiest cosmic pizzeria in the galaxy. Your mission: pick up pizzas, load them onto delivery drones, fly to customer locations, and earn tips while climbing the ranks from Trainee to legendary Pizza Legend!"),
+      
+      React.createElement('h3', null, '🎮 How to Play'),
+      React.createElement('p', null, "The game has two main phases that create an exciting gameplay loop:"),
+      React.createElement('ul', null,
+          React.createElement('li', null, React.createElement('strong', null, 'Walking Phase:'), " Walk to the pizza shop counter and press SPACE to pick up a pizza. Carefully carry it to one of the four delivery drones (A, B, C, D) without dropping it! Walk too fast and you'll damage the pizza."),
+          React.createElement('li', null, React.createElement('strong', null, 'Piloting Phase:'), " Once loaded, pilot the drone using WASD controls. Fly to the correct delivery base (1, 2, 3, or 4), descend carefully, and release the pizza with SPACE. Accuracy matters - the closer to the bullseye, the bigger your tip!")
+      ),
+      
+      React.createElement('h3', null, '🎯 Delivery Mechanics'),
+      React.createElement('ul', null,
+          React.createElement('li', null, React.createElement('strong', null, 'Pizza Health:'), " Each pizza starts at 100% health. Walking too fast, flying recklessly, or crash-landing damages the pizza. Deliver at 50%+ for success, but aim for 100% for maximum tips!"),
+          React.createElement('li', null, React.createElement('strong', null, 'Tip System:'), " Tips are calculated based on pizza health AND proximity to the delivery target. Perfect deliveries earn bonus tips scaled by pizza price!"),
+          React.createElement('li', null, React.createElement('strong', null, 'Customer Names:'), " Each order comes from a randomly generated customer - deliver their pizza and see their reaction!")
+      ),
+      
+      React.createElement('h3', null, '🍕 Pizza Types & Prices'),
+      React.createElement('p', null, "Not all pizzas are created equal! Premium pizzas mean bigger rewards... but also bigger penalties if you mess up:"),
+      React.createElement('ul', null,
+          React.createElement('li', null, '🧀 ', React.createElement('strong', null, 'Classic Cheese'), ' - $12.99 (Entry level, forgiving)'),
+          React.createElement('li', null, '🍖 ', React.createElement('strong', null, 'Pepperoni Supreme'), ' - $15.99'),
+          React.createElement('li', null, '🌿 ', React.createElement('strong', null, 'Veggie Deluxe'), ' - $14.99'),
+          React.createElement('li', null, '🍍 ', React.createElement('strong', null, 'Hawaiian Paradise'), ' - $16.99'),
+          React.createElement('li', null, '🔥 ', React.createElement('strong', null, 'Meat Lovers Inferno'), ' - $18.99'),
+          React.createElement('li', null, '🌶️ ', React.createElement('strong', null, 'Spicy Diablo'), ' - $17.99'),
+          React.createElement('li', null, '🍄 ', React.createElement('strong', null, 'Truffle Mushroom'), ' - $24.99 (Expensive!)'),
+          React.createElement('li', null, '🦞 ', React.createElement('strong', null, 'Seafood Spectacular'), ' - $22.99'),
+          React.createElement('li', null, '🥓 ', React.createElement('strong', null, 'BBQ Bacon Ranch'), ' - $19.99'),
+          React.createElement('li', null, '👑 ', React.createElement('strong', null, 'Supreme Deluxe'), ' - $21.99 (Premium)')
+      ),
+      
+      React.createElement('h3', null, '📊 Rank System'),
+      React.createElement('p', null, "Earn XP from successful deliveries to climb the ranks! Each rank unlocks new benefits and bragging rights:"),
+      React.createElement('ul', null,
+          React.createElement('li', null, '🌱 ', React.createElement('strong', null, 'Trainee'), ' (0 XP) - Just starting out'),
+          React.createElement('li', null, '🚀 ', React.createElement('strong', null, 'Delivery Rookie'), ' (100 XP) - Learning the ropes'),
+          React.createElement('li', null, '⭐ ', React.createElement('strong', null, 'Pizza Pilot'), ' (300 XP) - Getting good!'),
+          React.createElement('li', null, '🔥 ', React.createElement('strong', null, 'Sky Chef'), ' (600 XP) - Experienced flyer'),
+          React.createElement('li', null, '💎 ', React.createElement('strong', null, 'Drone Master'), ' (1000 XP) - Elite skills'),
+          React.createElement('li', null, '👑 ', React.createElement('strong', null, 'Pizza Legend'), ' (2000 XP) - Maximum prestige!')
+      ),
+      
+      React.createElement('h3', null, '🏆 Achievement Badges'),
+      React.createElement('p', null, "Unlock special badges by hitting milestones:"),
+      React.createElement('ul', null,
+          React.createElement('li', null, '🥉 ', React.createElement('strong', null, 'First Flight'), ' - Complete your first delivery'),
+          React.createElement('li', null, '🥈 ', React.createElement('strong', null, 'Steady Hands'), ' - 5 deliveries with 90%+ health'),
+          React.createElement('li', null, '🥇 ', React.createElement('strong', null, 'Pizza Pro'), ' - 10 successful deliveries'),
+          React.createElement('li', null, '💯 ', React.createElement('strong', null, 'Perfectionist'), ' - Deliver a pizza at 100% health'),
+          React.createElement('li', null, '💰 ', React.createElement('strong', null, 'Big Tipper'), ' - Earn $50+ in tips'),
+          React.createElement('li', null, '🎯 ', React.createElement('strong', null, 'Bullseye Master'), ' - Land within 0.5m of target'),
+          React.createElement('li', null, '⚡ ', React.createElement('strong', null, 'Speed Demon'), ' - Complete 3 deliveries in under 5 minutes'),
+          React.createElement('li', null, '🌟 ', React.createElement('strong', null, 'Pizza Legend'), ' - Reach the highest rank')
+      ),
+      
+      React.createElement('h3', null, '🕶️ VR Mode'),
+      React.createElement('p', null, "Pizza Express fully supports Meta Quest VR! Experience immersive first-person drone piloting with:"),
+      React.createElement('ul', null,
+          React.createElement('li', null, React.createElement('strong', null, 'VR Cockpit View:'), " When piloting, see a full drone cockpit with speed, altitude, and pizza health displays"),
+          React.createElement('li', null, React.createElement('strong', null, 'Controller Support:'), " Use Quest controllers for intuitive flying - thumbsticks for movement, triggers to release pizzas"),
+          React.createElement('li', null, React.createElement('strong', null, 'Head Tracking:'), " Look around freely in VR to spot your delivery targets"),
+          React.createElement('li', null, React.createElement('strong', null, 'VR HUD:'), " All important stats displayed in your field of view")
+      ),
+      
+      React.createElement('h3', null, '🎹 Controls'),
+      React.createElement('h4', null, 'Desktop/Keyboard:'),
+      React.createElement('ul', null,
+          React.createElement('li', null, React.createElement('strong', null, 'WASD'), ' - Move (walk or fly drone)'),
+          React.createElement('li', null, React.createElement('strong', null, 'SPACE'), ' - Pick up pizza / Release pizza'),
+          React.createElement('li', null, React.createElement('strong', null, 'Q/E'), ' - Ascend/Descend (when flying)'),
+          React.createElement('li', null, React.createElement('strong', null, 'V'), ' - Toggle camera view (POV/Third Person/Overhead)'),
+          React.createElement('li', null, React.createElement('strong', null, 'R'), ' - Quick restart')
+      ),
+      React.createElement('h4', null, 'VR Controllers:'),
+      React.createElement('ul', null,
+          React.createElement('li', null, React.createElement('strong', null, 'Left Thumbstick'), ' - Move/Strafe'),
+          React.createElement('li', null, React.createElement('strong', null, 'Right Thumbstick'), ' - Turn/Altitude'),
+          React.createElement('li', null, React.createElement('strong', null, 'Trigger'), ' - Release pizza'),
+          React.createElement('li', null, React.createElement('strong', null, 'Grip'), ' - Interact with drones')
+      ),
+      
+      React.createElement('h3', null, '📈 Leaderboard Stats'),
+      React.createElement('p', null, "Compete with other pilots! The leaderboard tracks:"),
+      React.createElement('ul', null,
+          React.createElement('li', null, React.createElement('strong', null, 'Store Earnings:'), " Total money earned for the pizzeria"),
+          React.createElement('li', null, React.createElement('strong', null, 'Best Rating:'), " Your highest single-delivery rating"),
+          React.createElement('li', null, React.createElement('strong', null, 'Most Dropped Pizzas:'), " Hall of shame (or fame?) for butter fingers")
+      ),
+      
+      React.createElement('h3', null, '💡 Pro Tips'),
+      React.createElement('ul', null,
+          React.createElement('li', null, "🚶 When carrying pizza, tap movement keys instead of holding - sustained speed damages the pizza!"),
+          React.createElement('li', null, "🎯 The green beacon shows your target - aim for the center bullseye for bonus tips"),
+          React.createElement('li', null, "📍 'CAN DESCEND' appears when you're close enough to the target"),
+          React.createElement('li', null, "🍕 Premium pizzas like Truffle Mushroom give bigger tips but hurt more if dropped"),
+          React.createElement('li', null, "⚡ Consecutive perfect deliveries build up bonus multipliers!")
+      ),
+      
+      React.createElement('p', { className: 'italic text-slate-400 mt-6' }, "\"From trainee to legend, one pizza at a time. Welcome to Pizza Express - where every delivery is an adventure!\"")
     ),
   },
   {
