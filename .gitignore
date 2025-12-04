@@ -2,3 +2,8 @@ node_modules/
 server.log
 
 copilot-sync-check.txt
+
+# Private/sensitive files - NEVER commit
+HORIZON WORLD VR
+VIDEO_SCRIPT.md
+**/VIDEO_SCRIPT.md
