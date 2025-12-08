@@ -5,7 +5,7 @@
   "start_url": "/pizza-express-vr/game.html",
   "scope": "/pizza-express-vr/",
   "display": "fullscreen",
-  "orientation": "portrait-primary",
+  "orientation": "any",
   "theme_color": "#ff6600",
   "background_color": "#ffffff",
   "icons": [
