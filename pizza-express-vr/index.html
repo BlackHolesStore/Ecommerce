@@ -90,7 +90,6 @@
       transition: all 0.3s ease;
       text-transform: uppercase;
       letter-spacing: 2px;
-      text-decoration: none;
     }
 
     .play-btn:hover,
@@ -113,16 +112,14 @@
     <h2>Pizza Express VR Game</h2>
     <p class="tagline">Welcome! Tap PLAY to start delivering pizzas!</p>
 
-    <!-- PLAY button - shows immediately, no JS needed -->
     <div id="game-container">
-      <a href="/pizza-express-vr/game.html" class="play-btn">🍕 PLAY NOW</a>
+      <button id="play-btn" class="play-btn">🍕 PLAY NOW</button>
       <p class="tip">📱 Best played in landscape mode on mobile</p>
     </div>
   </div>
 
   <!-- Load background GIF after page renders -->
   <script>
-    // Load background after initial render
     window.addEventListener('load', function () {
       document.getElementById('landing-wrapper').classList.add('bg-loaded');
     });
@@ -130,6 +127,7 @@
 
   <!-- PWA Service Worker Registration -->
   <script>
+    // Register service worker for PWA support
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/pizza-express-vr/sw.js').then(reg => {
         console.log('✅ Service Worker registered');
@@ -138,10 +136,51 @@
       });
     }
 
+    // Handle install prompt - store for later use
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       window.deferredPrompt = e;
       console.log('📦 Install prompt available');
+    });
+  </script>
+
+  <!-- PLAY button with PWA install flow -->
+  <script>
+    document.getElementById('play-btn').addEventListener('click', function () {
+      console.log("🎮 Starting game...");
+
+      // Game URL
+      const gameUrl = '/pizza-express-vr/game.html';
+
+      // Show install PWA prompt first
+      const installChoice = confirm(
+        '🍕 Want to install Pizza Express VR as an app?\n\n' +
+        'Install it for better performance and offline play!\n\n' +
+        'Click OK to install, or Cancel to play in browser.'
+      );
+
+      if (installChoice) {
+        console.log("✅ User wants to install PWA");
+        // Trigger PWA install prompt if available
+        if (window.deferredPrompt) {
+          window.deferredPrompt.prompt();
+          window.deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+              console.log('✅ PWA installed!');
+            }
+            // After install prompt, go to game
+            window.location.href = gameUrl;
+          });
+        } else {
+          // No install prompt available, just go to game
+          console.log("⚠️ PWA install not available on this browser/device");
+          window.location.href = gameUrl;
+        }
+      } else {
+        console.log("📱 User chose to play in browser");
+        // Go directly to the game
+        window.location.href = gameUrl;
+      }
     });
   </script>
 </body>
