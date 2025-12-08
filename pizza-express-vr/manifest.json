@@ -1,0 +1,35 @@
+{
+  "name": "Pizza Express VR Game",
+  "short_name": "Pizza Express VR",
+  "description": "An immersive VR pizza delivery game experience",
+  "start_url": "/pizza-express-vr/game.html",
+  "scope": "/pizza-express-vr/",
+  "display": "fullscreen",
+  "orientation": "portrait-primary",
+  "theme_color": "#ff6600",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/pizza-express-vr/assets/favicon-BK7mrg_k.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/pizza-express-vr/assets/favicon-BK7mrg_k.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": [
+    "games"
+  ],
+  "screenshots": [
+    {
+      "src": "/pizza-express-vr/assets/favicon-BK7mrg_k.svg",
+      "sizes": "540x720",
+      "form_factor": "narrow"
+    }
+  ]
+}

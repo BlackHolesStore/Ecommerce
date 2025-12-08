@@ -1,49 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/pizza-express-vr/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    
-    <!-- Primary Meta Tags -->
-    <title>Pizza Express VR | Drone Delivery Game</title>
-    <meta name="title" content="Pizza Express VR | Drone Delivery Game" />
-    <meta name="description" content="🍕 Fly your pizza drone through a vibrant city! Deliver pizzas, earn tips, climb ranks from Dishwasher to PIZZA GOD. Free VR game - play now!" />
-    <meta name="keywords" content="VR game, pizza game, drone game, virtual reality, Meta Quest, WebXR, pizza delivery, arcade game, free game" />
-    <meta name="author" content="Black Holes Store" />
-    <meta name="robots" content="index, follow" />
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://blackholes.store/pizza-express-vr/" />
-    <meta property="og:title" content="🍕 Pizza Express VR | Drone Delivery Game" />
-    <meta property="og:description" content="Fly your pizza drone through a vibrant city! Deliver pizzas, earn tips, climb ranks from Dishwasher to PIZZA GOD. Free VR game!" />
-    <meta property="og:image" content="https://blackholes.store/pizza-express-vr/og-image.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:site_name" content="Black Holes Store" />
-    <meta property="og:locale" content="en_US" />
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://blackholes.store/pizza-express-vr/" />
-    <meta name="twitter:title" content="🍕 Pizza Express VR | Drone Delivery Game" />
-    <meta name="twitter:description" content="Fly your pizza drone through a vibrant city! Deliver pizzas, earn tips, climb ranks from Dishwasher to PIZZA GOD. Free VR game!" />
-    <meta name="twitter:image" content="https://blackholes.store/pizza-express-vr/og-image.png" />
-    <meta name="twitter:creator" content="@BlackHolesStore" />
-    
-    <!-- Additional Meta -->
-    <meta name="theme-color" content="#FF6B35" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Pizza Express VR" />
-    <link rel="canonical" href="https://blackholes.store/pizza-express-vr/" />
-    <script type="module" crossorigin src="/pizza-express-vr/assets/index-BpXsnvOh.js"></script>
-    <link rel="modulepreload" crossorigin href="/pizza-express-vr/assets/react-vendor-DENY9G7l.js">
-    <link rel="modulepreload" crossorigin href="/pizza-express-vr/assets/three-qqiv_Kag.js">
-    <link rel="stylesheet" crossorigin href="/pizza-express-vr/assets/index-C2AdnXD9.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ff6600" />
+    <meta name="description" content="Pizza Express VR - An immersive VR pizza delivery game" />
+    <title>Pizza Express VR Game</title>
+    <link rel="manifest" href="/pizza-express-vr/manifest.json" />
+    <link rel="icon" href="/pizza-express-vr/assets/favicon-BK7mrg_k.svg" />
+    <link rel="apple-touch-icon" href="/pizza-express-vr/assets/favicon-BK7mrg_k.svg" />
+    <link rel="stylesheet" type="text/css" href="/pizza-express-vr/css/main.css" />
   </head>
-  <body>
-    <div id="root"></div>
+
+  <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; min-height: 100vh; background: url('/pizza-express-vr/landing-page-background.gif') no-repeat center center fixed; background-size: cover;">
+    <div style="min-height: 100vh; background: rgba(0,0,0,0.5); display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <h2 style="text-align: center; margin-top: 20px; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); font-size: 2.5rem;">🍕 Pizza Express VR Game</h2>
+    <p style="text-align: center; color: #eee; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">Welcome! Game loads without authentication required.</p>
+    
+    <!-- Game will load here -->
+    <div id="game-container"></div>
+
+    <!-- Initialize game directly without Auth0 -->
+    <script src="/pizza-express-vr/js/app-no-auth.js"></script>
+    
+    <!-- PWA Service Worker Registration -->
+    <script>
+      // Register service worker for PWA support
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/pizza-express-vr/sw.js').then(reg => {
+          console.log('✅ Service Worker registered');
+        }).catch(err => {
+          console.log('Service Worker registration failed:', err);
+        });
+      }
+      
+      // Handle install prompt - MUST set window.deferredPrompt inside the event handler
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        window.deferredPrompt = e;  // Store on window so app-no-auth.js can access it
+        console.log('📦 Install prompt available');
+      });
+    </script>
+    </div>
   </body>
 </html>
