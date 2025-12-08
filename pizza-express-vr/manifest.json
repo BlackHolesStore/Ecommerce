@@ -4,8 +4,7 @@
   "description": "An immersive VR pizza delivery game experience",
   "start_url": "/pizza-express-vr/game.html",
   "scope": "/pizza-express-vr/",
-  "display": "fullscreen",
-  "orientation": "any",
+  "display": "standalone",
   "theme_color": "#ff6600",
   "background_color": "#ffffff",
   "icons": [
