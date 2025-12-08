@@ -45,7 +45,12 @@ document.addEventListener('DOMContentLoaded', () => {
           🍕 PLAY NOW
         </button>
         
-        <p style="font-size: 12px; color: #999;">Enjoy the Pizza Express VR Experience!</p>
+        <p style="font-size: 11px; color: #ccc; max-width: 300px; line-height: 1.4;">
+          By clicking Play Now, you agree to our 
+          <a href="https://blackholes.store/privacy-policy" target="_blank" style="color: #ff8800; text-decoration: underline;">Privacy Policy</a> 
+          and 
+          <a href="https://blackholes.store/terms" target="_blank" style="color: #ff8800; text-decoration: underline;">Terms of Service</a>
+        </p>
       </div>
     `;
 
