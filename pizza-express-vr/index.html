@@ -10,16 +10,16 @@
   
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://blackholes.store/pizza-express-vr/">
+  <meta property="og:url" content="https://blackholesstore.github.io/Ecommerce/pizza-express-vr/">
   <meta property="og:title" content="🍕 Pizza Express VR | Drone Delivery Game">
   <meta property="og:description" content="Fly your pizza drone through a vibrant city! Deliver pizzas, earn tips, climb ranks from Dishwasher to PIZZA GOD. Free VR game!">
-  <meta property="og:image" content="https://blackholes.store/pizza-express-vr/og-image.png">
+  <meta property="og:image" content="https://blackholesstore.github.io/Ecommerce/pizza-express-vr/og-image.png">
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="🍕 Pizza Express VR | Drone Delivery Game">
   <meta name="twitter:description" content="Fly your pizza drone through a vibrant city! Deliver pizzas, earn tips, climb ranks. Free VR game!">
-  <meta name="twitter:image" content="https://blackholes.store/pizza-express-vr/og-image.png">
+  <meta name="twitter:image" content="https://blackholesstore.github.io/Ecommerce/pizza-express-vr/og-image.png">
   
   <meta name="theme-color" content="#FF6B35">
   <link rel="icon" type="image/svg+xml" href="assets/favicon-BK7mrg_k.svg">
@@ -29,7 +29,8 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+      background: url('landing-page-background.gif') no-repeat center center fixed;
+      background-size: cover;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -38,24 +39,13 @@
       color: white;
       overflow: hidden;
     }
-    .bg-animation {
+    /* Dark overlay for text readability */
+    body::before {
+      content: '';
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      z-index: -1;
-      overflow: hidden;
-    }
-    .bg-animation::before {
-      content: '';
-      position: absolute;
-      top: -50%; left: -50%;
-      width: 200%; height: 200%;
-      background: radial-gradient(circle at 30% 30%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
-                  radial-gradient(circle at 70% 70%, rgba(255, 193, 7, 0.1) 0%, transparent 50%);
-      animation: pulse 8s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1) rotate(0deg); }
-      50% { transform: scale(1.1) rotate(5deg); }
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 0;
     }
     .pizza-float {
       position: fixed;
@@ -63,6 +53,7 @@
       opacity: 0.3;
       animation: float 15s ease-in-out infinite;
       pointer-events: none;
+      z-index: 1;
     }
     @keyframes float {
       0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -73,7 +64,7 @@
     .pizza-float:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 4s; }
     .pizza-float:nth-child(4) { bottom: 15%; right: 10%; animation-delay: 6s; }
     .pizza-float:nth-child(5) { top: 50%; left: 5%; animation-delay: 1s; }
-    .container { text-align: center; padding: 20px; max-width: 600px; z-index: 10; }
+    .container { text-align: center; padding: 20px; max-width: 600px; z-index: 10; position: relative; }
     .logo { font-size: 80px; margin-bottom: 10px; animation: bounce 2s ease-in-out infinite; }
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
@@ -84,12 +75,13 @@
       background: linear-gradient(135deg, #FF6B35, #FFC107);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .tagline { font-size: 1.2rem; color: #aaa; margin-bottom: 30px; }
+    .tagline { font-size: 1.2rem; color: #ddd; margin-bottom: 30px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
     .features { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; }
     .feature {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(0, 0, 0, 0.6);
       padding: 15px 20px; border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
     }
     .feature-icon { font-size: 24px; margin-bottom: 5px; }
     .feature-text { font-size: 0.9rem; color: #ccc; }
@@ -111,8 +103,8 @@
     }
     .btn-vr:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(124, 58, 237, 0.5); }
     .btn-vr:disabled { background: #444; cursor: not-allowed; box-shadow: none; }
-    .vr-note { font-size: 0.8rem; color: #888; margin-top: 10px; }
-    .footer { position: fixed; bottom: 20px; font-size: 0.8rem; color: #666; }
+    .vr-note { font-size: 0.8rem; color: #aaa; margin-top: 10px; text-shadow: 1px 1px 2px rgba(0,0,0,0.8); }
+    .footer { position: fixed; bottom: 20px; font-size: 0.8rem; color: #aaa; z-index: 10; text-shadow: 1px 1px 2px rgba(0,0,0,0.8); }
     .footer a { color: #FF6B35; text-decoration: none; }
     @media (max-width: 480px) {
       .logo { font-size: 60px; }
@@ -125,7 +117,6 @@
   </style>
 </head>
 <body>
-  <div class="bg-animation"></div>
   <div class="pizza-float">🍕</div>
   <div class="pizza-float">🍕</div>
   <div class="pizza-float">🍕</div>
@@ -151,7 +142,7 @@
     </div>
   </div>
   
-  <div class="footer">Made with ❤️ by <a href="https://blackholes.store">Black Holes Store</a></div>
+  <div class="footer">Made with ❤️ by <a href="https://github.com/BlackHolesStore">Black Holes Store</a></div>
   
   <script>
     async function checkVR() {
