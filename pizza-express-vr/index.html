@@ -26,12 +26,7 @@
   <link rel="manifest" href="manifest.json">
   
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
       background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
@@ -43,36 +38,25 @@
       color: white;
       overflow: hidden;
     }
-    
-    /* Animated background */
     .bg-animation {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0; width: 100%; height: 100%;
       z-index: -1;
       overflow: hidden;
     }
-    
     .bg-animation::before {
       content: '';
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
       background: radial-gradient(circle at 30% 30%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
                   radial-gradient(circle at 70% 70%, rgba(255, 193, 7, 0.1) 0%, transparent 50%);
       animation: pulse 8s ease-in-out infinite;
     }
-    
     @keyframes pulse {
       0%, 100% { transform: scale(1) rotate(0deg); }
       50% { transform: scale(1.1) rotate(5deg); }
     }
-    
-    /* Floating pizzas */
     .pizza-float {
       position: fixed;
       font-size: 40px;
@@ -80,146 +64,56 @@
       animation: float 15s ease-in-out infinite;
       pointer-events: none;
     }
-    
     @keyframes float {
       0%, 100% { transform: translateY(0) rotate(0deg); }
       50% { transform: translateY(-30px) rotate(15deg); }
     }
-    
     .pizza-float:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
     .pizza-float:nth-child(2) { top: 20%; right: 15%; animation-delay: 2s; }
     .pizza-float:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 4s; }
     .pizza-float:nth-child(4) { bottom: 15%; right: 10%; animation-delay: 6s; }
     .pizza-float:nth-child(5) { top: 50%; left: 5%; animation-delay: 1s; }
-    
-    .container {
-      text-align: center;
-      padding: 20px;
-      max-width: 600px;
-      z-index: 10;
-    }
-    
-    .logo {
-      font-size: 80px;
-      margin-bottom: 10px;
-      animation: bounce 2s ease-in-out infinite;
-    }
-    
+    .container { text-align: center; padding: 20px; max-width: 600px; z-index: 10; }
+    .logo { font-size: 80px; margin-bottom: 10px; animation: bounce 2s ease-in-out infinite; }
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
     }
-    
     h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 10px;
+      font-size: 2.5rem; font-weight: 700; margin-bottom: 10px;
       background: linear-gradient(135deg, #FF6B35, #FFC107);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    
-    .tagline {
-      font-size: 1.2rem;
-      color: #aaa;
-      margin-bottom: 30px;
-    }
-    
-    .features {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-bottom: 40px;
-    }
-    
+    .tagline { font-size: 1.2rem; color: #aaa; margin-bottom: 30px; }
+    .features { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; }
     .feature {
       background: rgba(255, 255, 255, 0.05);
-      padding: 15px 20px;
-      border-radius: 12px;
+      padding: 15px 20px; border-radius: 12px;
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
-    
-    .feature-icon {
-      font-size: 24px;
-      margin-bottom: 5px;
-    }
-    
-    .feature-text {
-      font-size: 0.9rem;
-      color: #ccc;
-    }
-    
-    .buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      align-items: center;
-    }
-    
+    .feature-icon { font-size: 24px; margin-bottom: 5px; }
+    .feature-text { font-size: 0.9rem; color: #ccc; }
+    .buttons { display: flex; flex-direction: column; gap: 15px; align-items: center; }
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 18px 50px;
-      font-size: 1.3rem;
-      font-weight: 600;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      min-width: 280px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 18px 50px; font-size: 1.3rem; font-weight: 600;
+      border: none; border-radius: 50px; cursor: pointer;
+      text-decoration: none; transition: all 0.3s ease; min-width: 280px;
     }
-    
     .btn-play {
-      background: linear-gradient(135deg, #FF6B35, #FF8F00);
-      color: white;
+      background: linear-gradient(135deg, #FF6B35, #FF8F00); color: white;
       box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4);
     }
-    
-    .btn-play:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 40px rgba(255, 107, 53, 0.5);
-    }
-    
+    .btn-play:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(255, 107, 53, 0.5); }
     .btn-vr {
-      background: linear-gradient(135deg, #7C3AED, #5B21B6);
-      color: white;
+      background: linear-gradient(135deg, #7C3AED, #5B21B6); color: white;
       box-shadow: 0 8px 30px rgba(124, 58, 237, 0.4);
     }
-    
-    .btn-vr:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 40px rgba(124, 58, 237, 0.5);
-    }
-    
-    .btn-vr:disabled {
-      background: #444;
-      cursor: not-allowed;
-      box-shadow: none;
-    }
-    
-    .vr-note {
-      font-size: 0.8rem;
-      color: #888;
-      margin-top: 10px;
-    }
-    
-    .footer {
-      position: fixed;
-      bottom: 20px;
-      font-size: 0.8rem;
-      color: #666;
-    }
-    
-    .footer a {
-      color: #FF6B35;
-      text-decoration: none;
-    }
-    
+    .btn-vr:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(124, 58, 237, 0.5); }
+    .btn-vr:disabled { background: #444; cursor: not-allowed; box-shadow: none; }
+    .vr-note { font-size: 0.8rem; color: #888; margin-top: 10px; }
+    .footer { position: fixed; bottom: 20px; font-size: 0.8rem; color: #666; }
+    .footer a { color: #FF6B35; text-decoration: none; }
     @media (max-width: 480px) {
       .logo { font-size: 60px; }
       h1 { font-size: 1.8rem; }
@@ -231,7 +125,6 @@
   </style>
 </head>
 <body>
-  <!-- Background animations -->
   <div class="bg-animation"></div>
   <div class="pizza-float">🍕</div>
   <div class="pizza-float">🍕</div>
@@ -245,41 +138,25 @@
     <p class="tagline">Drone Pizza Delivery - Earn Tips, Climb Ranks!</p>
     
     <div class="features">
-      <div class="feature">
-        <div class="feature-icon">🎮</div>
-        <div class="feature-text">VR & Desktop</div>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">💵</div>
-        <div class="feature-text">Earn Tips</div>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">🏆</div>
-        <div class="feature-text">Leaderboards</div>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">🎖️</div>
-        <div class="feature-text">Unlock Ranks</div>
-      </div>
+      <div class="feature"><div class="feature-icon">🎮</div><div class="feature-text">VR & Desktop</div></div>
+      <div class="feature"><div class="feature-icon">💵</div><div class="feature-text">Earn Tips</div></div>
+      <div class="feature"><div class="feature-icon">🏆</div><div class="feature-text">Leaderboards</div></div>
+      <div class="feature"><div class="feature-icon">🎖️</div><div class="feature-text">Unlock Ranks</div></div>
     </div>
     
     <div class="buttons">
-      <a href="game.html" class="btn btn-play" id="play-btn">🍕 Play Now</a>
+      <a href="game.html" class="btn btn-play">🍕 Play Now</a>
       <button class="btn btn-vr" id="vr-btn" disabled>🥽 Enter VR</button>
       <p class="vr-note" id="vr-note">Checking VR support...</p>
     </div>
   </div>
   
-  <div class="footer">
-    Made with ❤️ by <a href="https://blackholes.store">Black Holes Store</a>
-  </div>
+  <div class="footer">Made with ❤️ by <a href="https://blackholes.store">Black Holes Store</a></div>
   
   <script>
-    // Check WebXR support
     async function checkVR() {
       const vrBtn = document.getElementById('vr-btn');
       const vrNote = document.getElementById('vr-note');
-      
       if (navigator.xr) {
         try {
           const supported = await navigator.xr.isSessionSupported('immersive-vr');
@@ -287,21 +164,13 @@
             vrBtn.disabled = false;
             vrNote.textContent = 'VR headset detected! Click to enter VR mode.';
             vrNote.style.color = '#4ade80';
-            
-            vrBtn.addEventListener('click', () => {
-              window.location.href = 'game.html?vr=true';
-            });
+            vrBtn.addEventListener('click', () => { window.location.href = 'game.html?vr=true'; });
           } else {
             vrNote.textContent = 'No VR headset detected. Play on desktop!';
           }
-        } catch (e) {
-          vrNote.textContent = 'VR check failed. Play on desktop!';
-        }
-      } else {
-        vrNote.textContent = 'WebXR not supported. Play on desktop!';
-      }
+        } catch (e) { vrNote.textContent = 'VR check failed. Play on desktop!'; }
+      } else { vrNote.textContent = 'WebXR not supported. Play on desktop!'; }
     }
-    
     checkVR();
   </script>
 </body>
