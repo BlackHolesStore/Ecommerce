@@ -22,7 +22,7 @@
   <meta name="twitter:image" content="https://blackholes.store/pizza-express-vr/og-image.png">
   
   <meta name="theme-color" content="#FF6B35">
-  <link rel="icon" type="image/svg+xml" href="/pizza-express-vr/assets/favicon-BK7mrg_k.svg">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon-BK7mrg_k.svg">
   <link rel="manifest" href="manifest.json">
   
   <style>
@@ -52,183 +52,257 @@
       width: 100%;
       height: 100%;
       z-index: -1;
-      background: url('landing-page-background.gif') center center / cover no-repeat;
-      opacity: 0.3;
+      overflow: hidden;
     }
+    
+    .bg-animation::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 30%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 70%, rgba(255, 193, 7, 0.1) 0%, transparent 50%);
+      animation: pulse 8s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.1) rotate(5deg); }
+    }
+    
+    /* Floating pizzas */
+    .pizza-float {
+      position: fixed;
+      font-size: 40px;
+      opacity: 0.3;
+      animation: float 15s ease-in-out infinite;
+      pointer-events: none;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(15deg); }
+    }
+    
+    .pizza-float:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+    .pizza-float:nth-child(2) { top: 20%; right: 15%; animation-delay: 2s; }
+    .pizza-float:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 4s; }
+    .pizza-float:nth-child(4) { bottom: 15%; right: 10%; animation-delay: 6s; }
+    .pizza-float:nth-child(5) { top: 50%; left: 5%; animation-delay: 1s; }
     
     .container {
       text-align: center;
-      padding: 40px 20px;
+      padding: 20px;
       max-width: 600px;
-      z-index: 1;
+      z-index: 10;
     }
     
     .logo {
       font-size: 80px;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       animation: bounce 2s ease-in-out infinite;
     }
     
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
+      50% { transform: translateY(-10px); }
     }
     
     h1 {
       font-size: 2.5rem;
+      font-weight: 700;
       margin-bottom: 10px;
-      text-shadow: 0 0 20px rgba(255, 107, 53, 0.8);
+      background: linear-gradient(135deg, #FF6B35, #FFC107);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     
-    .subtitle {
-      font-size: 1.1rem;
+    .tagline {
+      font-size: 1.2rem;
       color: #aaa;
+      margin-bottom: 30px;
+    }
+    
+    .features {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
       margin-bottom: 40px;
+    }
+    
+    .feature {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 15px 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .feature-icon {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+    
+    .feature-text {
+      font-size: 0.9rem;
+      color: #ccc;
     }
     
     .buttons {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 15px;
       align-items: center;
     }
     
     .btn {
-      padding: 18px 60px;
-      font-size: 1.4rem;
-      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 18px 50px;
+      font-size: 1.3rem;
+      font-weight: 600;
       border: none;
       border-radius: 50px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-      letter-spacing: 2px;
       text-decoration: none;
-      display: inline-block;
+      transition: all 0.3s ease;
+      min-width: 280px;
     }
     
     .btn-play {
-      background: linear-gradient(135deg, #ff6600 0%, #ff8800 100%);
+      background: linear-gradient(135deg, #FF6B35, #FF8F00);
       color: white;
-      box-shadow: 0 8px 25px rgba(255, 102, 0, 0.4);
+      box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4);
     }
     
     .btn-play:hover {
-      transform: scale(1.05);
-      box-shadow: 0 12px 35px rgba(255, 102, 0, 0.6);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(255, 107, 53, 0.5);
     }
     
     .btn-vr {
-      background: #000000;
+      background: linear-gradient(135deg, #7C3AED, #5B21B6);
       color: white;
-      border: 2px solid white;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 8px 30px rgba(124, 58, 237, 0.4);
     }
     
     .btn-vr:hover {
-      transform: scale(1.05);
-      box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
-      border-color: #667eea;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(124, 58, 237, 0.5);
     }
     
-    .features {
-      margin-top: 50px;
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
+    .btn-vr:disabled {
+      background: #444;
+      cursor: not-allowed;
+      box-shadow: none;
     }
     
-    .feature {
-      text-align: center;
-      padding: 15px;
-    }
-    
-    .feature-icon {
-      font-size: 2rem;
-      margin-bottom: 8px;
-    }
-    
-    .feature-text {
-      font-size: 0.9rem;
+    .vr-note {
+      font-size: 0.8rem;
       color: #888;
+      margin-top: 10px;
     }
     
     .footer {
-      margin-top: 50px;
+      position: fixed;
+      bottom: 20px;
       font-size: 0.8rem;
       color: #666;
     }
     
-    @media (max-width: 600px) {
+    .footer a {
+      color: #FF6B35;
+      text-decoration: none;
+    }
+    
+    @media (max-width: 480px) {
+      .logo { font-size: 60px; }
       h1 { font-size: 1.8rem; }
-      .btn { padding: 15px 40px; font-size: 1.1rem; }
-      .features { gap: 15px; }
+      .tagline { font-size: 1rem; }
+      .btn { padding: 15px 40px; font-size: 1.1rem; min-width: 240px; }
+      .features { gap: 10px; }
+      .feature { padding: 10px 15px; }
     }
   </style>
 </head>
 <body>
+  <!-- Background animations -->
   <div class="bg-animation"></div>
+  <div class="pizza-float">🍕</div>
+  <div class="pizza-float">🍕</div>
+  <div class="pizza-float">🍕</div>
+  <div class="pizza-float">🍕</div>
+  <div class="pizza-float">🍕</div>
   
   <div class="container">
-    <div class="logo">🍕</div>
+    <div class="logo">🍕🚁</div>
     <h1>Pizza Express VR</h1>
-    <p class="subtitle">Drone Delivery Game • Meta Quest Compatible</p>
-    
-    <div class="buttons">
-      <a href="game.html" class="btn btn-play" id="play-btn">🍕 Play Now</a>
-      <button class="btn btn-vr" id="vr-btn">🥽 Enter VR</button>
-    </div>
+    <p class="tagline">Drone Pizza Delivery - Earn Tips, Climb Ranks!</p>
     
     <div class="features">
       <div class="feature">
-        <div class="feature-icon">🚁</div>
-        <div class="feature-text">Fly Drones</div>
+        <div class="feature-icon">🎮</div>
+        <div class="feature-text">VR & Desktop</div>
       </div>
       <div class="feature">
-        <div class="feature-icon">💰</div>
+        <div class="feature-icon">💵</div>
         <div class="feature-text">Earn Tips</div>
       </div>
       <div class="feature">
         <div class="feature-icon">🏆</div>
-        <div class="feature-text">Climb Ranks</div>
+        <div class="feature-text">Leaderboards</div>
       </div>
       <div class="feature">
-        <div class="feature-icon">🥽</div>
-        <div class="feature-text">VR Ready</div>
+        <div class="feature-icon">🎖️</div>
+        <div class="feature-text">Unlock Ranks</div>
       </div>
     </div>
     
-    <p class="footer">© 2025 BlackHoles.Store • Original concept by Alejandro Samid</p>
+    <div class="buttons">
+      <a href="game.html" class="btn btn-play" id="play-btn">🍕 Play Now</a>
+      <button class="btn btn-vr" id="vr-btn" disabled>🥽 Enter VR</button>
+      <p class="vr-note" id="vr-note">Checking VR support...</p>
+    </div>
+  </div>
+  
+  <div class="footer">
+    Made with ❤️ by <a href="https://blackholes.store">Black Holes Store</a>
   </div>
   
   <script>
-    // VR Button - Check WebXR support and launch VR
-    document.getElementById('vr-btn').addEventListener('click', async () => {
-      console.log("🥽 Starting VR experience...");
+    // Check WebXR support
+    async function checkVR() {
+      const vrBtn = document.getElementById('vr-btn');
+      const vrNote = document.getElementById('vr-note');
       
       if (navigator.xr) {
         try {
-          const vrSupported = await navigator.xr.isSessionSupported('immersive-vr');
-          if (vrSupported) {
-            console.log("✅ WebXR VR supported - launching game in VR mode");
-            window.location.href = 'game.html?vr=true';
+          const supported = await navigator.xr.isSessionSupported('immersive-vr');
+          if (supported) {
+            vrBtn.disabled = false;
+            vrNote.textContent = 'VR headset detected! Click to enter VR mode.';
+            vrNote.style.color = '#4ade80';
+            
+            vrBtn.addEventListener('click', () => {
+              window.location.href = 'game.html?vr=true';
+            });
           } else {
-            alert('🥽 VR not supported on this device.\n\nPlease use a VR headset like Meta Quest to enter VR mode.');
+            vrNote.textContent = 'No VR headset detected. Play on desktop!';
           }
-        } catch (err) {
-          console.error("WebXR check failed:", err);
-          alert('🥽 Could not check VR support.\n\nTry opening this page on your Meta Quest headset.');
+        } catch (e) {
+          vrNote.textContent = 'VR check failed. Play on desktop!';
         }
       } else {
-        alert('🥽 WebXR not available.\n\nPlease open this page in the Meta Quest Browser to enter VR.');
+        vrNote.textContent = 'WebXR not supported. Play on desktop!';
       }
-    });
-    
-    // Service Worker for PWA
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js').catch(err => console.log('SW registration failed:', err));
     }
+    
+    checkVR();
   </script>
 </body>
 </html>
